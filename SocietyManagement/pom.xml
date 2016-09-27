@@ -39,7 +39,7 @@
 	    <artifactId>spring-webmvc</artifactId>
 	    <version>${spring.version}</version>
 	 </dependency>
-	</dependencies>
+	
 	
 	<dependency>
 		<groupId>mysql</groupId>
@@ -86,7 +86,7 @@
 		    <artifactId>hibernate-commons-annotations</artifactId>
 		    <version>5.0.0.Final</version>
 		</dependency>
-
+</dependencies>
 	<build>
 	    <plugins>
 	        <plugin>
