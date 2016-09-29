@@ -100,13 +100,7 @@ public class UserInfo implements Serializable {
 	@OneToMany(mappedBy="UserInfo")
 	private List<VehicleDetails> VehicleDetails;
 	
-	//bi-directional many-to-one association to SmsLatestUpdate
-	@OneToMany(mappedBy="tblSmsUserInfo")
-	private List<SmsLatestUpdate> tblSmsLatestUpdates;
 
-	//bi-directional many-to-one association to SmsOpinionDetail
-	@OneToMany(mappedBy="tblSmsUserInfo")
-	private List<SmsOpinionDetail> tblSmsOpinionDetails;
 
 	public UserInfo() {
 	}

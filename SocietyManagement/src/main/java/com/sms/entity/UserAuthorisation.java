@@ -36,9 +36,9 @@ public class UserAuthorisation implements Serializable {
 
 	private int version;
 
-	//bi-directional many-to-one association to SmsUserInfo
-	@OneToMany(mappedBy="tblSmsUserAuth")
-	private List<SmsUserInfo> tblSmsUserInfos;
+//	//bi-directional many-to-one association to SmsUserInfo
+//	@OneToMany(mappedBy="")
+//	private List<UserInfo> tblSmsUserInfos;
 
 	public UserAuthorisation() {
 	}
@@ -99,26 +99,26 @@ public class UserAuthorisation implements Serializable {
 		this.version = version;
 	}
 
-	public List<SmsUserInfo> getTblSmsUserInfos() {
-		return this.tblSmsUserInfos;
-	}
-
-	public void setTblSmsUserInfos(List<SmsUserInfo> tblSmsUserInfos) {
-		this.tblSmsUserInfos = tblSmsUserInfos;
-	}
-
-	public SmsUserInfo addTblSmsUserInfo(SmsUserInfo tblSmsUserInfo) {
-		getTblSmsUserInfos().add(tblSmsUserInfo);
-		tblSmsUserInfo.setTblSmsUserAuth(this);
-
-		return tblSmsUserInfo;
-	}
-
-	public SmsUserInfo removeTblSmsUserInfo(SmsUserInfo tblSmsUserInfo) {
-		getTblSmsUserInfos().remove(tblSmsUserInfo);
-		tblSmsUserInfo.setTblSmsUserAuth(null);
-
-		return tblSmsUserInfo;
-	}
+//	public List<UserInfo> getTblSmsUserInfos() {
+//		//return this.tblSmsUserInfos;
+//	}
+//
+//	public void setTblSmsUserInfos(List<UserInfo> tblSmsUserInfos) {
+//		this.tblSmsUserInfos = tblSmsUserInfos;
+//	}
+//
+//	public UserInfo addTblSmsUserInfo(UserInfo tblSmsUserInfo) {
+//		getTblSmsUserInfos().add(tblSmsUserInfo);
+//		tblSmsUserInfo.setTblSmsUserAuth(this);
+//
+//		return tblSmsUserInfo;
+//	}
+//
+//	public UserInfo removeTblSmsUserInfo(UserInfo tblSmsUserInfo) {
+//		getTblSmsUserInfos().remove(tblSmsUserInfo);
+//		tblSmsUserInfo.setTblSmsUserAuth(null);
+//
+//		return tblSmsUserInfo;
+//	}
 
 }

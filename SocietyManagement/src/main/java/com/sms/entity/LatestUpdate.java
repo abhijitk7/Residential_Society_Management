@@ -14,6 +14,7 @@ import java.util.Date;
 @Table(name="tbl_sms_latest_updates")
 @NamedQuery(name="LatestUpdate.findAll", query="SELECT l FROM LatestUpdate l")
 public class LatestUpdate implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
