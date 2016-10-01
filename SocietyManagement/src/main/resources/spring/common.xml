@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+        
+        <!--  Turn on auto wiring by annotation -->
+        <context:annotation-config/>
+        
+        <mvc:annotation-driven/>
+ 
+		<context:component-scan base-package="com.sms"/>
+		
+		<context:property-placeholder location="classpath:properties/local.properties"/>
+		
+		<tx:annotation-driven transaction-manager="hibernateTransactionManager"/>
+		
+		<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			<property name="prefix" value="/WEB-INF/views/" />
+			<property name="suffix" value=".jsp" />
+		</bean>
+		
+		<bean id="hibernate3AnnotatedSessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+			<property name="dataSource" ref="smsDataSource"/>
+			
+			<property name="packagesToScan">
+				<list>
+					<value>com.sms.entity</value>
+				</list>
+			</property>
+			<property name="hibernateProperties">
+				<props>
+					<prop key="hibernate.dialect">${db.hibernate.dialect}</prop>
+					<prop key="hibernate.show_sql">${db.hibernate.show_sql}</prop>
+				</props>
+			
+			</property>
+		</bean>
+		
+		<bean class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" id="hibernateTransactionManager">
+			<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+		</bean>
+</beans>
