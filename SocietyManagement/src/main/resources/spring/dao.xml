@@ -6,4 +6,6 @@
         http://www.springframework.org/schema/beans     
         http://www.springframework.org/schema/beans/spring-beans.xsd">
         
+        <bean id="amenityDao" class="com.sms.dao.AmenityJpaDao"/>
+        
 </beans>

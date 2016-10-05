@@ -46,7 +46,7 @@
 			</property>
 		</bean>
 		
-		<bean class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" id="hibernateTransactionManager">
-			<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
-		</bean>
+<!-- 		<bean class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" id="hibernateTransactionManager"> -->
+<!-- 			<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/> -->
+<!-- 		</bean> -->
 </beans>

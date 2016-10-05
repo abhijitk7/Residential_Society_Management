@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="SMSTest" transaction-type="RESOURCE_LOCAL">
-		<class>com.sms.entity.Role</class>
-		<class>com.sms.entity.UserAuthorisation</class>
-		<class>com.sms.entity.PaymentType</class>
-		<class>com.sms.entity.UserInfo</class>
-		<class>com.sms.entity.VehicleDetails</class>
-		<class>com.sms.entity.Amenity</class>
-		<class>com.sms.entity.AmenitiesBooking</class>
-		<class>com.sms.entity.ExpenditureDetail</class>
-		<class>com.sms.entity.ExpenseRequest</class>
-		<class>com.sms.entity.MeetingDetail</class>
-		<class>com.sms.entity.UserPayment</class>
-		<class>com.sms.entity.LatestUpdate</class>
-		<class>com.sms.entity.OpinionDetail</class>
-		<class>com.sms.entity.UserPayments</class>
-		<class>com.sms.entity.UserType</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sms_database_dev"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>
