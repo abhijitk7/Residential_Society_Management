@@ -20,33 +20,35 @@
  
 		<context:component-scan base-package="com.sms"/>
 		
-		<context:property-placeholder location="classpath:properties/local.properties"/>
+		<context:property-placeholder system-properties-mode="OVERRIDE" location="classpath:properties/local.properties" ignore-unresolvable="true"/>
 		
-		<tx:annotation-driven transaction-manager="hibernateTransactionManager"/>
+		<tx:annotation-driven transaction-manager="transactionManger"/>
 		
 		<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 			<property name="prefix" value="/WEB-INF/views/" />
 			<property name="suffix" value=".jsp" />
 		</bean>
 		
-		<bean id="hibernate3AnnotatedSessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<bean id="bscAppEntityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 			<property name="dataSource" ref="smsDataSource"/>
-			
-			<property name="packagesToScan">
-				<list>
-					<value>com.sms.entity</value>
-				</list>
+			<property name="persistanceUnitName" value="sms"/>
+			<property name="jpaVendorAdapter">
+				<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+					<property name="showSql" value="false"/>
+					<property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect"/>
+				</bean>
 			</property>
-			<property name="hibernateProperties">
+			<property name="jpaProperties">
 				<props>
-					<prop key="hibernate.dialect">${db.hibernate.dialect}</prop>
-					<prop key="hibernate.show_sql">${db.hibernate.show_sql}</prop>
-				</props>
-			
+					<prop key="hibernate.format_sql">true</prop>
+					<prop key="hibernate.connection.autocommit">false</prop>
+					<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				</props>	
 			</property>
 		</bean>
-		
-<!-- 		<bean class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" id="hibernateTransactionManager"> -->
-<!-- 			<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/> -->
-<!-- 		</bean> -->
+				
+		<bean id="transactionManger" class="org.springframework.orm.jpa.JpaTransactionManager">
+			<property name="entityMangerFactory" ref="bscAppEntityManagerFactory"/>
+			<qualifier value="bsc"/>
+		</bean>
 </beans>
