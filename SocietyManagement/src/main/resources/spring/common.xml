@@ -20,7 +20,7 @@
  
 		<context:component-scan base-package="com.sms"/>
 		
-		<context:property-placeholder system-properties-mode="OVERRIDE" location="classpath:properties/local.properties" ignore-unresolvable="true"/>
+		<context:property-placeholder system-properties-mode="OVERRIDE" location="classpath:properties/data-access.properties" ignore-unresolvable="true"/>
 		
 		<tx:annotation-driven transaction-manager="transactionManger"/>
 		
@@ -29,12 +29,12 @@
 			<property name="suffix" value=".jsp" />
 		</bean>
 		
-		<bean id="bscAppEntityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<bean id="smsAppEntityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 			<property name="dataSource" ref="smsDataSource"/>
-			<property name="persistanceUnitName" value="sms"/>
+			<property name="persistenceUnitName" value="sms"/>
 			<property name="jpaVendorAdapter">
 				<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-					<property name="showSql" value="false"/>
+					<property name="showSql" value="true"/>
 					<property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect"/>
 				</bean>
 			</property>
@@ -43,12 +43,15 @@
 					<prop key="hibernate.format_sql">true</prop>
 					<prop key="hibernate.connection.autocommit">false</prop>
 					<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+					<prop key="hibernate.cache.use_second_level_cache">true</prop>
+					<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+					<prop key="hibernate.cache.use_query_cache">false</prop>
 				</props>	
 			</property>
 		</bean>
 				
-		<bean id="transactionManger" class="org.springframework.orm.jpa.JpaTransactionManager">
-			<property name="entityMangerFactory" ref="bscAppEntityManagerFactory"/>
-			<qualifier value="bsc"/>
+		<bean id="transactionMangerSms" class="org.springframework.orm.jpa.JpaTransactionManager">
+			<property name="entityManagerFactory" ref="smsAppEntityManagerFactory"/>
+			<qualifier value="sms"/>
 		</bean>
 </beans>

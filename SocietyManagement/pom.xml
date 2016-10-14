@@ -19,24 +19,24 @@
 
 
 		<!-- Web Related -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>javax.servlet.jsp-api</artifactId>
-			<version>2.3.1</version>
-			<scope>provided</scope>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>javax.servlet</groupId> -->
+<!-- 			<artifactId>javax.servlet-api</artifactId> -->
+<!-- 			<version>3.1.0</version> -->
+<!-- 			<scope>provided</scope> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>javax.servlet.jsp</groupId> -->
+<!-- 			<artifactId>javax.servlet.jsp-api</artifactId> -->
+<!-- 			<version>2.3.1</version> -->
+<!-- 			<scope>provided</scope> -->
+<!-- 		</dependency> -->
 
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>javax.servlet</groupId> -->
+<!-- 			<artifactId>jstl</artifactId> -->
+<!-- 			<version>1.2</version> -->
+<!-- 		</dependency> -->
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -49,12 +49,6 @@
 			<groupId>javax.transaction</groupId>
 			<artifactId>jta</artifactId>
 			<version>1.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>javax.persistence</artifactId>
-			<version>2.1.0</version>
 		</dependency>
 
 		<dependency>
@@ -122,9 +116,15 @@
         <!-- Hibernate -->        
 
         <dependency>
-		    <groupId>hibernate</groupId>
+		    <groupId>org.hibernate</groupId>
 		    <artifactId>hibernate-entitymanager</artifactId>
 		    <version>${hibernate.version}</version>
+		    <exclusions>
+               <exclusion>
+                  <groupId>org.hibernate</groupId>
+                  <artifactId>hibernate-core</artifactId>
+               </exclusion>
+			</exclusions>
 		</dependency>
 		
 		<dependency>
@@ -136,13 +136,50 @@
 		<dependency>
 		    <groupId>org.hibernate</groupId>
 		    <artifactId>hibernate-annotations</artifactId>
-		    <version>3.4.0.GA</version>
+		    <version>${hibernate.version}</version>
 		</dependency>
 		
 		<dependency>
-		    <groupId>org.hibernate.javax.persistence</groupId>
-		    <artifactId>hibernate-jpa-2.0-api</artifactId>
-		    <version>1.0.1.Final</version>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-ehcache</artifactId>
+		    <version>3.6.2.Final</version>
+		</dependency>
+		
+<!-- 		<dependency> -->
+<!-- 		    <groupId>org.hibernate.javax.persistence</groupId> -->
+<!-- 		    <artifactId>hibernate-jpa-2.0-api</artifactId> -->
+<!-- 		    <version>1.0.1.Final</version> -->
+<!-- 		</dependency> -->
+		
+<!-- 		<dependency> -->
+<!-- 		  <groupId>javax.persistence</groupId> -->
+<!-- 		  <artifactId>persistence-api</artifactId> -->
+<!-- 		  <version>1.0.2</version> -->
+<!-- 		</dependency> -->
+
+		<!-- Jackson -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>2.4.1</version>
+		</dependency> 
+		
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.4.1.1</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.codehaus.jackson</groupId>
+		    <artifactId>jackson-core-asl</artifactId>
+		    <version>1.9.13</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.codehaus.jackson</groupId>
+		    <artifactId>jackson-mapper-asl</artifactId>
+		    <version>1.9.13</version>
 		</dependency>
 
 			<!-- IN MEMORY Database and JDBC Driver -->
@@ -159,6 +196,13 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.connector.version}</version>
         </dependency>
+        
+        <dependency>
+		    <groupId>commons-dbcp</groupId>
+		    <artifactId>commons-dbcp</artifactId>
+		    <version>1.2.2</version>
+		</dependency>
+        
 		
 	</dependencies>
 	
