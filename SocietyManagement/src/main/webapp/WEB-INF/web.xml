@@ -9,7 +9,7 @@
   <display-name>Society Management System</display-name>
   
   <welcome-file-list>
-  	<welcome-file>hello-world.html</welcome-file>
+  	<welcome-file>login.html</welcome-file>
   </welcome-file-list>
   
   <context-param>

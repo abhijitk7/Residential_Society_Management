@@ -38,4 +38,5 @@ public class MasterController {
 		return new ResponseEntity<List<Amenity>>(amenity, null, HttpStatus.OK);
 
 	}
+
 }
