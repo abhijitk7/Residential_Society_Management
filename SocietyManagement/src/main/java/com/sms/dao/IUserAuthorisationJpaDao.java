@@ -5,19 +5,24 @@
  * is strictly forbidden unless prior written permission is obtained
  * from Abhijit A. Kulkarni (abhikulkarni.1988@gmail.com).
  */
-
 package com.sms.dao;
 
-import java.util.List;
+import java.util.Set;
 
-import com.sms.entity.Amenity;
+import com.sms.entity.UserAuthorisation;
 
 /**
- * @author Abhijit A. Kulkarni
- * @Crated on Nov 12, 2016
- * @Version 1.0
+ * @author Abhijit Kulkarni
+ * @since 12 Nov 2016
+ * @version 1.0
  */
-public interface IAmenitiesJpaDao {
 
-	List<Amenity> getAllAmenities();
+public interface IUserAuthorisationJpaDao {
+
+	Set<UserAuthorisation> finAllAuthorisedUsers();
+
+	UserAuthorisation getAuthorisedUserById(Integer userId);
+
+	UserAuthorisation getAuthorisedUserByUserName(String userName);
+
 }

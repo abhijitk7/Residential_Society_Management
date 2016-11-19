@@ -1,53 +1,66 @@
+/**
+ * Notice:- This file is subject to the terms and conditions defined in
+ * file 'LICENSE.txt', which is part of this source code package.
+ * Dissemination of this information or reproduction of this material
+ * is strictly forbidden unless prior written permission is obtained
+ * from Abhijit A. Kulkarni (abhikulkarni.1988@gmail.com).
+ */
 package com.sms.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.sql.Timestamp;
-import java.util.List;
+import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
- * The persistent class for the tbl_sms_user_auth database table.
- * 
+ * @author Abhijit A. Kulkarni
+ * @Crated on Nov 12, 2016
+ * @Version 1.0 The persistent class for the tbl_sms_user_auth database table.
+ *
  */
 @Entity
-@Table(name="tbl_sms_user_auth")
-@NamedQuery(name="UserAuthorisation.findAll", query="SELECT u FROM UserAuthorisation u")
+@Table(name = "tbl_sms_user_auth")
+@NamedQueries({ @NamedQuery(name = "UserAuthorisation.findAll", query = "SELECT u FROM UserAuthorisation u"),
+	@NamedQuery(name = "UserAuthorisation.findById", query = "SELECT u FROM UserAuthorisation u Where u.userId=:userId") })
 public class UserAuthorisation implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="user_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id")
 	private int userId;
 
+	@Column(name = "active")
 	private byte active;
 
-	@Column(name="last_update_date")
-	private Timestamp lastUpdateDate;
+	@Column(name = "last_update_date")
+	private Date lastUpdateDate;
 
+	@Column(name = "password")
 	private String password;
 
-	@Column(name="role_id")
+	@Column(name = "role_id")
 	private int roleId;
 
-	@Column(name="user_name")
+	@Column(name = "user_name")
 	private String userName;
 
+	@Column(name = "version")
 	private int version;
-
-//	//bi-directional many-to-one association to SmsUserInfo
-//	@OneToMany(mappedBy="")
-//	private List<UserInfo> tblSmsUserInfos;
-
-	public UserAuthorisation() {
-	}
 
 	public int getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(final int userId) {
 		this.userId = userId;
 	}
 
@@ -55,15 +68,15 @@ public class UserAuthorisation implements Serializable {
 		return this.active;
 	}
 
-	public void setActive(byte active) {
+	public void setActive(final byte active) {
 		this.active = active;
 	}
 
-	public Timestamp getLastUpdateDate() {
+	public Date getLastUpdateDate() {
 		return this.lastUpdateDate;
 	}
 
-	public void setLastUpdateDate(Timestamp lastUpdateDate) {
+	public void setLastUpdateDate(final Date lastUpdateDate) {
 		this.lastUpdateDate = lastUpdateDate;
 	}
 
@@ -71,7 +84,7 @@ public class UserAuthorisation implements Serializable {
 		return this.password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(final String password) {
 		this.password = password;
 	}
 
@@ -79,7 +92,7 @@ public class UserAuthorisation implements Serializable {
 		return this.roleId;
 	}
 
-	public void setRoleId(int roleId) {
+	public void setRoleId(final int roleId) {
 		this.roleId = roleId;
 	}
 
@@ -87,7 +100,7 @@ public class UserAuthorisation implements Serializable {
 		return this.userName;
 	}
 
-	public void setUserName(String userName) {
+	public void setUserName(final String userName) {
 		this.userName = userName;
 	}
 
@@ -95,30 +108,8 @@ public class UserAuthorisation implements Serializable {
 		return this.version;
 	}
 
-	public void setVersion(int version) {
+	public void setVersion(final int version) {
 		this.version = version;
 	}
-
-//	public List<UserInfo> getTblSmsUserInfos() {
-//		//return this.tblSmsUserInfos;
-//	}
-//
-//	public void setTblSmsUserInfos(List<UserInfo> tblSmsUserInfos) {
-//		this.tblSmsUserInfos = tblSmsUserInfos;
-//	}
-//
-//	public UserInfo addTblSmsUserInfo(UserInfo tblSmsUserInfo) {
-//		getTblSmsUserInfos().add(tblSmsUserInfo);
-//		tblSmsUserInfo.setTblSmsUserAuth(this);
-//
-//		return tblSmsUserInfo;
-//	}
-//
-//	public UserInfo removeTblSmsUserInfo(UserInfo tblSmsUserInfo) {
-//		getTblSmsUserInfos().remove(tblSmsUserInfo);
-//		tblSmsUserInfo.setTblSmsUserAuth(null);
-//
-//		return tblSmsUserInfo;
-//	}
 
 }

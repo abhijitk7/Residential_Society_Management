@@ -7,5 +7,6 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
         
         <bean id="amenityDao" class="com.sms.dao.AmenityJpaDao"/>
+        <bean id="userAuthDao" class="com.sms.dao.UserAuthorisationJpaDao"/>
         
 </beans>

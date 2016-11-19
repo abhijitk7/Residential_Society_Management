@@ -5,19 +5,17 @@
  * is strictly forbidden unless prior written permission is obtained
  * from Abhijit A. Kulkarni (abhikulkarni.1988@gmail.com).
  */
-
 package com.sms.dao;
 
 import java.util.List;
 
-import com.sms.entity.Amenity;
+import com.sms.entity.Role;
 
 /**
  * @author Abhijit A. Kulkarni
  * @Crated on Nov 12, 2016
  * @Version 1.0
  */
-public interface IAmenitiesJpaDao {
-
-	List<Amenity> getAllAmenities();
+public interface IRoleJpaDao {
+	List<Role> getAllRoles();
 }

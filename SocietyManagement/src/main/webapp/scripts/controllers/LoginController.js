@@ -3,7 +3,7 @@
 
 	angular.module('SocietyManagementSystem').controller(
 			'LoginController',
-			[ '$scope', 'commonService', 'ContextRoot',
+			[ '$scope', 'ContextRoot',
 					function($scope, commonService, ContextRoot) {
 
 						$scope.whoAmI = function() {

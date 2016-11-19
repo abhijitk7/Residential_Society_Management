@@ -1,44 +1,52 @@
+/**
+ * Notice:- This file is subject to the terms and conditions defined in
+ * file 'LICENSE.txt', which is part of this source code package.
+ * Dissemination of this information or reproduction of this material
+ * is strictly forbidden unless prior written permission is obtained
+ * from Abhijit A. Kulkarni (abhikulkarni.1988@gmail.com).
+ */
 package com.sms.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
- * The persistent class for the tbl_sms_role database table.
- * 
+ * @author Abhijit A. Kulkarni
+ * @Crated on Nov 12, 2016
+ * @Version 1.0 The persistent class for the tbl_sms_role database table.
  */
 @Entity
-@Table(name="tbl_sms_role")
-@NamedQuery(name="Role.findAll", query="SELECT r FROM Role r")
+@Table(name = "tbl_sms_role")
+@NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r")
 public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="role_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "role_id")
 	private int roleId;
 
+	@Column(name = "active")
 	private byte active;
 
-	@Column(name="role_name")
+	@Column(name = "role_name")
 	private String roleName;
 
+	@Column(name = "version")
 	private int version;
-
-	//bi-directional many-to-one association to UserAuthorisation
-//	@OneToMany(mappedBy="tblSmsRole")
-//	private List<UserAuthorisation> tblSmsUserAuths;
-
-	public Role() {
-	}
 
 	public int getRoleId() {
 		return this.roleId;
 	}
 
-	public void setRoleId(int roleId) {
+	public void setRoleId(final int roleId) {
 		this.roleId = roleId;
 	}
 
@@ -46,7 +54,7 @@ public class Role implements Serializable {
 		return this.active;
 	}
 
-	public void setActive(byte active) {
+	public void setActive(final byte active) {
 		this.active = active;
 	}
 
@@ -54,7 +62,7 @@ public class Role implements Serializable {
 		return this.roleName;
 	}
 
-	public void setRoleName(String roleName) {
+	public void setRoleName(final String roleName) {
 		this.roleName = roleName;
 	}
 
@@ -62,30 +70,8 @@ public class Role implements Serializable {
 		return this.version;
 	}
 
-	public void setVersion(int version) {
+	public void setVersion(final int version) {
 		this.version = version;
 	}
-
-//	public List<UserAuthorisation> getTblSmsUserAuths() {
-//		return this.tblSmsUserAuths;
-//	}
-//
-//	public void setTblSmsUserAuths(List<UserAuthorisation> tblSmsUserAuths) {
-//		this.tblSmsUserAuths = tblSmsUserAuths;
-//	}
-
-//	public UserAuthorisation addTblSmsUserAuth(UserAuthorisation tblSmsUserAuth) {
-//		getTblSmsUserAuths().add(tblSmsUserAuth);
-//		tblSmsUserAuth.setSmsRole(this);
-//
-//		return tblSmsUserAuth;
-//	}
-//
-//	public UserAuthorisation removeTblSmsUserAuth(UserAuthorisation tblSmsUserAuth) {
-//		getTblSmsUserAuths().remove(tblSmsUserAuth);
-//		tblSmsUserAuth.setTblSmsRole(null);
-//
-//		return tblSmsUserAuth;
-//	}
 
 }

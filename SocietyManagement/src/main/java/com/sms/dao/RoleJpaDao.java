@@ -13,26 +13,29 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import com.sms.entity.Amenity;
+import com.sms.entity.Role;
 
 /**
  * @author Abhijit A. Kulkarni
  * @Crated on Nov 12, 2016
  * @Version 1.0
  */
-public class AmenityJpaDao implements IAmenitiesJpaDao {
+public class RoleJpaDao implements IRoleJpaDao {
 
 	@PersistenceContext(unitName = "sms")
 	private EntityManager em;
 
-	@SuppressWarnings("unchecked")
+	/*
+	 * Retrieve list of Roles
+	 * 
+	 * @see com.sms.dao.IRoleJpaDao#getAllRoles()
+	 */
 	@Override
-	public List<Amenity> getAllAmenities() {
+	public List<Role> getAllRoles() {
 
-		final Query query = this.em.createNamedQuery("Amenity.findAll");
-		final List<Amenity> result = query.getResultList();
+		final Query query = this.em.createNamedQuery("Role.findAll");
+		@SuppressWarnings("unchecked")
+		final List<Role> result = query.getResultList();
 		return result;
-
 	}
-
 }
