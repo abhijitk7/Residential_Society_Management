@@ -1,6 +1,5 @@
 package com.sms.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -20,7 +19,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "tbl_sms_amenities")
 @NamedQuery(name = "Amenity.findAll", query = "SELECT a FROM Amenity a")
-public class Amenity implements Serializable {
+public class Amenity extends AEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id

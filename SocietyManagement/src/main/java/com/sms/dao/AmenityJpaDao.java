@@ -9,9 +9,7 @@ package com.sms.dao;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import org.hibernate.Criteria;
 
 import com.sms.entity.Amenity;
 
@@ -20,17 +18,25 @@ import com.sms.entity.Amenity;
  * @Crated on Nov 12, 2016
  * @Version 1.0
  */
-public class AmenityJpaDao implements IAmenitiesJpaDao {
+public class AmenityJpaDao extends AbstractSMSDao<Amenity> implements IAmenitiesJpaDao {
 
-	@PersistenceContext(unitName = "sms")
-	private EntityManager em;
+	/*@PersistenceContext(unitName = "sms")
+	private EntityManager em;*/
+	
+	public AmenityJpaDao() {
+		super(Amenity.class);
+	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Amenity> getAllAmenities() {
 
-		final Query query = this.em.createNamedQuery("Amenity.findAll");
-		final List<Amenity> result = query.getResultList();
+		//final Query query = this.em.createNamedQuery("Amenity.findAll");
+		//final List<Amenity> result = query.getResultList();
+		
+		final Criteria criteria = createCriteria();
+		@SuppressWarnings("unchecked")
+		final List<Amenity> result = (List<Amenity>) criteria.list();
+		
 		return result;
 
 	}
