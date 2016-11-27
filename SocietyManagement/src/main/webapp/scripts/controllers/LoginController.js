@@ -1,18 +1,20 @@
 (function() {
 	'use strict';
 
-	angular.module('SocietyManagementSystem').controller(
-			'LoginController',
-			[ '$scope', 'ContextRoot',
-					function($scope, commonService, ContextRoot) {
+	app.controller("LoginController", [
+			"$scope",
+			"userService",
+			function($scope, userService) {
 
-						$scope.whoAmI = function() {
-							var url = ContextRoot + "/getUserDetails";
-							var promise = commonService.ajaxCall(url, 'GET');
-							promise.then(function(data) {
-								$scope.user = data;
+				$scope.userName = "";
+				$scope.passWord = "";
+
+				$scope.getValidUser = function() {
+
+					userService.getUser($scope.userName, $scope.passWord,
+							function(result) {
+								$scope.isValid = result;
 							});
-						};
-
-					} ]);
+				};
+			} ]);
 })();

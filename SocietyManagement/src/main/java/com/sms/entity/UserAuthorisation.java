@@ -7,7 +7,6 @@
  */
 package com.sms.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -29,7 +28,7 @@ import javax.persistence.Table;
 @Table(name = "tbl_sms_user_auth")
 @NamedQueries({ @NamedQuery(name = "UserAuthorisation.findAll", query = "SELECT u FROM UserAuthorisation u"),
 	@NamedQuery(name = "UserAuthorisation.findById", query = "SELECT u FROM UserAuthorisation u Where u.userId=:userId") })
-public class UserAuthorisation implements Serializable {
+public class UserAuthorisation extends AEntity {
 
 	private static final long serialVersionUID = 1L;
 
@@ -45,7 +44,7 @@ public class UserAuthorisation implements Serializable {
 	private Date lastUpdateDate;
 
 	@Column(name = "password")
-	private String password;
+	private String passWord;
 
 	@Column(name = "role_id")
 	private int roleId;
@@ -80,12 +79,12 @@ public class UserAuthorisation implements Serializable {
 		this.lastUpdateDate = lastUpdateDate;
 	}
 
-	public String getPassword() {
-		return this.password;
+	public String getPassWord() {
+		return this.passWord;
 	}
 
-	public void setPassword(final String password) {
-		this.password = password;
+	public void setPassword(final String passWord) {
+		this.passWord = passWord;
 	}
 
 	public int getRoleId() {

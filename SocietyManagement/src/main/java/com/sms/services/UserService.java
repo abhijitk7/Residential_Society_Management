@@ -47,4 +47,15 @@ public class UserService implements IUserService {
 		return this.userAuthDao.finAllAuthorisedUsers();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see
+	 * com.sms.services.IUserService#getAuthorisedUserByNameAndPassword(java
+	 * .lang.Integer)
+	 */
+	@Override
+	public String getAuthorisedUserByNameAndPassword(final String userName, final String passWord) {
+		return this.userAuthDao.getAuthorisedUserByUserNameAndPassword(userName, passWord);
+	}
 }

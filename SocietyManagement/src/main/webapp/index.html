@@ -16,7 +16,7 @@
    
 
 </head>
-<body>
+<body ng-app="SocietyManagementSystem">
     <div class="container">
         <div class="row text-center ">
             <div class="col-md-12">
@@ -35,15 +35,15 @@
                         <strong>   Enter Details To Login </strong>  
                             </div>
                             <div class="panel-body">
-                                <form role="form">
+                                <form role="form" ng-controller="LoginController">
                                        <br />
                                      <div class="form-group input-group">
                                             <span class="input-group-addon"><i class="fa fa-tag"  ></i></span>
-                                            <input type="text" class="form-control" placeholder="Your Username " />
+                                            <input type="text" class="form-control" placeholder="Your Username " ng-model="userName"/>
                                         </div>
                                                                               <div class="form-group input-group">
                                             <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
-                                            <input type="password" class="form-control"  placeholder="Your Password" />
+                                            <input type="password" class="form-control"  placeholder="Your Password" ng-model="passWord"/>
                                         </div>
                                     <div class="form-group">
                                             <label class="checkbox-inline">
@@ -54,7 +54,7 @@
                                             </span>
                                         </div>
                                      
-                                     <a href="index.html" class="btn btn-primary ">Login Now</a>
+                                     <input type="button" class="btn btn-primary " ng-click="getValidUser()" value="Login Now"/>
                                     <hr />
                                     Not register ? <a href="registeration.html" >click here </a> 
                                     </form>
@@ -73,6 +73,15 @@
     <script src="scripts/lib/jquery-1.10.2.js"></script>
       <!-- BOOTSTRAP SCRIPTS -->
     <script src="scripts/lib/bootstrap.min.js"></script>
-   
+     <!-- Angular SCRIPTS -->
+    <script src="scripts/lib/angular.min.js"></script>
+     <!-- USER SCRIPTS -->
+    <script src="scripts/app.js"></script>
+    <script type="text/javascript" src="scripts/controllers/ContextRoot.js">
+    </script>
+    <script type="text/javascript" src="scripts/controllers/LoginController.js">
+    </script>
+    <script type="text/javascript" src="scripts/services/service.js">
+    </script>
 </body>
 </html>

@@ -52,4 +52,12 @@ public class UserController {
 
 	}
 
+	@RequestMapping(value = "/authenticateUser/{userName}/{passWord}", method = RequestMethod.GET)
+	ResponseEntity<String> authenticateUser(@PathVariable final String userName, @PathVariable final String passWord) {
+		log.debug("********** Authenticate user ****************");
+		final String isValid = this.userService.getAuthorisedUserByNameAndPassword(userName, passWord);
+		return new ResponseEntity<String>(isValid, null, HttpStatus.OK);
+
+	}
+
 }

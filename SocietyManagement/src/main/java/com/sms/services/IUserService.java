@@ -20,5 +20,7 @@ public interface IUserService {
 
 	UserAuthorisation getAuthorisedUserById(Integer userId);
 
+	String getAuthorisedUserByNameAndPassword(String userName, String passWord);
+
 	Set<UserAuthorisation> getAllAuthorisedUsers();
 }

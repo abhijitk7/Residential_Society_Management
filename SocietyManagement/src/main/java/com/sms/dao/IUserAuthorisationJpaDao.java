@@ -23,6 +23,6 @@ public interface IUserAuthorisationJpaDao {
 
 	UserAuthorisation getAuthorisedUserById(Integer userId);
 
-	UserAuthorisation getAuthorisedUserByUserName(String userName);
+	String getAuthorisedUserByUserNameAndPassword(String userName, String passWord);
 
 }
