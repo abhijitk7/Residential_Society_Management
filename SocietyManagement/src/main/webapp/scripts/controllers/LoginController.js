@@ -4,16 +4,20 @@
 	app.controller("LoginController", [
 			"$scope",
 			"userService",
-			function($scope, userService) {
+			'$location',
+			function($scope, userService, $location) {
 
 				$scope.userName = "";
 				$scope.passWord = "";
+				$scope.loginMessage = "";
 
 				$scope.getValidUser = function() {
 
 					userService.getUser($scope.userName, $scope.passWord,
 							function(result) {
-								$scope.isValid = result;
+								if (result == "true") {
+									$location.path('/Sucess');
+								}
 							});
 				};
 			} ]);

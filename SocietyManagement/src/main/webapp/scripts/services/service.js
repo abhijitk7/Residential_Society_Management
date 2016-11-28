@@ -11,7 +11,7 @@ app.service("userService", [
 			this.getUser = function(userName, passWord, callBackResult) {
 
 				$log.debug("User name is " + userName);
-				$log.debug("User name is " + passWord);
+				$log.debug("User password is " + passWord);
 
 				$log.debug("Get User Service initialised");
 

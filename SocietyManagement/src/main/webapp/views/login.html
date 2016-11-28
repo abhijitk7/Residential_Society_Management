@@ -1,23 +1,48 @@
-<div class="container"><!--ng-controller="LoginController" -->
-
-      <form class="login-form">        
-        <div class="login-wrap">
-            <p class="login-img"><i class="icon_lock_alt"></i></p>
-            <div class="input-group">
-              <span class="input-group-addon"><i class="icon_profile"></i></span>
-              <input type="text" class="form-control" placeholder="Username" autofocus>
+<div class="row text-center ">
+            <div class="col-md-12">
+                <br /><br />
+                <h2> Moraya Society : Login</h2>
+               
+                <h5>( Login yourself to get access )</h5>
+                 <br />
             </div>
-            <div class="input-group">
-                <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                <input type="password" class="form-control" placeholder="Password">
-            </div>
-            <label class="checkbox">
-                <input type="checkbox" value="remember-me"> Remember me
-                <span class="pull-right"> <a href="#"> Forgot Password?</a></span>
-            </label>
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
-            <button class="btn btn-info btn-lg btn-block" type="submit">Signup</button>
         </div>
-      </form>
-
-    </div>
+         <div class="row ">
+               
+                  <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                        <strong>   Enter Details To Login </strong>  
+                            </div>
+                            <div class="panel-body">
+                                <form role="form" >
+                                       <br />
+                                     <div class="form-group input-group">
+                                            <span class="input-group-addon"><i class="fa fa-tag"  ></i></span>
+                                            <input type="text" class="form-control" placeholder="Your Username " ng-model="userName"/>
+                                        </div>
+                                                                              <div class="form-group input-group">
+                                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
+                                            <input type="password" class="form-control"  placeholder="Your Password" ng-model="passWord"/>
+                                        </div>
+                                    <div class="form-group">
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" /> Remember me
+                                            </label>
+                                            <span class="pull-right">
+                                                   <a href="#" >Forget password ? </a> 
+                                            </span>
+                                        </div>
+                                     
+                                     <input type="button" class="btn btn-primary " ng-click="getValidUser()" value="Login Now"/>
+                                    <hr />
+                                    Not register ? <a href="registeration.html" >click here </a> 
+                                    {{}}
+                                    </form>
+                            </div>
+                           
+                        </div>
+                    </div>
+                
+                
+        </div>
