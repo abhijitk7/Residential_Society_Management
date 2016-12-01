@@ -2,7 +2,7 @@ package com.sms.dao;
 
 import org.junit.Test;
 
-public class AmenitiesJpaDapTest {
+public class AmenitiesJpaDaoTest {
 
 	@Test
 	public void testGetAllAmenities() {

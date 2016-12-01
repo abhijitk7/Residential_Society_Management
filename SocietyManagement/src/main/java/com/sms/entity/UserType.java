@@ -1,7 +1,12 @@
 package com.sms.entity;
 
-import java.io.Serializable;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
 /**
@@ -11,7 +16,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="tbl_sms_user_type")
 @NamedQuery(name="UserType.findAll", query="SELECT u FROM UserType u")
-public class UserType implements Serializable {
+public class UserType extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id

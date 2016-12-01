@@ -20,9 +20,6 @@ import com.sms.entity.Amenity;
  */
 public class AmenityJpaDao extends AbstractSMSDao<Amenity> implements IAmenitiesJpaDao {
 
-	/*@PersistenceContext(unitName = "sms")
-	private EntityManager em;*/
-	
 	public AmenityJpaDao() {
 		super(Amenity.class);
 	}
@@ -30,15 +27,11 @@ public class AmenityJpaDao extends AbstractSMSDao<Amenity> implements IAmenities
 	@Override
 	public List<Amenity> getAllAmenities() {
 
-		//final Query query = this.em.createNamedQuery("Amenity.findAll");
-		//final List<Amenity> result = query.getResultList();
-		
 		final Criteria criteria = createCriteria();
 		@SuppressWarnings("unchecked")
 		final List<Amenity> result = (List<Amenity>) criteria.list();
 		
 		return result;
-
 	}
 
 }

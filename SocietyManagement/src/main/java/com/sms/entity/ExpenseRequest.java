@@ -1,10 +1,19 @@
 package com.sms.entity;
 
-import java.io.Serializable;
-import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -14,7 +23,7 @@ import java.util.List;
 @Entity
 @Table(name="tbl_sms_expense_requests")
 @NamedQuery(name="ExpenseRequest.findAll", query="SELECT e FROM ExpenseRequest e")
-public class ExpenseRequest implements Serializable {
+public class ExpenseRequest extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id

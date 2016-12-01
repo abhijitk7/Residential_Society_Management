@@ -28,7 +28,7 @@ import javax.persistence.Table;
 @Table(name = "tbl_sms_user_auth")
 @NamedQueries({ @NamedQuery(name = "UserAuthorisation.findAll", query = "SELECT u FROM UserAuthorisation u"),
 	@NamedQuery(name = "UserAuthorisation.findById", query = "SELECT u FROM UserAuthorisation u Where u.userId=:userId") })
-public class UserAuthorisation extends AEntity {
+public class UserAuthorisation extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
 

@@ -12,7 +12,7 @@ import com.sms.entity.IEntity;
  * @author Balakrishna
  *
  */
-public abstract class AbstractSMSDao<T extends IEntity> extends AJpaDao<T> {
+public abstract class AbstractSMSDao<T extends IEntity> extends AbstractJpaDao<T> {
 
 	public AbstractSMSDao(Class<T> ec) {
 		

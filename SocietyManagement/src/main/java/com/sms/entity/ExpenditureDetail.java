@@ -1,9 +1,19 @@
 package com.sms.entity;
 
-import java.io.Serializable;
-import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -13,7 +23,7 @@ import java.util.Date;
 @Entity
 @Table(name="tbl_sms_expenditure_details")
 @NamedQuery(name="ExpenditureDetail.findAll", query="SELECT e FROM ExpenditureDetail e")
-public class ExpenditureDetail implements Serializable {
+public class ExpenditureDetail extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id

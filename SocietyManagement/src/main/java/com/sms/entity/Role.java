@@ -7,8 +7,6 @@
  */
 package com.sms.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +23,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tbl_sms_role")
 @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r")
-public class Role implements Serializable {
+public class Role extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id

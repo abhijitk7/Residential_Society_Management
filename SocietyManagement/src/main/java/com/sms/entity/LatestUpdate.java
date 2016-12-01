@@ -1,9 +1,17 @@
 package com.sms.entity;
 
-import java.io.Serializable;
-import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -13,7 +21,7 @@ import java.util.Date;
 @Entity
 @Table(name="tbl_sms_latest_updates")
 @NamedQuery(name="LatestUpdate.findAll", query="SELECT l FROM LatestUpdate l")
-public class LatestUpdate implements Serializable {
+public class LatestUpdate extends AbstractEntity {
 	
 	private static final long serialVersionUID = 1L;
 

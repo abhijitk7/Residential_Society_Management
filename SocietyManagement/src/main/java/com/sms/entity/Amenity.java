@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "tbl_sms_amenities")
 @NamedQuery(name = "Amenity.findAll", query = "SELECT a FROM Amenity a")
-public class Amenity extends AEntity {
+public class Amenity extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
