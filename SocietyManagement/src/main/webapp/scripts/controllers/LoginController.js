@@ -1,24 +1,42 @@
 (function() {
 	'use strict';
 
-	app.controller("LoginController", [
-			"$scope",
-			"userService",
-			'$location',
-			function($scope, userService, $location) {
+	angular.module('SocietyManagementSystem').controller('LoginController',
+			LoginController);
 
-				$scope.userName = "";
-				$scope.passWord = "";
-				$scope.loginMessage = "";
+	LoginController.$inject = [ '$location', 'AuthenticationService',
+			'FlashService', '$log' ];
+	function LoginController($location, AuthenticationService, FlashService,
+			$log) {
+		var vm = this;
 
-				$scope.getValidUser = function() {
+		vm.login = login;
 
-					userService.getUser($scope.userName, $scope.passWord,
-							function(result) {
-								if (result == "true") {
-									$location.path('/Sucess');
-								}
-							});
-				};
-			} ]);
+		(function initController() {
+			// reset login status
+			AuthenticationService.ClearCredentials();
+		})();
+
+		function login() {
+			vm.dataLoading = true;
+			AuthenticationService.Login(vm.username, vm.password, function(
+					response) {
+
+				$log.debug(response);
+
+				if (response === 'true') {
+					AuthenticationService.SetCredentials(vm.username,
+							vm.password);
+					$log.debug('Authentication successful ----->');
+					$location.path('/Home');
+				} else {
+					$log.debug('Authentication failed ----->');
+					FlashService.Error('Username or password is incorrect');
+					vm.dataLoading = false;
+				}
+			});
+		}
+		;
+	}
+
 })();
