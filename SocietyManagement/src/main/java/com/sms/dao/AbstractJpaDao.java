@@ -5,6 +5,8 @@ package com.sms.dao;
 
 import java.util.Collection;
 
+import javax.persistence.EntityManager;
+
 import com.sms.entity.IEntity;
 
 /**
@@ -23,7 +25,9 @@ public abstract class AbstractJpaDao<T extends IEntity> extends AbstractReadOnly
 	@Override
 	public void save(T entity) {
 		
-		getEm().persist(entity);
+		EntityManager em = getEm();
+		em.persist(entity);
+		em.flush();
 	}
 
 	/* (non-Javadoc)

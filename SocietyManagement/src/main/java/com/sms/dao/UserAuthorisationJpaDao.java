@@ -9,6 +9,9 @@ package com.sms.dao;
 
 import java.util.Set;
 
+import javax.persistence.EntityExistsException;
+import javax.persistence.PersistenceException;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
@@ -84,4 +87,28 @@ public class UserAuthorisationJpaDao extends AbstractSMSDao<UserAuthorisation> i
 		}
 		return result;
 	}
+
+	/* (non-Javadoc)
+	 * @see com.sms.dao.IUserAuthorisationJpaDao#saveUserAuthDetails(com.sms.entity.UserAuthorisation)
+	 */
+	@Override
+	public String saveUserAuthDetails(UserAuthorisation user) {
+
+		String persistStatus = "true";
+		try {
+			save(user);
+		} catch (EntityExistsException e) {
+			//persistStatus = "User Already Exists";
+			persistStatus = "false";
+		} catch (PersistenceException e) {
+			//persistStatus = "Issue while persisting data";
+			persistStatus = "false";
+		} catch (Exception e) {
+			//persistStatus = "Some unknown error has occurred";
+			persistStatus = "false";
+		}
+		return persistStatus;
+	}
+	
+	
 }

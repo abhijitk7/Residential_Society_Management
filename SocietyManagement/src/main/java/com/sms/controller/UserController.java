@@ -59,5 +59,12 @@ public class UserController {
 		return new ResponseEntity<String>(isValid, null, HttpStatus.OK);
 
 	}
+	
+	@RequestMapping(value = "/CreateUser", headers = "Accept=application/json")
+	ResponseEntity<String> createUser(UserAuthorisation user) {
+		log.debug("********** Create user ****************");
+		final String userCreated = this.userService.createUser(user);
+		return new ResponseEntity<String>(userCreated, null, HttpStatus.OK);
+	}
 
 }

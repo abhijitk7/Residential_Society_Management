@@ -24,5 +24,7 @@ public interface IUserAuthorisationJpaDao {
 	UserAuthorisation getAuthorisedUserById(Integer userId);
 
 	String getAuthorisedUserByUserNameAndPassword(String userName, String passWord);
+	
+	String saveUserAuthDetails(UserAuthorisation user);
 
 }
