@@ -12,7 +12,7 @@
 			controllerAs : 'vm'
 		}).when('/register', {
 			controller : 'RegisterController',
-			templateUrl : 'views/register.html',
+			templateUrl : 'views/registration.html',
 			controllerAs : 'vm'
 		}).when('/Home', {
 			templateUrl : 'views/home.html'
