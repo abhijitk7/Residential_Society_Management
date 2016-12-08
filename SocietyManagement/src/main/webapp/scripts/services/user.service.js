@@ -15,13 +15,14 @@
         return service;
 
         function Create(user) {
-        	var dataObj = {
-        			userName : user.email,
-    				passWord : user.password,
-    				role:'Admin'
+        	var userObj = {
+        			"userName" : user.email,
+    				"passWord" : user.password,
+    				"roleId":1,
+    				"active":1
     		};
         	// Writing it to the server
-            return $http.post(ContextRoot + '/CreateUser.do',dataObj).then(handleSuccess, handleError('Error creating user'));
+            return $http.post(ContextRoot + '/CreateUser.do',userObj).then(handleSuccess, handleError('Error creating user'));
         }
 
         function Update(user) {
