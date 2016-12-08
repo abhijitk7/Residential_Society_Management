@@ -10,8 +10,9 @@ package com.sms.services;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.sms.dao.UserAuthorisationJpaDao;
+import com.sms.dao.IUserAuthorisationJpaDao;
 import com.sms.entity.UserAuthorisation;
 
 /**
@@ -22,7 +23,7 @@ import com.sms.entity.UserAuthorisation;
 public class UserService implements IUserService {
 
 	@Autowired
-	private UserAuthorisationJpaDao userAuthDao;
+	private IUserAuthorisationJpaDao userAuthDao;
 
 	/*
 	 * (non-Javadoc)
@@ -63,6 +64,7 @@ public class UserService implements IUserService {
 	 * @see com.sms.services.IUserService#createUser(com.sms.entity.UserAuthorisation)
 	 */
 	@Override
+	@Transactional
 	public String createUser(UserAuthorisation user) {
 		return this.userAuthDao.saveUserAuthDetails(user);
 	}

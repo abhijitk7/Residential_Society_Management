@@ -99,12 +99,15 @@ public class UserAuthorisationJpaDao extends AbstractSMSDao<UserAuthorisation> i
 			save(user);
 		} catch (EntityExistsException e) {
 			//persistStatus = "User Already Exists";
+			e.printStackTrace();
 			persistStatus = "false";
 		} catch (PersistenceException e) {
 			//persistStatus = "Issue while persisting data";
 			persistStatus = "false";
+			e.printStackTrace();
 		} catch (Exception e) {
 			//persistStatus = "Some unknown error has occurred";
+			e.printStackTrace();
 			persistStatus = "false";
 		}
 		return persistStatus;

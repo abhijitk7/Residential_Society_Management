@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sms.entity.Amenity;
-import com.sms.services.StaticDataService;
+import com.sms.services.IStaticDataService;
 
 /**
  * @author Abhijit A. Kulkarni
@@ -34,7 +34,7 @@ public class MasterController {
 	private static final Logger log = LoggerFactory.getLogger(MasterController.class);
 
 	@Autowired
-	private StaticDataService dataService;
+	private IStaticDataService dataService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String printHello(final ModelMap model) {

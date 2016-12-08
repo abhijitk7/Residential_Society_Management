@@ -22,7 +22,7 @@
 		
 		<context:property-placeholder system-properties-mode="OVERRIDE" location="classpath:properties/data-access.properties" ignore-unresolvable="true"/>
 		
-		<tx:annotation-driven transaction-manager="transactionManger"/>
+		<tx:annotation-driven transaction-manager="transactionManagerSms"/>
 		
 		<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 			<property name="prefix" value="/WEB-INF/views/" />
@@ -50,7 +50,7 @@
 			</property>
 		</bean>
 				
-		<bean id="transactionMangerSms" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<bean id="transactionManagerSms" class="org.springframework.orm.jpa.JpaTransactionManager">
 			<property name="entityManagerFactory" ref="smsAppEntityManagerFactory"/>
 			<qualifier value="sms"/>
 		</bean>

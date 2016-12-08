@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sms.entity.UserAuthorisation;
-import com.sms.services.UserService;
+import com.sms.services.IUserService;
 
 /**
  * @author Abhijit Kulkarni
@@ -36,7 +36,7 @@ public class UserController {
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
-	private UserService userService;
+	private IUserService userService;
 
 	@RequestMapping(value = "/UserById/{userId}", method = RequestMethod.GET)
 	ResponseEntity<UserAuthorisation> getUserById(@PathVariable final String userId) {
