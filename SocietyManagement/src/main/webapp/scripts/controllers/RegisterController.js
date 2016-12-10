@@ -13,7 +13,8 @@
 
         function register() {
             vm.dataLoading = true;
-            UserService.Create(vm.user)
+            if(vm.user.password===vm.user.confPassword){
+            	UserService.Create(vm.user)
                 .then(function (response) {
                     if (response==='true') {
                         FlashService.Success('Registration successful', true);
@@ -23,6 +24,11 @@
                         vm.dataLoading = false;
                     }
                 });
+            }else{
+            	FlashService.Error("Password and Confirm password should match");
+                vm.dataLoading = false;
+            }
+            
         }
     }
 
