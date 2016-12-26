@@ -8,10 +8,12 @@
 package com.sms.dao;
 
 import java.util.List;
+import java.util.Set;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
 import com.sms.entity.Role;
 
@@ -20,10 +22,11 @@ import com.sms.entity.Role;
  * @Crated on Nov 12, 2016
  * @Version 1.0
  */
-public class RoleJpaDao implements IRoleJpaDao {
+public class RoleJpaDao extends AbstractSMSDao<Role> implements IRoleJpaDao {
 
-	@PersistenceContext(unitName = "sms")
-	private EntityManager em;
+	public RoleJpaDao() {
+		super(Role.class);
+	}
 
 	/*
 	 * Retrieve list of Roles
@@ -33,9 +36,29 @@ public class RoleJpaDao implements IRoleJpaDao {
 	@Override
 	public List<Role> getAllRoles() {
 
-		final Query query = this.em.createNamedQuery("Role.findAll");
+//		final Query query = this.em.createNamedQuery("Role.findAll");
+//		@SuppressWarnings("unchecked")
+//		final List<Role> result = query.getResultList();
+//		return result;
+		return null;
+	}
+
+	@Override
+	public List<String> getRolesByIds(Set<Long> roleIds) {
+		
+		final Criteria criteria = this.createCriteria();
+		
+		ProjectionList projection=Projections.projectionList();
+		
+		projection.add(Projections.property("roleName"));
+
+		criteria.setProjection(projection);
+		
+		criteria.add(Restrictions.in("roleId", roleIds));
+		
 		@SuppressWarnings("unchecked")
-		final List<Role> result = query.getResultList();
-		return result;
+		final List<String> roles = criteria.list();
+		
+		return roles;
 	}
 }

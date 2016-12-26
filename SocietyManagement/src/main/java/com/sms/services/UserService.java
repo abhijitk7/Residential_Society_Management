@@ -10,10 +10,11 @@ package com.sms.services;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sms.dao.IUserAuthorisationJpaDao;
-import com.sms.entity.UserAuthorisation;
+import com.sms.dao.IUserJpaDao;
+import com.sms.entity.User;
 
 /**
  * @author Abhijit A. Kulkarni
@@ -23,7 +24,7 @@ import com.sms.entity.UserAuthorisation;
 public class UserService implements IUserService {
 
 	@Autowired
-	private IUserAuthorisationJpaDao userAuthDao;
+	private IUserJpaDao userAuthDao;
 
 	/*
 	 * (non-Javadoc)
@@ -32,9 +33,9 @@ public class UserService implements IUserService {
 	 * com.sms.services.IUserService#getAuthorisedUserById(java.lang.Integer)
 	 */
 	@Override
-	public UserAuthorisation getAuthorisedUserById(final Integer userId) {
+	public User getAuthorisedUserById(final Integer userId) {
 
-		final UserAuthorisation authUser = this.userAuthDao.getAuthorisedUserById(userId);
+		final User authUser = this.userAuthDao.getAuthorisedUserById(userId);
 		return authUser;
 	}
 
@@ -44,7 +45,7 @@ public class UserService implements IUserService {
 	 * @see com.sms.services.IUserService#getAllAuthorisedUsers()
 	 */
 	@Override
-	public Set<UserAuthorisation> getAllAuthorisedUsers() {
+	public Set<User> getAllAuthorisedUsers() {
 		return this.userAuthDao.finAllAuthorisedUsers();
 	}
 
@@ -65,7 +66,18 @@ public class UserService implements IUserService {
 	 */
 	@Override
 	@Transactional
-	public String createUser(UserAuthorisation user) {
+	public String createUser(User user) {
+		//Encrypt the password before saving
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		
+		user.setPassword(passwordEncoder.encode(user.getPassWord()));
+		
 		return this.userAuthDao.saveUserAuthDetails(user);
+	}
+
+	@Override
+	@Transactional
+	public String updateLastLogOn(Long userId) {
+		return this.userAuthDao.updateLastLogOnInfo(userId);
 	}
 }

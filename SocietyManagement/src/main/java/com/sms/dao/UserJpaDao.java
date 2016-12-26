@@ -11,11 +11,12 @@ import java.util.Set;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.PersistenceException;
+import javax.persistence.Query;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
-import com.sms.entity.UserAuthorisation;
+import com.sms.entity.User;
 
 /**
  * @author Abhijit Kulkarni
@@ -23,20 +24,20 @@ import com.sms.entity.UserAuthorisation;
  * @version 1.0
  */
 
-public class UserAuthorisationJpaDao extends AbstractSMSDao<UserAuthorisation> implements IUserAuthorisationJpaDao {
+public class UserJpaDao extends AbstractSMSDao<User> implements IUserJpaDao {
 
 	/**
 	 * @param ec
 	 */
-	public UserAuthorisationJpaDao() {
-		super(UserAuthorisation.class);
+	public UserJpaDao() {
+		super(User.class);
 	}
 
 	/*
 	 * @see com.sms.dao.IUserAuthorisationJpaDao#finAllAuthorisedUsers()
 	 */
 	@Override
-	public Set<UserAuthorisation> finAllAuthorisedUsers() {
+	public Set<User> finAllAuthorisedUsers() {
 
 		// final Criteria criteria = this.createCriteria();
 		//
@@ -53,7 +54,7 @@ public class UserAuthorisationJpaDao extends AbstractSMSDao<UserAuthorisation> i
 	 * @see com.sms.dao.IUserAuthorisationJpaDao#getAuthorisedUserById()
 	 */
 	@Override
-	public UserAuthorisation getAuthorisedUserById(final Integer userId) {
+	public User getAuthorisedUserById(final Integer userId) {
 
 		// final Session session = ((HibernateEntityManager)
 		// this.em).getSession().getSessionFactory().openSession();
@@ -81,7 +82,7 @@ public class UserAuthorisationJpaDao extends AbstractSMSDao<UserAuthorisation> i
 		String result = "false";
 		criteria.add(Restrictions.eq("userName", userName));
 		criteria.add(Restrictions.eq("passWord", passWord));
-		final UserAuthorisation user = (UserAuthorisation) criteria.uniqueResult();
+		final User user = (User) criteria.uniqueResult();
 		if (user != null && user.getUserName().equals(userName) && passWord.equals(passWord)) {
 			result = "true";
 		}
@@ -89,10 +90,10 @@ public class UserAuthorisationJpaDao extends AbstractSMSDao<UserAuthorisation> i
 	}
 
 	/* (non-Javadoc)
-	 * @see com.sms.dao.IUserAuthorisationJpaDao#saveUserAuthDetails(com.sms.entity.UserAuthorisation)
+	 * @see com.sms.dao.IUserAuthorisationJpaDao#saveUserAuthDetails(com.sms.entity.User)
 	 */
 	@Override
-	public String saveUserAuthDetails(UserAuthorisation user) {
+	public String saveUserAuthDetails(User user) {
 
 		String persistStatus = "true";
 		try {
@@ -111,6 +112,34 @@ public class UserAuthorisationJpaDao extends AbstractSMSDao<UserAuthorisation> i
 			persistStatus = "false";
 		}
 		return persistStatus;
+	}
+
+	@Override
+	public User getAuthorisedUserByName(String userName) {
+		
+		final Criteria criteria = this.createCriteria();
+
+		criteria.add(Restrictions.eq("userName", userName));
+		final User user = (User) criteria.uniqueResult();
+		
+		return user;
+	}
+
+	@Override
+	public String updateLastLogOnInfo(Long userId) {
+		
+		Query query=getEm().createQuery("Update User set lastUpdateDate=:updateDateTime Where userId=:userId");
+		
+		query.setParameter("updateDateTime", new java.util.Date());
+		query.setParameter("userId", userId);
+		
+		if(query.executeUpdate()==1){
+			return "True";
+		}else{
+			return "False";
+		}
+		
+		
 	}
 	
 	

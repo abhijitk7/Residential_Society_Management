@@ -6,16 +6,19 @@
 
 	AuthenticationService.$inject = [ '$http', '$cookieStore', '$rootScope',
 			'$timeout', '$log', "ContextRoot" ];
-	function AuthenticationService($http, $cookieStore, $rootScope, $timeout,
-			$log, ContextRoot) {
+
+	function AuthenticationService($http, $cookieStore, $rootScope, $timeout,$log, ContextRoot) {
+		
 		var service = {};
+		
+		$log.debug("Authentication service initialised....");
 
 		service.Login = Login;
-		service.SetCredentials = SetCredentials;
+		//service.SetCredentials = SetCredentials;
 		service.ClearCredentials = ClearCredentials;
-
+		
 		return service;
-
+		
 		function Login(username, password, callback) {
 
 			$log.debug("#####  Username is " + username);
@@ -25,28 +28,41 @@
 			 * Ajax call to ivoke REST API
 			 * ----------------------------------------------
 			 */
-			$http.get(
-					ContextRoot + '/authenticateUser/' + username + '/'
-							+ password + '.do').success(function(response) {
+			
+			$http({
+		        method : "POST",
+		        url : ContextRoot + '/authenticateUser/' + username + '/'+ password + '.do',
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+						
+		    }).success(function(response) {
+		    	$log.debug(response);
 				callback(response);
+			}).error(function(data, status, headers, config){
+				$log.debug(status);
+				callback(status);
 			});
+//			$http.get(
+//					ContextRoot + '/authenticateUser/' + username + '/'
+//							+ password + '.do').success(function(response) {
+//				callback(response);
+//			});
 		}
 
-		function SetCredentials(username, password) {
-			var authdata = Base64.encode(username + ':' + password);
-
-			$rootScope.globals = {
-				currentUser : {
-					username : username,
-					authdata : authdata
-				}
-			};
-
-			$http.defaults.headers.common['Authorization'] = 'Basic '
-					+ authdata; // jshint ignore:line
-			$cookieStore.put('globals', $rootScope.globals);
-		}
-
+//		function SetCredentials(username, password) {
+//			var authdata = Base64.encode(username + ':' + password);
+//
+//			$rootScope.globals = {
+//				currentUser : {
+//					username : username,
+//					authdata : authdata
+//				}
+//			};
+//
+//			$http.defaults.headers.common['Authorization'] = 'Basic '
+//					+ authdata; // jshint ignore:line
+//			$cookieStore.put('globals', $rootScope.globals);
+//		}
+//
 		function ClearCredentials() {
 			$rootScope.globals = {};
 			$cookieStore.remove('globals');

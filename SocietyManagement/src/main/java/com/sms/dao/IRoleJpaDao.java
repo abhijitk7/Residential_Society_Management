@@ -8,6 +8,7 @@
 package com.sms.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import com.sms.entity.Role;
 
@@ -17,5 +18,8 @@ import com.sms.entity.Role;
  * @Version 1.0
  */
 public interface IRoleJpaDao {
+	
 	List<Role> getAllRoles();
+	
+	List<String> getRolesByIds(Set<Long> roleIds);
 }

@@ -36,6 +36,7 @@
 		}
 
 		function Success(message, keepAfterLocationChange) {
+			$log.debug("Success method called *****" + message);
 			$rootScope.flash = {
 				message : message,
 				type : 'success',

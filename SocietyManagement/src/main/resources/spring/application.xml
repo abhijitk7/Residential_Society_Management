@@ -13,5 +13,8 @@
  	<import resource="classpath:/spring/services.xml"/>
  	<import resource="classpath:/spring/dao.xml"/>
  	<import resource="classpath:/spring/dataSource.xml"/>
+ 	<import resource="classpath:/spring/spring-security.xml"/>
+ 	<import resource="classpath:/spring/trace-context.xml"/>
+ 	
  
  </beans>

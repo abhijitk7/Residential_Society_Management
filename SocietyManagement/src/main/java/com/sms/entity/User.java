@@ -8,15 +8,24 @@
 package com.sms.entity;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sms.util.SystemConstants;
 
 /**
  * @author Abhijit A. Kulkarni
@@ -25,49 +34,73 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "tbl_sms_user_auth")
-@NamedQueries({ @NamedQuery(name = "UserAuthorisation.findAll", query = "SELECT u FROM UserAuthorisation u"),
-	@NamedQuery(name = "UserAuthorisation.findById", query = "SELECT u FROM UserAuthorisation u Where u.userId=:userId") })
-public class UserAuthorisation extends AbstractEntity {
+@Table(name = "tbl_sms_users")
+@NamedQueries({ @NamedQuery(name = "UserAuthorisation.findAll", query = "SELECT u FROM User u"),
+	@NamedQuery(name = "UserAuthorisation.findById", query = "SELECT u FROM User u Where u.userId=:userId") })
+public class User extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
-	private int userId;
+	private Long userId;
 
 	@Column(name = "active")
-	private byte active;
+	private Boolean active=true;
 
+	//This will be updated as last log on date also
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern=SystemConstants.JAVASCRIPT_DATE_FORMAT)
 	@Column(name = "last_update_date")
 	private Date lastUpdateDate;
 
 	@Column(name = "password")
 	private String passWord;
 
-	@Column(name = "role_id")
-	private int roleId;
 
 	@Column(name = "user_name")
 	private String userName;
 
 	@Column(name = "version")
-	private int version;
+	private Long version=0L;
+	
+	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	private Set<UserRoles> roles;
+	
+	@OneToOne(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	private UserInfo userInfo;
 
-	public int getUserId() {
+	public UserInfo getUserInfo() {
+		return userInfo;
+	}
+
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
+	}
+
+	public Set<UserRoles> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<UserRoles> roles) {
+		this.roles = roles;
+	}
+
+	public Long getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(final int userId) {
+	public void setUserId(final Long userId) {
 		this.userId = userId;
 	}
 
-	public byte getActive() {
+	public Boolean getActive() {
 		return this.active;
 	}
 
-	public void setActive(final byte active) {
+	public void setActive(final Boolean active) {
 		this.active = active;
 	}
 
@@ -87,14 +120,6 @@ public class UserAuthorisation extends AbstractEntity {
 		this.passWord = passWord;
 	}
 
-	public int getRoleId() {
-		return this.roleId;
-	}
-
-	public void setRoleId(final int roleId) {
-		this.roleId = roleId;
-	}
-
 	public String getUserName() {
 		return this.userName;
 	}
@@ -103,11 +128,11 @@ public class UserAuthorisation extends AbstractEntity {
 		this.userName = userName;
 	}
 
-	public int getVersion() {
+	public Long getVersion() {
 		return this.version;
 	}
 
-	public void setVersion(final int version) {
+	public void setVersion(final Long version) {
 		this.version = version;
 	}
 

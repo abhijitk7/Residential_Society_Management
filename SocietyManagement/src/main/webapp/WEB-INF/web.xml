@@ -12,6 +12,7 @@
   	<welcome-file>index.html</welcome-file>
   </welcome-file-list>
   
+   <!-- Load Spring Context -->
   <context-param>
   	<param-name>contextConfigLocation</param-name>
   	<param-value>classpath:spring/application.xml</param-value>
@@ -20,6 +21,35 @@
   <listener>
   	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  
+  <!-- Ensure UTF-8 character encoding is used -->
+   <filter>
+       <filter-name>encodingFilter</filter-name>
+       <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+       <init-param>
+           <param-name>encoding</param-name>
+           <param-value>UTF-8</param-value>
+       </init-param>
+       <init-param>
+           <param-name>forceEncoding</param-name>
+           <param-value>true</param-value>
+       </init-param>
+   </filter>
+
+   <filter-mapping>
+       <filter-name>encodingFilter</filter-name>
+       <url-pattern>/*</url-pattern>
+   </filter-mapping>
+   
+    <!-- Apply Spring Security Filter to all Requests -->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
  
   <servlet>
    <display-name>MasterController</display-name>

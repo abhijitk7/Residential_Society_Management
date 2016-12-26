@@ -9,7 +9,7 @@ package com.sms.dao;
 
 import java.util.Set;
 
-import com.sms.entity.UserAuthorisation;
+import com.sms.entity.User;
 
 /**
  * @author Abhijit Kulkarni
@@ -17,14 +17,18 @@ import com.sms.entity.UserAuthorisation;
  * @version 1.0
  */
 
-public interface IUserAuthorisationJpaDao {
+public interface IUserJpaDao {
 
-	Set<UserAuthorisation> finAllAuthorisedUsers();
+	Set<User> finAllAuthorisedUsers();
 
-	UserAuthorisation getAuthorisedUserById(Integer userId);
+	User getAuthorisedUserById(Integer userId);
+	
+	User getAuthorisedUserByName(String userName);
 
 	String getAuthorisedUserByUserNameAndPassword(String userName, String passWord);
 	
-	String saveUserAuthDetails(UserAuthorisation user);
+	String saveUserAuthDetails(User user);
+	
+	String updateLastLogOnInfo(Long userId);
 
 }

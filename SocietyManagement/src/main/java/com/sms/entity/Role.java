@@ -29,7 +29,7 @@ public class Role extends AbstractEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "role_id")
-	private int roleId;
+	private Long roleId;
 
 	@Column(name = "active")
 	private byte active;
@@ -38,13 +38,13 @@ public class Role extends AbstractEntity {
 	private String roleName;
 
 	@Column(name = "version")
-	private int version;
+	private Long version;
 
-	public int getRoleId() {
+	public Long getRoleId() {
 		return this.roleId;
 	}
 
-	public void setRoleId(final int roleId) {
+	public void setRoleId(final Long roleId) {
 		this.roleId = roleId;
 	}
 
@@ -64,11 +64,11 @@ public class Role extends AbstractEntity {
 		this.roleName = roleName;
 	}
 
-	public int getVersion() {
+	public Long getVersion() {
 		return this.version;
 	}
 
-	public void setVersion(final int version) {
+	public void setVersion(final Long version) {
 		this.version = version;
 	}
 

@@ -10,36 +10,63 @@
         var service = {};
 
         service.Create = Create;
-        service.Update = Update;
+        service.updateLastLogOn = updateLastLogOn;
         
         return service;
 
-        function Create(user) {
+        function Create(user,callback) {
         	var userObj = {
-        			"userName" : user.email,
-    				"passWord" : user.password,
-    				"roleId":1,
-    				"active":1
+   				
+    				"userName":user.email,
+    			    "passWord":user.password
     		};
         	// Writing it to the server
-            return $http.post(ContextRoot + '/CreateUser.do',userObj).then(handleSuccess, handleError('Error creating user'));
+            $http({
+		        method : "POST",
+		        url : ContextRoot + '/createUser.do',
+		        data:userObj,
+		        headers: {'Content-Type': 'application/json'}
+		    }).success(function(response) {
+		    	$log.debug(response);
+				callback(response);
+			}).error(function(data, status, headers, config){
+				$log.debug(status);
+				callback(status);
+			});
+        }
+        
+        function getUserDetails(username){
+        	
+        	$http({
+		        method : "GET",
+		        url : ContextRoot + '/getUserDetails/' + username + '.do',
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+						
+		    }).success(function(response) {
+		    	$log.debug(response);
+				callback(response);
+			}).error(function(data, status, headers, config){
+				$log.debug(status);
+				callback(status);
+			});
         }
 
-        function Update(user) {
-            return $http.put('/api/users/' + user.id, user).then(handleSuccess, handleError('Error updating user'));
+        function updateLastLogOn(userId,callback) {
+        	$http({
+		        method : "POST",
+		        url : ContextRoot + '/updateLastLogon/' + userId + '.do',
+		        headers: {'Content-Type': 'application/json'}
+						
+		    }).success(function(response) {
+		    	$log.debug(response);
+				callback(response);
+			}).error(function(data, status, headers, config){
+				$log.debug(status);
+				callback(status);
+			});
         }
 
-        // private functions
-
-        function handleSuccess(res) {
-            return res.data;
-        }
-
-        function handleError(error) {
-            return function () {
-                return { success: false, message: error };
-            };
-        }
+        
     }
 
 })();

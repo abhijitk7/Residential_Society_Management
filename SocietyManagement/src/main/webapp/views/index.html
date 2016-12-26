@@ -15,22 +15,33 @@
 </head>
 <body ng-app="SocietyManagementSystem">
     <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
-    <div class="alert alert-danger" ng-show="error">{{error}}</div>
     <div ng-view>
         
     </div>
     
-
+    <!-- footer content -->
+        <footer >
+          <div class="pull-right">
+            Morya Society Management System <a href="https://google.com">Google</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
 
     <script src="scripts/lib/jquery-2.0.3.min.js" type="text/javascript"></script>
     <!-- BOOTSTRAP SCRIPTS -->
     <script src="scripts/lib/bootstrap.min.js"></script>
     <!-- Angular SCRIPTS -->
-     <script src="scripts/lib/angular.min.js"></script>
+    <script src="scripts/lib/angular.min.js"></script>
+    <script type="text/javascript" src="scripts/lib/angular-resource.min.js">
+    </script>
     <script type="text/javascript" src="scripts/lib/angular-route.min.js">
     </script>
     <script type="text/javascript" src="scripts/lib/angular-cookie.min.js">
     </script>
+    <script type="text/javascript" src="scripts/lib/config.js">
+    </script>
+
 
     <script type="text/javascript" src="scripts/app.js"></script>
     <script src="scripts/services/authentication.service.js"></script>
@@ -45,7 +56,6 @@
     </script>
     <script type="text/javascript" src="scripts/controllers/RegisterController.js">
     </script>
-    
     <script type="text/javascript" src="scripts/controllers/HomeController.js">
     </script>
     

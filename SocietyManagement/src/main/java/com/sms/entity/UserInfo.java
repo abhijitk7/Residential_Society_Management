@@ -1,3 +1,10 @@
+/**
+ * Notice:- This file is subject to the terms and conditions defined in
+ * file 'LICENSE.txt', which is part of this source code package.
+ * Dissemination of this information or reproduction of this material
+ * is strictly forbidden unless prior written permission is obtained
+ * from Abhijit A. Kulkarni (abhikulkarni.1988@gmail.com).
+ */
 package com.sms.entity;
 
 import java.math.BigDecimal;
@@ -16,6 +23,8 @@ import javax.persistence.Table;
 
 
 /**
+ * @author Abhijit A. Kulkarni
+ * @Crated on Dec 21, 2016
  * The persistent class for the tbl_sms_user_info database table.
  * 
  */
@@ -28,8 +37,9 @@ public class UserInfo extends AbstractEntity {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="user_info_id")
-	private int userInfoId;
+	private Long userInfoId;
 
+	@Column(name="active")
 	private byte active;
 
 	private String col_1;
@@ -90,32 +100,25 @@ public class UserInfo extends AbstractEntity {
 	@Column(name="secondary_m2")
 	private BigDecimal secondaryM2;
 
-	@Column(name="user_id")
-	private int userId;
-
 	@Lob
 	@Column(name="user_image")
 	private byte[] userImage;
 
 	@Column(name="user_type_id")
-	private int userTypeId;
+	private Long userTypeId;
 
-	private int version;
+	@Column(name="version")
+	private Long version;
 
 	//bi-directional many-to-one association to VehicleDetails
 	@OneToMany(mappedBy="UserInfo")
 	private List<VehicleDetails> VehicleDetails;
 	
-
-
-	public UserInfo() {
-	}
-
-	public int getUserInfoId() {
+	public Long getUserInfoId() {
 		return this.userInfoId;
 	}
 
-	public void setUserInfoId(int userInfoId) {
+	public void setUserInfoId(Long userInfoId) {
 		this.userInfoId = userInfoId;
 	}
 
@@ -295,14 +298,7 @@ public class UserInfo extends AbstractEntity {
 		this.secondaryM2 = secondaryM2;
 	}
 
-	public int getUserId() {
-		return this.userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
+	
 	public byte[] getUserImage() {
 		return this.userImage;
 	}
@@ -311,19 +307,19 @@ public class UserInfo extends AbstractEntity {
 		this.userImage = userImage;
 	}
 
-	public int getUserTypeId() {
+	public Long getUserTypeId() {
 		return this.userTypeId;
 	}
 
-	public void setUserTypeId(int userTypeId) {
+	public void setUserTypeId(Long userTypeId) {
 		this.userTypeId = userTypeId;
 	}
 
-	public int getVersion() {
+	public Long getVersion() {
 		return this.version;
 	}
 
-	public void setVersion(int version) {
+	public void setVersion(Long version) {
 		this.version = version;
 	}
 

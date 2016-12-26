@@ -11,7 +11,7 @@
          <div class="row">
                
                 <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
-                        <div class="panel panel-default">
+                     <div class="panel panel-warning">
                             <div class="panel-heading">
                         <strong>  New User ? Register Yourself </strong>  
                             </div>
@@ -26,21 +26,23 @@
 <!--                                             <span class="input-group-addon"><i class="fa fa-tag"  ></i></span> -->
 <!--                                             <input type="text" class="form-control" placeholder="Desired Username" /> -->
 <!--                                         </div> -->
+										 <span ng-show="registrationForm.email.$dirty && registrationForm.email.$error.required" class="help-block" style="color:red">Email is required</span>
+										 <span ng-show="registrationForm.email.$error.pattern" style="color:red" class="help-block">Not valid email!</span>
                                          <div class="form-group input-group" ng-class="{ 'has-error': registrationForm.email.$dirty && registrationForm.email.$error.required }">
                                             <span class="input-group-addon">@</span>
-                                            <input type="text" name="email" class="form-control" placeholder="Your Email" ng-model="vm.user.email" required/>
-                                            <span ng-show="registrationForm.email.$dirty && registrationForm.email.$error.required" class="help-block">Email is required</span>
+                                            <input type="email" name="email" class="form-control" placeholder="Your Email" ng-model="vm.user.email" ng-pattern="vm.emailFormat" required/>  
                                         </div>
-                                      <div class="form-group input-group" ng-class="{ 'has-error': registrationForm.password.$dirty && registrationForm.password.$error.required }">
+                                        <span ng-show="registrationForm.password.$dirty && registrationForm.password.$error.required" class="help-block" style="color:red">Password is required</span>
+                                        <span ng-show="registrationForm.password.$error.pattern" style="color:red" class="help-block">Weak Password!</span>
+                                        <div class="form-group input-group" ng-class="{ 'has-error': registrationForm.password.$dirty && registrationForm.password.$error.required }">
                                             <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
-                                            <input type="password" name="password" class="form-control" placeholder="Enter Password" ng-model="vm.user.password" required/>
-                                            <span ng-show="registrationForm.password.$dirty && registrationForm.password.$error.required" class="help-block">Password is required</span>
-                                        </div>
-                                     <div class="form-group input-group" ng-class="{ 'has-error': registrationForm.confPassword.$dirty && registrationForm.confPassword.$error.required }">
-                                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
-                                            <input type="password" name="confPassword" class="form-control" placeholder="Retype Password" ng-model="vm.user.confPassword" required/>
-                                            <span ng-show="registrationForm.confPassword.$dirty && registrationForm.confPassword.$error.required" class="help-block">Password is required</span>
-                                        </div>
+                                            <input type="password" name="password" class="form-control" placeholder="Min 7 characters with one letter and one number" ng-model="vm.user.password" ng-pattern="vm.passWordFormat" required/>
+                                       </div>
+                                       <span ng-show="registrationForm.confPassword.$dirty && vm.user.confPassword!=vm.user.password" class="help-block" style="color:red">Confirm your password, Both password should match</span>
+	                                   <div class="form-group input-group" ng-class="{ 'has-error': registrationForm.confPassword.$dirty && registrationForm.confPassword.$error.required }">
+	                                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
+	                                            <input type="password" name="confPassword" class="form-control" placeholder="Retype Password" ng-model="vm.user.confPassword" required/>
+	                                   </div>
                                      
                                      <button type="submit" ng-disabled="registrationForm.$invalid || vm.dataLoading" class="btn btn-success ">Register Me</button>
                                      <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
@@ -48,10 +50,22 @@
                                     Already Registered ?  <a href="#/login" >Login here</a>
                                     </form>
                             </div>
-                           
-                        </div>
-                    </div>
-                
-                
+                        </div>  
+                      
+                      <div class="panel panel-info">
+                      	  <div class="panel-heading">
+                        	<strong>  The Password must contain below: </strong>  
+                          </div>
+						  <div class="panel-body">
+						    1)  At least 1 lowercase alphabet.<br>
+							2)  At least 1 uppercase alphabet.<br>
+							3)  At least 1 numeric character.<br>
+							4)  At least 1 special character.<br>
+							5)  Must be 8 characters or long.<br>
+				  		</div>
+				     </div>
+                             
+                 </div>
+                 
         </div>
     </div>
