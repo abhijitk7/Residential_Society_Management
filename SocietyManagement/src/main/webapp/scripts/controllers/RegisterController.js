@@ -22,8 +22,11 @@
                 if (response==='true') {
                     FlashService.Success('Registration successful', true);
                     $location.path('/login');
-                } else {
-                    FlashService.Error(response.message);
+                } else if(response===401) {
+                    FlashService.Error("You are not authorised to perform this operation. Please contact system administrator.");
+                    vm.dataLoading = false;
+                }else if(response===401) {
+                    FlashService.Error("Some thing went wrong at server side. Please contact system administrator");
                     vm.dataLoading = false;
                 }
             });
