@@ -25,6 +25,9 @@ public class UserService implements IUserService {
 
 	@Autowired
 	private IUserJpaDao userAuthDao;
+	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 
 	/*
 	 * (non-Javadoc)
@@ -67,9 +70,8 @@ public class UserService implements IUserService {
 	@Override
 	@Transactional
 	public String createUser(User user) {
-		//Encrypt the password before saving
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
+		//Encrypt the password before saving
 		user.setPassword(passwordEncoder.encode(user.getPassWord()));
 		
 		return this.userAuthDao.saveUserAuthDetails(user);
