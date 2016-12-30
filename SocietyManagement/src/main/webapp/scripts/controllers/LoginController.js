@@ -4,9 +4,9 @@
 	angular.module('SocietyManagementSystem').controller('LoginController',
 			LoginController);
 
-	LoginController.$inject = [ '$location', 'AuthenticationService',
+	LoginController.$inject = [ '$state', 'AuthenticationService',
 			'FlashService', '$log','$rootScope' ];
-	function LoginController($location, AuthenticationService, FlashService,
+	function LoginController($state, AuthenticationService, FlashService,
 			$log,$rootScope) {
 		
 		var vm = this;
@@ -29,15 +29,17 @@
 
 				if(authenticationResult===401){
 					$log.debug('Authentication failed ----->');
-					FlashService.Error('The user name or password is incorrect. Verify your user name, and then type your password again.');
+					FlashService.Error('Username and/or password are invalid ! Verify your user name, and then type your password again.');
 				}else{
 					var authToken = authenticationResult.token;
 		            $rootScope.authToken = authToken;
 		            if (vm.rememberMe) {
 		                $cookieStore.put('authToken', authToken);
 		            }
+		            	$rootScope.isLoggedIn = true
 		                $rootScope.user = authenticationResult;
-		                $location.path("/Home");
+		                $state.go('home');
+		                $state.go('home.dashboard');
 				}
 	            vm.dataLoading = false;
 	        });

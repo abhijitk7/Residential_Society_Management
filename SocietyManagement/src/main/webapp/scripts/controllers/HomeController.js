@@ -4,7 +4,7 @@
 	angular.module('SocietyManagementSystem').controller('HomeController',
 			HomeController);
 
-	LoginController.$inject = [ '$location', 'UserService',
+	HomeController.$inject = [ '$location', 'UserService',
 			'FlashService', '$log','$rootScope' ];
 	function HomeController($location, UserService, FlashService,
 			$log,$rootScope) {

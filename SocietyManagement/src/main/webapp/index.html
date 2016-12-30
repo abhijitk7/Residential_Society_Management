@@ -14,41 +14,38 @@
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
 <body ng-app="SocietyManagementSystem">
+
     <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
-    <div class="alert alert-danger" ng-show="error">{{error}}</div>
-    <div ng-view>
-        
-    </div>
     
-
-
+    <div class="alert alert-danger" ng-show="error">{{error}}</div>
+    
+	<div>
+		<ui-view></ui-view>
+	</div>
+    
+	<!-- JQuery SCRIPTS -->
     <script src="scripts/lib/jquery-2.0.3.min.js" type="text/javascript"></script>
+    
     <!-- BOOTSTRAP SCRIPTS -->
     <script src="scripts/lib/bootstrap.min.js"></script>
+    
     <!-- Angular SCRIPTS -->
      <script src="scripts/lib/angular.min.js"></script>
-    <script type="text/javascript" src="scripts/lib/angular-route.min.js">
-    </script>
-    <script type="text/javascript" src="scripts/lib/angular-cookie.min.js">
-    </script>
-
+    <script type="text/javascript" src="scripts/lib/angular-route.min.js"></script>
+    <script type="text/javascript" src="scripts/lib/angular-ui-router-min.js"></script>
+    <script type="text/javascript" src="scripts/lib/angular-cookie.min.js"></script>
+    
+    <!-- Application SCRIPTS -->
     <script type="text/javascript" src="scripts/app.js"></script>
+    <script type="text/javascript" src="scripts/modules/registerApp.js"></script>
+    <script type="text/javascript" src="scripts/modules/mainApp.js"></script>
     <script src="scripts/services/authentication.service.js"></script>
     <script src="scripts/services/flash.service.js"></script>
-
-<!--     Fake user service for demo that uses local storage -->
     <script src="scripts/services/user.service.js"></script>
-
-    <script type="text/javascript" src="scripts/controllers/ContextRoot.js">
-    </script>
-    <script type="text/javascript" src="scripts/controllers/LoginController.js">
-    </script>
-    <script type="text/javascript" src="scripts/controllers/RegisterController.js">
-    </script>
-    
-    <script type="text/javascript" src="scripts/controllers/HomeController.js">
-    </script>
-    
-    
+    <script type="text/javascript" src="scripts/controllers/ContextRoot.js"></script>
+    <script type="text/javascript" src="scripts/controllers/LoginController.js"></script>
+    <script type="text/javascript" src="scripts/controllers/RegisterController.js"></script>
+    <script type="text/javascript" src="scripts/controllers/HomeController.js"></script>
+   
 </body>
 </html>

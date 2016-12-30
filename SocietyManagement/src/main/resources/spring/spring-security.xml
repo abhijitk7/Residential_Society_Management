@@ -34,7 +34,7 @@
 	                                access="permitAll" />
 	                                
 	        <security:intercept-url method="POST" pattern="/createUser**"
-	                                access="hasRole('admin')" />                        
+	                                access="permitAll" />                        
 	    </security:http>
 
 

@@ -1,30 +1,32 @@
+/*==========================================================
+    Author      : Abhijit Kulkarni
+    Date Created: 24 Dec 2016
+    Description : main application base
+    
+    Change Log
+    s.no      date    author     description     
+    
+ ===========================================================*/
 (function() {
 	'use strict';
 
-	angular.module('SocietyManagementSystem', [ 'ngRoute', 'ngCookies' ])
+	angular.module('SocietyManagementSystem', [ 'ui.router', 'ngCookies','register','app' ])
 			.config(config).run(run);
 
-	config.$inject = [ '$routeProvider', '$locationProvider','$httpProvider' ];
-	function config($routeProvider, $locationProvider,$httpProvider) {
-		$routeProvider.when('/login', {
-			templateUrl : 'views/login.html',
-			controller : 'LoginController',
-			controllerAs : 'vm'
-		}).when('/register', {
-			controller : 'RegisterController',
-			templateUrl : 'views/registration.html',
-			controllerAs : 'vm'
-		}).when('/Home', {
-			controller : 'HomeController',
-			templateUrl : 'views/home.html',
-			controllerAs : 'vm'
-		}).when('/Dashboard', {
-			templateUrl : 'views/dashboard.html'
-		}).when('/error', {
-			templateUrl : 'views/404.html'
-		}).otherwise({
-			redirectTo : '/login'
-		});
+	config.$inject = [ '$stateProvider', '$locationProvider', '$urlRouterProvider','$httpProvider' ];
+	
+	function config($stateProvider,$locationProvider,$urlRouterProvider,$httpProvider) {
+
+	    //login page state
+	    $stateProvider.state('login', {
+	        url: '/login',
+	        templateUrl: 'views/login.html',
+	        controller: 'LoginController',
+	        controllerAs: 'vm',
+	        data: {
+	            pageTitle: 'Login'
+	        }
+	    });
 		
 		/* Register error provider that shows message on failed requests or redirects to login page on
                  * unauthenticated requests */
