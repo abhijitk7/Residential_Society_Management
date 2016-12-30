@@ -12,7 +12,7 @@
 var mainApp = angular.module('mainApp', ['ui.router']);
 
 
-app.config(["$stateProvider", function ($stateProvider) {
+mainApp.config(["$stateProvider", function ($stateProvider) {
 
     //login page state
     $stateProvider.state('home', {

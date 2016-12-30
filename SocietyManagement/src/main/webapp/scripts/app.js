@@ -10,7 +10,7 @@
 (function() {
 	'use strict';
 
-	angular.module('SocietyManagementSystem', [ 'ui.router', 'ngCookies','register','app' ])
+	angular.module('SocietyManagementSystem', [ 'ui.router', 'ngCookies','register','mainApp' ])
 			.config(config).run(run);
 
 	config.$inject = [ '$stateProvider', '$locationProvider', '$urlRouterProvider','$httpProvider' ];
