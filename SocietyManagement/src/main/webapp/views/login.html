@@ -21,7 +21,7 @@
                                      <span ng-show="form.username.$dirty && form.username.$error.required" style="color:red" class="help-block">Email is required</span>
 									 <span ng-show="form.username.$error.pattern" style="color:red" class="help-block">Not valid email!</span>
                                      <div class="form-group input-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
-                                            <span class="input-group-addon"><i class="fa fa-tag"  ></i></span>
+                                            <span class="input-group-addon"><i class="fa fa-user-circle"  ></i></span>
                                             <input type="email" name="username" id="username" placeholder="Your email " class="form-control" ng-model="vm.username" ng-pattern="vm.emailFormat" required />
                                      </div>
                                      <span ng-show="form.password.$dirty && form.password.$error.required" style="color:red" class="help-block">Password is required</span>

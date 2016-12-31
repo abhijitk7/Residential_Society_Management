@@ -1,0 +1,125 @@
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                     <h2>My Personal Information</h2>   
+                        <h5>Welcome {{user.firstName}} {{user.lastName}} , Love to see you back. </h5>
+                       
+                    </div>
+                </div>
+                 <!-- /. ROW  -->
+                 <hr />
+              <form role="form" name="personalInfoForm" ng-submit="vm.saveUserInfo()">
+               <div class="row">
+                <div class="col-md-12">
+                    <!-- Form Elements -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Personal Information
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                        <div class="form-group" ng-class="{ 'has-error': personalInfoForm.pFirstName.$dirty && personalInfoForm.pFirstName.$error.required }">
+                                            <label>First Name </label> 
+                                            <span ng-show="personalInfoForm.pFirstName.$dirty && personalInfoForm.pFirstName.$error.required" style="color:red" class="help-block">This field is required!</span>
+                                            <input type="text" class="form-control" name="pFirstName" placeholder="First Name" ng-model="vm.userDetails.pFirstName" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Middle Name</label>
+                                            <input class="form-control" name="pMiddleName" placeholder="Middle Name" ng-model="vm.userDetails.pMiddleName"/>
+                                        </div>
+                                        <div class="form-group" ng-class="{ 'has-error': personalInfoForm.pLastName.$dirty && personalInfoForm.pLastName.$error.required }">
+                                            <label>Last Name</label>
+                                            <span ng-show="personalInfoForm.pLastName.$dirty && personalInfoForm.pLastName.$error.required" style="color:red" class="help-block">This field is required!</span>
+                                            <input class="form-control" name="pLastName" placeholder="Last Name" ng-model="vm.userDetails.pLastName" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Primary mobile number</label>
+                                            <input class="form-control" placeholder="Primary mobile number" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Alternate mobile number</label>
+                                            <input class="form-control" placeholder="Alternate mobile number" />
+                                        </div>
+                                   
+                                        <div class="form-group">
+                                            <label>Flat number</label>
+                                            <select class="form-control">
+                                                <option>Please Select ...</option>
+                                                <option>E-202</option>
+                                                <option>D-202</option>
+                                                <option>C-202</option>
+                                            </select>
+                                        </div>
+
+                                         <div class="form-group">
+                                            <label>Parking slot</label>
+                                            <select class="form-control">
+                                                <option>Please Select ...</option>
+                                                <option>E-202</option>
+                                                <option>D-202</option>
+                                                <option>C-202</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Is a board member ?</label><br>
+                                            <input type="checkbox" ng-disabled="true"/>
+                                        </div>
+                                    <br />
+    							</div> 
+                                <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Flat Rented ?</label><br>
+                                            <input type="checkbox"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Tenanent's First Name</label>
+                                            <input class="form-control" name="sFirstName" placeholder="First Name" data-ng-model="vm.userDetails.sFirstName"/>
+                                        </div>
+                                         <div class="form-group">
+                                            <label>Middle Name</label>
+                                            <input class="form-control" placeholder="Middle Name" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Last Name</label>
+                                            <input class="form-control" placeholder="Last Name" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Permanant / Correspondance Address</label>
+                                            <textarea class="form-control" rows="3"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Primary Email</label>
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">@</span>
+                                                <input type="text" class="form-control" placeholder="Primary Email">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Alternate Email</label>
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">@</span>
+                                                <input type="text" class="form-control" placeholder="Primary Email">
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- End Form Elements -->
+                </div>
+            </div>
+           <!-- /. ROW  -->
+           	<div>
+                <button type="submit" ng-disabled="personalInfoForm.$invalid || vm.dataLoading" class="btn btn-success">
+                  <span class="glyphicon glyphicon-floppy-disk"></span> Submit
+                </button>
+                <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            </div>
+       </form>
+        <!-- /. END OF FORM  -->
+            
+
+    </div>
+             <!-- /. PAGE INNER  -->

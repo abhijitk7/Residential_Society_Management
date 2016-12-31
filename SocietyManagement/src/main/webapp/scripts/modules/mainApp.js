@@ -29,6 +29,14 @@ mainApp.config(["$stateProvider", function ($stateProvider) {
         data: {
             pageTitle: 'Dashboard'
         }
+    }).state('home.myInfo', {
+        url: '/myInfo',
+        controller : 'MyInfoController',
+    	templateUrl : 'views/personalInfo.html',
+    	controllerAs : 'vm',
+        data: {
+            pageTitle: 'Personal Info'
+        }
     });
     
 }]);
