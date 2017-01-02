@@ -33,13 +33,17 @@
                                             <span ng-show="personalInfoForm.pLastName.$dirty && personalInfoForm.pLastName.$error.required" style="color:red" class="help-block">This field is required!</span>
                                             <input class="form-control" name="pLastName" placeholder="Last Name" ng-model="vm.userDetails.pLastName" required/>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" ng-class="{ 'has-error': personalInfoForm.pMobileNumber.$dirty && personalInfoForm.pMobileNumber.$error.required }">
                                             <label>Primary mobile number</label>
-                                            <input class="form-control" placeholder="Primary mobile number" />
+                                            <span ng-show="personalInfoForm.pMobileNumber.$dirty && personalInfoForm.pMobileNumber.$error.required" style="color:red" class="help-block">This field is required!</span>
+									        <span ng-show="personalInfoForm.pMobileNumber.$error.phoneNumber" style="color:red" class="help-block">Phone number is invalid..</span>
+                                            <input class="form-control" name="pMobileNumber" placeholder="Primary mobile number" type="number" ng-pattern="vm.phoneNumber" required ng-model="vm.userDetails.primaryM1"/>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Alternate mobile number</label>
-                                            <input class="form-control" placeholder="Alternate mobile number" />
+                                        
+                                        <div class="form-group" ng-class="{ 'has-error': personalInfoForm.pAltMobileNumber.$error.phoneNumber }">
+                                            <label>Primary mobile number</label>
+									        <span ng-show="personalInfoForm.pAltMobileNumber.$error.phoneNumber" style="color:red" class="help-block">Phone number is invalid..</span>
+                                            <input class="form-control" name="pAltMobileNumber" placeholder="Alternate mobile number" type="number" ng-pattern="vm.phoneNumber" ng-model="vm.userDetails.primaryM2"/>
                                         </div>
                                    
                                         <div class="form-group">
@@ -64,7 +68,7 @@
 
                                         <div class="form-group">
                                             <label>Is a board member ?</label><br>
-                                            <input type="checkbox" ng-disabled="true"/>
+                                            <input type="checkbox" ng-disabled="true" data-ng-model="vm.userDetails.isBoardMember"/>
                                         </div>
                                     <br />
     							</div> 
@@ -79,28 +83,28 @@
                                         </div>
                                          <div class="form-group">
                                             <label>Middle Name</label>
-                                            <input class="form-control" placeholder="Middle Name" />
+                                            <input class="form-control" placeholder="Middle Name" data-ng-model="vm.userDetails.sMiddleName/>
                                         </div>
                                         <div class="form-group">
                                             <label>Last Name</label>
-                                            <input class="form-control" placeholder="Last Name" />
+                                            <input class="form-control" placeholder="Last Name" data-ng-model="vm.userDetails.sLastName"/>
                                         </div>
                                         <div class="form-group">
                                             <label>Permanant / Correspondance Address</label>
-                                            <textarea class="form-control" rows="3"></textarea>
+                                            <textarea class="form-control" rows="3" maxlength="100" placeholder="Enter Address (Max 100 Characters only)" data-ng-model="vm.userDetails.correspondanceAddress"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label>Primary Email</label>
                                             <div class="form-group input-group">
                                                 <span class="input-group-addon">@</span>
-                                                <input type="text" class="form-control" placeholder="Primary Email">
+                                                <input type="text" class="form-control" placeholder="Primary Email" data-ng-model="vm.userDetails.emailId">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Alternate Email</label>
                                             <div class="form-group input-group">
                                                 <span class="input-group-addon">@</span>
-                                                <input type="text" class="form-control" placeholder="Primary Email">
+                                                <input type="text" class="form-control" placeholder="Alternate Email">
                                             </div>
                                         </div>
                                 </div>

@@ -40,7 +40,7 @@ public class UserInfo extends AbstractEntity {
 	private Long userInfoId;
 
 	@Column(name="active")
-	private byte active;
+	private Boolean active;
 
 	private String col_1;
 
@@ -62,13 +62,13 @@ public class UserInfo extends AbstractEntity {
 	private String flatNumber;
 
 	@Column(name="is_board_member")
-	private byte isBoardMember;
+	private Boolean isBoardMember;
 
 	@Column(name="is_secondary_owner")
-	private byte isSecondaryOwner;
+	private Boolean isSecondaryOwner;
 
 	@Column(name="is_valid")
-	private byte isValid;
+	private Boolean isValid;
 
 	@Column(name="last_update_date")
 	private Timestamp lastUpdateDate;
@@ -122,11 +122,11 @@ public class UserInfo extends AbstractEntity {
 		this.userInfoId = userInfoId;
 	}
 
-	public byte getActive() {
+	public Boolean getActive() {
 		return this.active;
 	}
 
-	public void setActive(byte active) {
+	public void setActive(Boolean active) {
 		this.active = active;
 	}
 
@@ -194,27 +194,27 @@ public class UserInfo extends AbstractEntity {
 		this.flatNumber = flatNumber;
 	}
 
-	public byte getIsBoardMember() {
+	public Boolean getIsBoardMember() {
 		return this.isBoardMember;
 	}
 
-	public void setIsBoardMember(byte isBoardMember) {
+	public void setIsBoardMember(Boolean isBoardMember) {
 		this.isBoardMember = isBoardMember;
 	}
 
-	public byte getIsSecondaryOwner() {
+	public Boolean getIsSecondaryOwner() {
 		return this.isSecondaryOwner;
 	}
 
-	public void setIsSecondaryOwner(byte isSecondaryOwner) {
+	public void setIsSecondaryOwner(Boolean isSecondaryOwner) {
 		this.isSecondaryOwner = isSecondaryOwner;
 	}
 
-	public byte getIsValid() {
+	public Boolean getIsValid() {
 		return this.isValid;
 	}
 
-	public void setIsValid(byte isValid) {
+	public void setIsValid(Boolean isValid) {
 		this.isValid = isValid;
 	}
 

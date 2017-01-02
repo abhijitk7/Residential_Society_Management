@@ -20,6 +20,7 @@
 		
 		 var vm = this;
 		 vm.emailFormat = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
+		 vm.phoneNumber = /^(\+?(\d{1}|\d{2}|\d{3})[- ]?)?\d{3}[- ]?\d{3}[- ]?\d{4}$/;
 		 
 		 vm.saveUserInfo = saveUserInfo;
 		 
