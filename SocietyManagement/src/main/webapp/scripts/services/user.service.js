@@ -15,16 +15,12 @@
         return service;
 
         function Create(user,callback) {
-        	var userObj = {
-   				
-    				"userName":user.email,
-    			    "passWord":user.password
-    		};
+
         	// Writing it to the server
             $http({
 		        method : "POST",
 		        url : ContextRoot + '/createUser.do',
-		        data:userObj,
+		        data:user,
 		        headers: {'Content-Type': 'application/json'}
 		    }).success(function(response) {
 		    	$log.debug(response);
@@ -66,7 +62,6 @@
 			});
         }
 
-        
     }
 
 })();

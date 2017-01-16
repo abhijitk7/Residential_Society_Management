@@ -24,9 +24,24 @@
         vm.register = register;
 
         function register() {
+        	
             vm.dataLoading = true;
             
-        	UserService.Create(vm.user,function(response) {
+            //Construct JSON object to send with AJAX call
+            var user=
+	           {
+     		  "userName": vm.user.email,
+     		  "password": vm.user.password,
+     		  "userInfo": {
+     		    "emailId":vm.user.email,
+     		    "primFirstName":vm.user.userInfo.pFirstName,
+     		    "primMiddleName":vm.user.userInfo.pMiddleName,
+     		    "primLastName":vm.user.userInfo.pLastName
+     		  },
+     		 "roles":[{"roleId":2}]   //By default when user registers he will be added as Member
+		 	};
+            
+        	UserService.Create(user,function(response) {
         		
                 if (response==='true') {
                     FlashService.Success('Registration successful', true);
@@ -34,7 +49,7 @@
                 } else if(response===401) {
                     FlashService.Error("You are not authorised to perform this operation. Please contact system administrator.");
                     vm.dataLoading = false;
-                }else if(response===401) {
+                }else if(response===500) {
                     FlashService.Error("Some thing went wrong at server side. Please contact system administrator");
                     vm.dataLoading = false;
                 }

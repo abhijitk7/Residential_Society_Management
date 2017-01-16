@@ -17,19 +17,36 @@
                             </div>
                             <div class="panel-body">
                                 <form role="form" name="registrationForm" ng-submit="vm.register()">
-<br/>
+                                		<span ng-show="registrationForm.pFirstName.$dirty && registrationForm.pFirstName.$error.required" style="color:red" class="help-block">First name is required!</span>
+                                		<div class="form-group input-group" ng-class="{ 'has-error': registrationForm.pFirstName.$dirty && registrationForm.pFirstName.$error.required }"> 
+                                			<span class="input-group-addon"><i class="glyphicon glyphicon-user"  ></i></span>
+                                            <input type="text" class="form-control" name="pFirstName" placeholder="First Name" data-ng-model="vm.user.userInfo.pFirstName" required/>
+                                        </div>
+                                        
+                                        <div class="form-group input-group">
+                                        	<span class="input-group-addon"><i class="glyphicon glyphicon-user"  ></i></span>
+                                            <input class="form-control" name="pMiddleName" placeholder="Middle Name" data-ng-model="vm.user.userInfo.pMiddleName"/>
+                                        </div>
+                                        
+                                        <span ng-show="registrationForm.pLastName.$dirty && registrationForm.pLastName.$error.required" style="color:red" class="help-block">Last name is required!</span>
+                                        <div class="form-group input-group" ng-class="{ 'has-error': registrationForm.pLastName.$dirty && registrationForm.pLastName.$error.required }">
+                                        	<span class="input-group-addon"><i class="glyphicon glyphicon-user"  ></i></span>
+                                            <input class="form-control" name="pLastName" placeholder="Last Name" data-ng-model="vm.user.userInfo.pLastName" required/>
+                                        </div>
 										 <span ng-show="registrationForm.email.$dirty && registrationForm.email.$error.required" class="help-block" style="color:red">Email is required</span>
 										 <span ng-show="registrationForm.email.$error.pattern" style="color:red" class="help-block">Not valid email!</span>
                                          <div class="form-group input-group" ng-class="{ 'has-error': registrationForm.email.$dirty && registrationForm.email.$error.required }">
                                             <span class="input-group-addon">@</span>
                                             <input type="email" name="email" class="form-control" placeholder="Your Email" ng-model="vm.user.email" ng-pattern="vm.emailFormat" required/>  
                                         </div>
+                                        
                                         <span ng-show="registrationForm.password.$dirty && registrationForm.password.$error.required" class="help-block" style="color:red">Password is required</span>
                                         <span ng-show="registrationForm.password.$error.pattern" style="color:red" class="help-block">Weak Password!</span>
                                         <div class="form-group input-group" ng-class="{ 'has-error': registrationForm.password.$dirty && registrationForm.password.$error.required }">
                                             <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
                                             <input type="password" name="password" class="form-control" placeholder="Your Password" ng-model="vm.user.password" ng-pattern="vm.passWordFormat" required/>
                                        </div>
+                                       
                                        <span ng-show="registrationForm.confPassword.$dirty && vm.user.confPassword!=vm.user.password" class="help-block" style="color:red">Confirm your password, Both password should match</span>
 	                                   <div class="form-group input-group" ng-class="{ 'has-error': registrationForm.confPassword.$dirty && registrationForm.confPassword.$error.required }">
 	                                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>

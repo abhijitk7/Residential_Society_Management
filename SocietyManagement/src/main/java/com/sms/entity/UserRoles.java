@@ -35,14 +35,14 @@ public class UserRoles extends AbstractEntity {
 	@Column(name="user_role_id")
 	private Long userRoleId;
 	
-	@Column(name="user_id")
-	private Long userId;
+	@Column(name="user_ID",insertable=false,updatable=false)
+	private Long userId; 
 	
 	@Column(name="role_id")
 	private Long roleId;
 	
 	@Column(name="active")
-	private int active;
+	private Boolean active=true;
 	
 	@Column(name = "version")
 	private int version;
@@ -52,15 +52,7 @@ public class UserRoles extends AbstractEntity {
 	
 	@Column(name="last_updated_by")
 	private Long lastUpdatedBy;
-
-	public Long getUserRoleId() {
-		return userRoleId;
-	}
-
-	public void setUserRoleId(Long userRoleId) {
-		this.userRoleId = userRoleId;
-	}
-
+	
 	public Long getUserId() {
 		return userId;
 	}
@@ -69,6 +61,14 @@ public class UserRoles extends AbstractEntity {
 		this.userId = userId;
 	}
 
+	public Long getUserRoleId() {
+		return userRoleId;
+	}
+
+	public void setUserRoleId(Long userRoleId) {
+		this.userRoleId = userRoleId;
+	}
+	
 	public Long getRoleId() {
 		return roleId;
 	}
@@ -77,11 +77,11 @@ public class UserRoles extends AbstractEntity {
 		this.roleId = roleId;
 	}
 
-	public int getActive() {
+	public Boolean getActive() {
 		return active;
 	}
 
-	public void setActive(int active) {
+	public void setActive(Boolean active) {
 		this.active = active;
 	}
 

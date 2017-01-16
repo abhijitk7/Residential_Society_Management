@@ -112,9 +112,9 @@ public class UserController extends BaseController {
         
         userTransfer.setLastLogon(user.getLastUpdateDate());
         
-        userTransfer.setFirstName(user.getUserInfo().getPFirstName());
+        userTransfer.setFirstName(user.getUserInfo().getPrimFirstName());
         
-        userTransfer.setLastName(user.getUserInfo().getPLastName());
+        userTransfer.setLastName(user.getUserInfo().getPrimLastName());
 
         return new ResponseEntity<UserTransfer>(userTransfer,HttpStatus.OK);
     }

@@ -41,11 +41,7 @@
 				$log.debug(status);
 				callback(status);
 			});
-//			$http.get(
-//					ContextRoot + '/authenticateUser/' + username + '/'
-//							+ password + '.do').success(function(response) {
-//				callback(response);
-//			});
+
 		}
 
 //		function SetCredentials(username, password) {

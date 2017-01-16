@@ -1,8 +1,8 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>My Personal Information</h2>   
-                        <h5>Welcome {{user.firstName}} {{user.lastName}} , Love to see you back. </h5>
+                     <h2>Enter Personal Information</h2>   
+<!--                         <h5>Welcome {{user.firstName}} {{user.lastName}} , Love to see you back. </h5> -->
                        
                     </div>
                 </div>
@@ -22,89 +22,107 @@
                                         <div class="form-group" ng-class="{ 'has-error': personalInfoForm.pFirstName.$dirty && personalInfoForm.pFirstName.$error.required }">
                                             <label>First Name </label> 
                                             <span ng-show="personalInfoForm.pFirstName.$dirty && personalInfoForm.pFirstName.$error.required" style="color:red" class="help-block">This field is required!</span>
-                                            <input type="text" class="form-control" name="pFirstName" placeholder="First Name" ng-model="vm.userDetails.pFirstName" required/>
+                                            <input type="text" class="form-control" name="pFirstName" placeholder="First Name" data-ng-model="vm.user.userInfo.pFirstName" required/>
                                         </div>
                                         <div class="form-group">
                                             <label>Middle Name</label>
-                                            <input class="form-control" name="pMiddleName" placeholder="Middle Name" ng-model="vm.userDetails.pMiddleName"/>
+                                            <input class="form-control" name="pMiddleName" placeholder="Middle Name" data-ng-model="vm.user.userInfo.pMiddleName"/>
                                         </div>
                                         <div class="form-group" ng-class="{ 'has-error': personalInfoForm.pLastName.$dirty && personalInfoForm.pLastName.$error.required }">
                                             <label>Last Name</label>
                                             <span ng-show="personalInfoForm.pLastName.$dirty && personalInfoForm.pLastName.$error.required" style="color:red" class="help-block">This field is required!</span>
-                                            <input class="form-control" name="pLastName" placeholder="Last Name" ng-model="vm.userDetails.pLastName" required/>
+                                            <input class="form-control" name="pLastName" placeholder="Last Name" data-ng-model="vm.user.userInfo.pLastName" required/>
                                         </div>
                                         <div class="form-group" ng-class="{ 'has-error': personalInfoForm.pMobileNumber.$dirty && personalInfoForm.pMobileNumber.$error.required }">
                                             <label>Primary mobile number</label>
                                             <span ng-show="personalInfoForm.pMobileNumber.$dirty && personalInfoForm.pMobileNumber.$error.required" style="color:red" class="help-block">This field is required!</span>
-									        <span ng-show="personalInfoForm.pMobileNumber.$error.phoneNumber" style="color:red" class="help-block">Phone number is invalid..</span>
-                                            <input class="form-control" name="pMobileNumber" placeholder="Primary mobile number" type="number" ng-pattern="vm.phoneNumber" required ng-model="vm.userDetails.primaryM1"/>
+									        <span ng-show="personalInfoForm.pMobileNumber.$error.pattern" style="color:red" class="help-block">Phone number is invalid..</span>
+                                            <input class="form-control" name="pMobileNumber" placeholder="Primary mobile number" type="number" ng-pattern="vm.phoneNumber" required data-ng-model="vm.user.userInfo.primaryM1"/>
                                         </div>
                                         
                                         <div class="form-group" ng-class="{ 'has-error': personalInfoForm.pAltMobileNumber.$error.phoneNumber }">
-                                            <label>Primary mobile number</label>
-									        <span ng-show="personalInfoForm.pAltMobileNumber.$error.phoneNumber" style="color:red" class="help-block">Phone number is invalid..</span>
-                                            <input class="form-control" name="pAltMobileNumber" placeholder="Alternate mobile number" type="number" ng-pattern="vm.phoneNumber" ng-model="vm.userDetails.primaryM2"/>
+                                            <label>Alternate mobile number</label>
+									        <span ng-show="personalInfoForm.pAltMobileNumber.$error.pattern" style="color:red" class="help-block">Phone number is invalid..</span>
+                                            <input class="form-control" name="pAltMobileNumber" placeholder="Alternate mobile number" type="number" ng-pattern="vm.phoneNumber" data-ng-model="vm.user.userInfo.secondaryM2"/>
                                         </div>
+                                        
+                                         
+                                         <div class="form-group" ng-class="{ 'has-error': personalInfoForm.email.$dirty && personalInfoForm.email.$error.required }">
+                                         	<label>Your Email</label>
+                                         	<span ng-show="personalInfoForm.email.$dirty && personalInfoForm.email.$error.required" class="help-block" style="color:red">Email is required</span>
+										 	<span ng-show="personalInfoForm.email.$error.pattern" style="color:red" class="help-block">Not valid email!</span>
+										 	<div class="form-group input-group">
+	                                            <span class="input-group-addon">@</span>
+	                                            <input type="email" name="email" class="form-control" placeholder="Your Email" data-ng-model="vm.user.email" ng-pattern="vm.emailFormat" required/>
+                                            </div>  
+                                        </div>
+                                        
+                                        <div class="form-group" ng-class="{ 'has-error': personalInfoForm.password.$dirty && personalInfoForm.password.$error.required }">
+                                        	<label>Your Password</label>
+                                        	<span ng-show="personalInfoForm.password.$dirty && personalInfoForm.password.$error.required" class="help-block" style="color:red">Password is required</span>
+                                        	<span ng-show="personalInfoForm.password.$error.pattern" style="color:red" class="help-block">Weak Password!</span>
+                                        	<div class="form-group input-group">
+                                            	<span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
+                                            	<input type="password" name="password" class="form-control" placeholder="Your Password" data-ng-model="vm.user.password" ng-pattern="vm.passWordFormat" required/>
+                                            </div>
+                                       </div>
+                                       
+	                                   <div class="form-group" ng-class="{ 'has-error': personalInfoForm.confPassword.$dirty && personalInfoForm.confPassword.$error.required }">
+                                   			<label>Retype Password</label>
+                                   			<span ng-show="personalInfoForm.confPassword.$dirty && vm.user.confPassword!=vm.user.password" class="help-block" style="color:red">Confirm your password, Both password should match</span>
+	                                   		<div class="form-group input-group">
+	                                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
+	                                            <input type="password" name="confPassword" class="form-control" placeholder="Retype Password" data-ng-model="vm.user.confPassword" required/>
+	                                        </div>
+	                                   </div>
                                    
-                                        <div class="form-group">
+                                        
+                                    <br />
+    							</div> 
+                                <div class="col-md-6">
+                                
+                                		<div class="form-group">
                                             <label>Flat number</label>
-                                            <select class="form-control">
-                                                <option>Please Select ...</option>
-                                                <option>E-202</option>
-                                                <option>D-202</option>
-                                                <option>C-202</option>
+                                            <select class="form-control" data-ng-model="vm.user.userInfo.flatNumber" data-ng-options="flatList.flatName for flatList in vm.flatList track by flatList.flatId">
                                             </select>
                                         </div>
 
                                          <div class="form-group">
                                             <label>Parking slot</label>
-                                            <select class="form-control">
-                                                <option>Please Select ...</option>
-                                                <option>E-202</option>
-                                                <option>D-202</option>
-                                                <option>C-202</option>
+                                            <select class="form-control" data-ng-model="vm.user.userInfo.parkingSlots" data-ng-options="parkingSlotList.parkingSlot for parkingSlotList in vm.parkingSlotList track by parkingSlotList.parkingSlotId">
                                             </select>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Is a board member ?</label><br>
-                                            <input type="checkbox" ng-disabled="true" data-ng-model="vm.userDetails.isBoardMember"/>
+                                            <input type="checkbox" ng-disabled="true" data-ng-model="vm.user.userInfo.isBoardMember"/>
                                         </div>
-                                    <br />
-    							</div> 
-                                <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Flat Rented ?</label><br>
-                                            <input type="checkbox"/>
+                                            <input type="checkbox" data-ng-model="vm.user.userInfo.isSecondaryOwner"/>
                                         </div>
                                         <div class="form-group">
                                             <label>Tenanent's First Name</label>
-                                            <input class="form-control" name="sFirstName" placeholder="First Name" data-ng-model="vm.userDetails.sFirstName"/>
+                                            <input class="form-control" name="sFirstName" placeholder="First Name" data-ng-model="vm.user.userInfo.sFirstName"/>
                                         </div>
                                          <div class="form-group">
                                             <label>Middle Name</label>
-                                            <input class="form-control" placeholder="Middle Name" data-ng-model="vm.userDetails.sMiddleName/>
+                                            <input class="form-control" placeholder="Middle Name" data-ng-model="vm.user.userInfo.sMiddleName"/>
                                         </div>
                                         <div class="form-group">
                                             <label>Last Name</label>
-                                            <input class="form-control" placeholder="Last Name" data-ng-model="vm.userDetails.sLastName"/>
+                                            <input class="form-control" placeholder="Last Name" data-ng-model="vm.user.userInfo.sLastName"/>
                                         </div>
                                         <div class="form-group">
                                             <label>Permanant / Correspondance Address</label>
-                                            <textarea class="form-control" rows="3" maxlength="100" placeholder="Enter Address (Max 100 Characters only)" data-ng-model="vm.userDetails.correspondanceAddress"></textarea>
+                                            <textarea class="form-control" rows="3" maxlength="100" placeholder="Enter Address (Max 100 Characters only)" data-ng-model="vm.user.userInfo.correspondanceAddress"></textarea>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Primary Email</label>
-                                            <div class="form-group input-group">
-                                                <span class="input-group-addon">@</span>
-                                                <input type="text" class="form-control" placeholder="Primary Email" data-ng-model="vm.userDetails.emailId">
-                                            </div>
-                                        </div>
+
                                         <div class="form-group">
                                             <label>Alternate Email</label>
                                             <div class="form-group input-group">
                                                 <span class="input-group-addon">@</span>
-                                                <input type="text" class="form-control" placeholder="Alternate Email">
+                                                <input type="text" class="form-control" placeholder="Alternate Email" data-ng-model="vm.user.userInfo.alterEmailId">
                                             </div>
                                         </div>
                                 </div>

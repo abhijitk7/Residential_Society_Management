@@ -65,11 +65,11 @@ public class User extends AbstractEntity {
 	private Long version=0L;
 	
 	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
-	@JoinColumn(name="user_id")
+    @JoinColumn(name = "user_ID", nullable=false,updatable=true)
 	private Set<UserRoles> roles;
 	
 	@OneToOne(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="user_info_id",nullable=false)
 	private UserInfo userInfo;
 
 	public UserInfo getUserInfo() {

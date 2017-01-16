@@ -40,7 +40,7 @@ public class Flats extends AbstractEntity {
 	private Boolean active;
 	
 	@Column(name = "last_updated_by")
-	private Boolean lastUpdatedBy;
+	private Long lastUpdatedBy;
 	
 	@Column(name = "last_update_date")
 	private Date lastUpdateDate;
@@ -69,11 +69,11 @@ public class Flats extends AbstractEntity {
 		this.active = active;
 	}
 
-	public Boolean getLastUpdatedBy() {
+	public Long getLastUpdatedBy() {
 		return lastUpdatedBy;
 	}
 
-	public void setLastUpdatedBy(Boolean lastUpdatedBy) {
+	public void setLastUpdatedBy(Long lastUpdatedBy) {
 		this.lastUpdatedBy = lastUpdatedBy;
 	}
 

@@ -19,6 +19,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -35,14 +36,13 @@ public class UserInfo extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="user_info_id")
 	private Long userInfoId;
+	
 
 	@Column(name="active")
-	private Boolean active;
-
-	private String col_1;
+	private Boolean active=true;
 
 	private String col_2;
 
@@ -57,12 +57,15 @@ public class UserInfo extends AbstractEntity {
 
 	@Column(name="email_id")
 	private String emailId;
+	
+	@Column(name="alter_email_id")
+	private String alterEmailId;
 
 	@Column(name="flat_number")
 	private String flatNumber;
 
 	@Column(name="is_board_member")
-	private Boolean isBoardMember;
+	private Boolean isBoardMember=false;
 
 	@Column(name="is_secondary_owner")
 	private Boolean isSecondaryOwner;
@@ -74,13 +77,13 @@ public class UserInfo extends AbstractEntity {
 	private Timestamp lastUpdateDate;
 
 	@Column(name="p_first_name")
-	private String pFirstName;
+	private String primFirstName;
 
 	@Column(name="p_last_name")
-	private String pLastName;
+	private String primLastName;
 
 	@Column(name="p_middle_name")
-	private String pMiddleName;
+	private String primMiddleName;
 
 	@Column(name="parking_slots")
 	private String parkingSlots;
@@ -89,13 +92,13 @@ public class UserInfo extends AbstractEntity {
 	private BigDecimal primaryM1;
 
 	@Column(name="s_first_name")
-	private String sFirstName;
+	private String secFirstName;
 
 	@Column(name="s_last_name")
-	private String sLastName;
+	private String secLastName;
 
 	@Column(name="s_middle_name")
-	private String sMiddleName;
+	private String secMiddleName;
 
 	@Column(name="secondary_m2")
 	private BigDecimal secondaryM2;
@@ -109,10 +112,13 @@ public class UserInfo extends AbstractEntity {
 
 	@Column(name="version")
 	private Long version;
+	
+	@OneToOne(mappedBy = "userInfo")
+	private User user;
 
 	//bi-directional many-to-one association to VehicleDetails
 	@OneToMany(mappedBy="UserInfo")
-	private List<VehicleDetails> VehicleDetails;
+	private List<VehicleDetails> vehicleDetails;
 	
 	public Long getUserInfoId() {
 		return this.userInfoId;
@@ -128,14 +134,6 @@ public class UserInfo extends AbstractEntity {
 
 	public void setActive(Boolean active) {
 		this.active = active;
-	}
-
-	public String getCol_1() {
-		return this.col_1;
-	}
-
-	public void setCol_1(String col_1) {
-		this.col_1 = col_1;
 	}
 
 	public String getCol_2() {
@@ -173,7 +171,8 @@ public class UserInfo extends AbstractEntity {
 	public String getCorrespondanceAddress() {
 		return this.correspondanceAddress;
 	}
-
+	
+	
 	public void setCorrespondanceAddress(String correspondanceAddress) {
 		this.correspondanceAddress = correspondanceAddress;
 	}
@@ -181,7 +180,8 @@ public class UserInfo extends AbstractEntity {
 	public String getEmailId() {
 		return this.emailId;
 	}
-
+	
+	
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
@@ -190,6 +190,7 @@ public class UserInfo extends AbstractEntity {
 		return this.flatNumber;
 	}
 
+	
 	public void setFlatNumber(String flatNumber) {
 		this.flatNumber = flatNumber;
 	}
@@ -198,6 +199,7 @@ public class UserInfo extends AbstractEntity {
 		return this.isBoardMember;
 	}
 
+	
 	public void setIsBoardMember(Boolean isBoardMember) {
 		this.isBoardMember = isBoardMember;
 	}
@@ -206,6 +208,7 @@ public class UserInfo extends AbstractEntity {
 		return this.isSecondaryOwner;
 	}
 
+	
 	public void setIsSecondaryOwner(Boolean isSecondaryOwner) {
 		this.isSecondaryOwner = isSecondaryOwner;
 	}
@@ -214,6 +217,7 @@ public class UserInfo extends AbstractEntity {
 		return this.isValid;
 	}
 
+	
 	public void setIsValid(Boolean isValid) {
 		this.isValid = isValid;
 	}
@@ -226,34 +230,13 @@ public class UserInfo extends AbstractEntity {
 		this.lastUpdateDate = lastUpdateDate;
 	}
 
-	public String getPFirstName() {
-		return this.pFirstName;
-	}
-
-	public void setPFirstName(String pFirstName) {
-		this.pFirstName = pFirstName;
-	}
-
-	public String getPLastName() {
-		return this.pLastName;
-	}
-
-	public void setPLastName(String pLastName) {
-		this.pLastName = pLastName;
-	}
-
-	public String getPMiddleName() {
-		return this.pMiddleName;
-	}
-
-	public void setPMiddleName(String pMiddleName) {
-		this.pMiddleName = pMiddleName;
-	}
+	
 
 	public String getParkingSlots() {
 		return this.parkingSlots;
 	}
 
+	
 	public void setParkingSlots(String parkingSlots) {
 		this.parkingSlots = parkingSlots;
 	}
@@ -262,38 +245,64 @@ public class UserInfo extends AbstractEntity {
 		return this.primaryM1;
 	}
 
+	
 	public void setPrimaryM1(BigDecimal primaryM1) {
 		this.primaryM1 = primaryM1;
 	}
 
-	public String getSFirstName() {
-		return this.sFirstName;
+	public String getPrimFirstName() {
+		return primFirstName;
 	}
 
-	public void setSFirstName(String sFirstName) {
-		this.sFirstName = sFirstName;
+	public void setPrimFirstName(String primFirstName) {
+		this.primFirstName = primFirstName;
 	}
 
-	public String getSLastName() {
-		return this.sLastName;
+	public String getPrimLastName() {
+		return primLastName;
 	}
 
-	public void setSLastName(String sLastName) {
-		this.sLastName = sLastName;
+	public void setPrimLastName(String primLastName) {
+		this.primLastName = primLastName;
 	}
 
-	public String getSMiddleName() {
-		return this.sMiddleName;
+	public String getPrimMiddleName() {
+		return primMiddleName;
 	}
 
-	public void setSMiddleName(String sMiddleName) {
-		this.sMiddleName = sMiddleName;
+	public void setPrimMiddleName(String primMiddleName) {
+		this.primMiddleName = primMiddleName;
+	}
+
+	public String getSecFirstName() {
+		return secFirstName;
+	}
+
+	public void setSecFirstName(String secFirstName) {
+		this.secFirstName = secFirstName;
+	}
+
+	public String getSecLastName() {
+		return secLastName;
+	}
+
+	public void setSecLastName(String secLastName) {
+		this.secLastName = secLastName;
+	}
+
+	public String getSecMiddleName() {
+		return secMiddleName;
+	}
+
+	public void setSecMiddleName(String secMiddleName) {
+		this.secMiddleName = secMiddleName;
 	}
 
 	public BigDecimal getSecondaryM2() {
 		return this.secondaryM2;
 	}
 
+	
 	public void setSecondaryM2(BigDecimal secondaryM2) {
 		this.secondaryM2 = secondaryM2;
 	}
@@ -324,12 +333,22 @@ public class UserInfo extends AbstractEntity {
 	}
 
 	public List<VehicleDetails> getVehicleDetails() {
-		return this.VehicleDetails;
+		return this.vehicleDetails;
 	}
 
 	public void setVehicleDetails(List<VehicleDetails> VehicleDetails) {
-		this.VehicleDetails = VehicleDetails;
+		this.vehicleDetails = VehicleDetails;
 	}
+	
+	public String getAlterEmailId() {
+		return alterEmailId;
+	}
+
+	
+	public void setAlterEmailId(String alterEmailId) {
+		this.alterEmailId = alterEmailId;
+	}
+
 
 	public VehicleDetails addVehicleDetail(VehicleDetails VehicleDetail) {
 		getVehicleDetails().add(VehicleDetail);
