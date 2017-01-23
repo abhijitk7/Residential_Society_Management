@@ -54,20 +54,12 @@ public class UserJpaDao extends AbstractSMSDao<User> implements IUserJpaDao {
 	 * @see com.sms.dao.IUserAuthorisationJpaDao#getAuthorisedUserById()
 	 */
 	@Override
-	public User getAuthorisedUserById(final Integer userId) {
+	public User getAuthorisedUserById(final Long userId) {
 
-		// final Session session = ((HibernateEntityManager)
-		// this.em).getSession().getSessionFactory().openSession();
-		//
-		// final Criteria criteria =
-		// session.createCriteria(UserAuthorisation.class);
-		//
-		// criteria.add(Restrictions.eq("userId", userId));
-		//
-		// final UserAuthorisation user = (UserAuthorisation)
-		// criteria.list().get(0);
-
-		return null;
+		Criteria criteria=createCriteria();
+		criteria.add(Restrictions.eq("userId", userId));
+		final User user = (User) criteria.uniqueResult();
+		return user;
 	}
 
 	/*

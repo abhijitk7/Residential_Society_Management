@@ -139,6 +139,12 @@
             <version>${aspectjrt.version}</version>
         </dependency>
         
+        <dependency>
+			<groupId>net.sf.dozer</groupId>
+			<artifactId>dozer</artifactId>
+			<version>5.3.1</version>
+		</dependency>
+        
 		
 		<!-- Spring Security -->     
 		

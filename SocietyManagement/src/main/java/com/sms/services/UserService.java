@@ -13,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sms.dao.IUserInfoJpaDao;
 import com.sms.dao.IUserJpaDao;
 import com.sms.entity.User;
+import com.sms.entity.UserInfo;
 
 /**
  * @author Abhijit A. Kulkarni
@@ -24,7 +26,10 @@ import com.sms.entity.User;
 public class UserService implements IUserService {
 
 	@Autowired
-	private IUserJpaDao userAuthDao;
+	private IUserJpaDao userDao;
+	
+	@Autowired
+	private IUserInfoJpaDao userInfoDao;
 	
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
@@ -36,9 +41,9 @@ public class UserService implements IUserService {
 	 * com.sms.services.IUserService#getAuthorisedUserById(java.lang.Integer)
 	 */
 	@Override
-	public User getAuthorisedUserById(final Integer userId) {
+	public User getAuthorisedUserById(final Long userId) {
 
-		final User authUser = this.userAuthDao.getAuthorisedUserById(userId);
+		final User authUser = this.userDao.getAuthorisedUserById(userId);
 		return authUser;
 	}
 
@@ -49,7 +54,7 @@ public class UserService implements IUserService {
 	 */
 	@Override
 	public Set<User> getAllAuthorisedUsers() {
-		return this.userAuthDao.finAllAuthorisedUsers();
+		return this.userDao.finAllAuthorisedUsers();
 	}
 
 	/*
@@ -61,7 +66,7 @@ public class UserService implements IUserService {
 	 */
 	@Override
 	public String getAuthorisedUserByNameAndPassword(final String userName, final String passWord) {
-		return this.userAuthDao.getAuthorisedUserByUserNameAndPassword(userName, passWord);
+		return this.userDao.getAuthorisedUserByUserNameAndPassword(userName, passWord);
 	}
 
 	/* (non-Javadoc)
@@ -74,12 +79,18 @@ public class UserService implements IUserService {
 		//Encrypt the password before saving
 		user.setPassword(passwordEncoder.encode(user.getPassWord()));
 		
-		return this.userAuthDao.saveUserAuthDetails(user);
+		return this.userDao.saveUserAuthDetails(user);
 	}
 
 	@Override
 	@Transactional
 	public String updateLastLogOn(Long userId) {
-		return this.userAuthDao.updateLastLogOnInfo(userId);
+		return this.userDao.updateLastLogOnInfo(userId);
+	}
+
+	@Override
+	@Transactional
+	public String updateUserInfo(UserInfo userInfo) {
+		return userInfoDao.updateUserInfo(userInfo);
 	}
 }

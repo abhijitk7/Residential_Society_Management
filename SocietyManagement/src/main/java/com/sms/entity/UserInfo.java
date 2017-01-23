@@ -11,11 +11,14 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -61,8 +64,8 @@ public class UserInfo extends AbstractEntity {
 	@Column(name="alter_email_id")
 	private String alterEmailId;
 
-	@Column(name="flat_number")
-	private String flatNumber;
+	@Column(name="users_flat_id")
+	private Long usersFlatId;
 
 	@Column(name="is_board_member")
 	private Boolean isBoardMember=false;
@@ -85,8 +88,8 @@ public class UserInfo extends AbstractEntity {
 	@Column(name="p_middle_name")
 	private String primMiddleName;
 
-	@Column(name="parking_slots")
-	private String parkingSlots;
+	@Column(name="user_parking_slot_id")
+	private Long usersParkingSlots;
 
 	@Column(name="primary_m1")
 	private BigDecimal primaryM1;
@@ -119,6 +122,14 @@ public class UserInfo extends AbstractEntity {
 	//bi-directional many-to-one association to VehicleDetails
 	@OneToMany(mappedBy="UserInfo")
 	private List<VehicleDetails> vehicleDetails;
+	
+	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+    @JoinColumn(name = "users_flat_id", nullable=false,updatable=true)
+	private List<UsersFlats> usersFlats;
+	
+	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+    @JoinColumn(name = "user_parking_slot_id", nullable=false,updatable=true)
+	private List<UsersParking> usersParkings;
 	
 	public Long getUserInfoId() {
 		return this.userInfoId;
@@ -186,13 +197,13 @@ public class UserInfo extends AbstractEntity {
 		this.emailId = emailId;
 	}
 
-	public String getFlatNumber() {
-		return this.flatNumber;
+	public Long getFlatNumber() {
+		return this.usersFlatId;
 	}
 
 	
-	public void setFlatNumber(String flatNumber) {
-		this.flatNumber = flatNumber;
+	public void setFlatNumber(Long usersFlatId) {
+		this.usersFlatId = usersFlatId;
 	}
 
 	public Boolean getIsBoardMember() {
@@ -232,13 +243,13 @@ public class UserInfo extends AbstractEntity {
 
 	
 
-	public String getParkingSlots() {
-		return this.parkingSlots;
+	public Long getParkingSlots() {
+		return this.usersParkingSlots;
 	}
 
 	
-	public void setParkingSlots(String parkingSlots) {
-		this.parkingSlots = parkingSlots;
+	public void setParkingSlots(Long usersParkingSlots) {
+		this.usersParkingSlots = usersParkingSlots;
 	}
 
 	public BigDecimal getPrimaryM1() {
@@ -348,6 +359,23 @@ public class UserInfo extends AbstractEntity {
 	public void setAlterEmailId(String alterEmailId) {
 		this.alterEmailId = alterEmailId;
 	}
+	
+	public List<UsersFlats> getUsersFlats() {
+		return usersFlats;
+	}
+
+	public void setUsersFlats(List<UsersFlats> usersFlats) {
+		this.usersFlats = usersFlats;
+	}
+
+	public List<UsersParking> getUsersParking() {
+		return usersParkings;
+	}
+
+	public void setUsersParking(List<UsersParking> usersParkings) {
+		this.usersParkings = usersParkings;
+	}
+	
 
 
 	public VehicleDetails addVehicleDetail(VehicleDetails VehicleDetail) {

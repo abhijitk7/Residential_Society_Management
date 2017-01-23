@@ -5,7 +5,7 @@
  * is strictly forbidden unless prior written permission is obtained
  * from Abhijit A. Kulkarni (abhikulkarni.1988@gmail.com).
  */
-package com.sms.transfer;
+package com.sms.dto;
 
 import java.util.Date;
 import java.util.Map;
@@ -19,7 +19,7 @@ import com.sms.util.SystemConstants;
  * @version 1.0
  */
 
-public class UserTransfer {
+public class UserDTO {
 
     private String userName;
 
@@ -37,7 +37,7 @@ public class UserTransfer {
     private String lastName;
 
 
-    public UserTransfer(String userName) {
+    public UserDTO(String userName) {
         this.userName = userName;
     }
 

@@ -1,0 +1,87 @@
+.typeahead {
+  padding: 20px;
+  max-width: 600px;
+}
+
+.typeahead ul.tags {
+  list-style: none;
+  border-bottom: 1px solid #aaa;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 0;
+  cursor: text;
+}
+
+.typeahead ul.tags.focused {
+  border-bottom: 1px solid #26a69a;
+  box-shadow: 0 1px 0 0 #26a69a;
+}
+
+
+.typeahead ul li.tag {
+  display: inline;
+  padding: 2px 2px 2px 5px;
+  border: 1px solid #aaa;
+  background-color: #eee;
+  border-radius: 5px;
+  margin-right: 5px;
+  color: #333;
+  cursor: pointer;
+}
+
+.typeahead ul li.inputtag {
+  display: inline;
+  margin-right: 5px;
+  color: #333;
+}
+.typeahead ul li.inputtag input {
+  border: none;
+  display: inline;
+  height: initial;
+  width: initial;
+  margin: initial;
+}
+
+.typeahead ul li.inputtag input:focus {
+  border: none;
+  display: inline;
+  height: initial;
+  width: initial;
+  margin: initial;
+  border-bottom: none;
+  box-shadow: none;
+}
+
+.typeahead ul li.inputtag input:focus {
+  outline: none;
+}
+
+
+
+.typeahead ul.list{
+  list-style: none;
+  border: 1px solid #aaa;
+  border-top: none;
+  width: 400px;
+  padding: 0;
+  margin: 0;
+}
+.typeahead ul.list li{
+  padding: 5px;
+  cursor: pointer;
+}
+
+.typeahead ul.list li.active{
+  background-color: #aaa;
+}
+
+
+.typeahead ul li span {
+  padding-left: 5px;
+  padding-right: 2px;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: rgba(0,0,0,0.5);
+  text-transform: lowercase;
+  font-height: 10px;
+}

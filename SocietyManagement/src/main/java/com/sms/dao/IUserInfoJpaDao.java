@@ -12,5 +12,6 @@ import com.sms.entity.UserInfo;
 public interface IUserInfoJpaDao {
 
 	UserInfo persistUserInfo(UserInfo userInfo);
-	UserInfo updateUserInfo(UserInfo updateUserInfo);
+	
+	String updateUserInfo(UserInfo userInfo);
 }

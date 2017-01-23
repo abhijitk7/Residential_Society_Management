@@ -5,8 +5,6 @@
     
     Change Log
     s.no      date    author     description     
-    
-
  ===========================================================*/
 
 var mainApp = angular.module('mainApp', ['ui.router']);

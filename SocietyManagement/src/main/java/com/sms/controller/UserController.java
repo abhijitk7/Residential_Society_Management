@@ -7,10 +7,15 @@
  */
 package com.sms.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +36,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sms.dto.UserInfoDTO;
+import com.sms.dto.UserDTO;
 import com.sms.entity.User;
+import com.sms.entity.UserInfo;
 import com.sms.exception.CustomGenericException;
 import com.sms.security.AuthenticationUserDetailsService;
 import com.sms.services.IUserService;
-import com.sms.transfer.UserTransfer;
+import com.sms.util.SystemConstants;
 
 /**
  * @author Abhijit Kulkarni
@@ -58,11 +66,17 @@ public class UserController extends BaseController {
     @Qualifier("authenticationManager")
     private AuthenticationManager authManager;
 
-	@RequestMapping(value = "/UserById/{userId}", method = RequestMethod.GET)
-	ResponseEntity<User> getUserById(@PathVariable final String userId) {
-		log.debug("********** Retriving all user by id ****************");
-		final User user = this.userService.getAuthorisedUserById(Integer.parseInt(userId));
-		return new ResponseEntity<User>(user, null, HttpStatus.OK);
+	@RequestMapping(value = "/userById/{userId}", method = RequestMethod.GET)
+	ResponseEntity<UserInfoDTO> getUserById(@PathVariable final Long userId) {
+		log.debug("********** Retriving user by id ****************");
+		final User user = this.userService.getAuthorisedUserById(userId);
+		List<String> list = new ArrayList<String>();
+		list.add(SystemConstants.USER_INFO_DOZER_MAPPER);
+		Mapper mapper = new DozerBeanMapper(list);
+		UserInfoDTO userInfo=new UserInfoDTO();
+		mapper.map(user.getUserInfo(), userInfo);
+		Hibernate.initialize(user.getUserInfo());
+		return new ResponseEntity<UserInfoDTO>(userInfo, null, HttpStatus.OK);
 
 	}
 
@@ -76,7 +90,7 @@ public class UserController extends BaseController {
 	
 	
 	@RequestMapping(value = "/authenticateUser/{userName}/{passWord}",method=RequestMethod.POST)
-    public ResponseEntity<UserTransfer> authenticate(@PathVariable final String userName, @PathVariable final String passWord) {
+    public ResponseEntity<UserDTO> authenticate(@PathVariable final String userName, @PathVariable final String passWord) {
 
         UsernamePasswordAuthenticationToken authenticationToken
             = new UsernamePasswordAuthenticationToken(userName, passWord);
@@ -102,21 +116,21 @@ public class UserController extends BaseController {
         Map<String, Boolean> roles = createRolesMap(userDetails);
         String token = userDetailsService.createToken(userDetails);
 
-        UserTransfer userTransfer = new UserTransfer(userDetails.getUsername());
-        userTransfer.setRoles(roles);
-        userTransfer.setToken(token);
+        UserDTO userDTO = new UserDTO(userDetails.getUsername());
+        userDTO.setRoles(roles);
+        userDTO.setToken(token);
         
         User user=userDetailsService.getUserDetails(userName);
         
-        userTransfer.setUserId(user.getUserId());
+        userDTO.setUserId(user.getUserId());
         
-        userTransfer.setLastLogon(user.getLastUpdateDate());
+        userDTO.setLastLogon(user.getLastUpdateDate());
         
-        userTransfer.setFirstName(user.getUserInfo().getPrimFirstName());
+        userDTO.setFirstName(user.getUserInfo().getPrimFirstName());
         
-        userTransfer.setLastName(user.getUserInfo().getPrimLastName());
+        userDTO.setLastName(user.getUserInfo().getPrimLastName());
 
-        return new ResponseEntity<UserTransfer>(userTransfer,HttpStatus.OK);
+        return new ResponseEntity<UserDTO>(userDTO,HttpStatus.OK);
     }
 
     private Map<String, Boolean> createRolesMap(UserDetails userDetails) {
@@ -130,7 +144,7 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/updateLastLogon/{userId}", method = RequestMethod.POST)
 	public ResponseEntity<String> updateLastLogOn(@PathVariable Long userId) {
-		log.debug("********** Create user ****************");
+		log.debug("********** update user last logon date ****************");
 		final String userUpdated = this.userService.updateLastLogOn(userId);
 		return new ResponseEntity<String>(userUpdated,HttpStatus.OK);
 	}
@@ -140,6 +154,13 @@ public class UserController extends BaseController {
 		log.debug("********** Create user ****************");
 		final String userCreated = this.userService.createUser(user);
 		return userCreated;
+	}
+	
+	@RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
+	public @ResponseBody String updateUserInfo(@RequestBody UserInfo userInfo) {
+		log.debug("********** Update user info ****************");
+		final String userUpdated = this.userService.updateUserInfo(userInfo);
+		return userUpdated;
 	}
 	
 }

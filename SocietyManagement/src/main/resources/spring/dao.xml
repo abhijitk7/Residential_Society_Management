@@ -7,10 +7,11 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
         
         <bean id="amenityDao" class="com.sms.dao.AmenityJpaDao"/>
-        <bean id="userAuthDao" class="com.sms.dao.UserJpaDao"/>
+        <bean id="userDao" class="com.sms.dao.UserJpaDao"/>
         <bean id="roleJpaDao" class="com.sms.dao.RoleJpaDao"/>
         <bean id="flatsDao" class="com.sms.dao.RoleJpaDao"/>
         <bean id="flatdao" class="com.sms.dao.ParkingSlotJpaDao"/>
         <bean id="parkingSlotDao" class="com.sms.dao.FlatsJpaDao"/>
+        <bean id="userInfoDao" class="com.sms.dao.UserInfoJpaDao"/>
          
 </beans>

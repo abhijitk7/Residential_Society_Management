@@ -22,7 +22,6 @@
 		        method : "GET",
 		        url : ContextRoot + '/getFlats' +'.do',
 		    }).success(function(response) {
-		    	$log.debug(response);
 		    	callBack(response);
 			}).error(function(data, status, headers, config){
 				$log.debug(status);
@@ -36,7 +35,6 @@
 		        method : "GET",
 		        url : ContextRoot + '/getParkingslots' +'.do',
 		    }).success(function(response) {
-		    	$log.debug(response);
 		    	callBack(response);
 			}).error(function(data, status, headers, config){
 				$log.debug(status);

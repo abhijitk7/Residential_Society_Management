@@ -44,8 +44,12 @@ public abstract class AbstractJpaDao<T extends IEntity> extends AbstractReadOnly
 	 */
 	@Override
 	public T update(T entity) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		T updatedEntity=getEm().merge(entity);
+		getEm().flush();
+		
+		return updatedEntity;
+		
 	}
 
 	/* (non-Javadoc)

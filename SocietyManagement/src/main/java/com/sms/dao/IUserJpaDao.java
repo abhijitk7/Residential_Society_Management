@@ -21,7 +21,7 @@ public interface IUserJpaDao {
 
 	Set<User> finAllAuthorisedUsers();
 
-	User getAuthorisedUserById(Integer userId);
+	User getAuthorisedUserById(Long userId);
 	
 	User getAuthorisedUserByName(String userName);
 

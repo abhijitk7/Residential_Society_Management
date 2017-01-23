@@ -10,6 +10,7 @@ package com.sms.services;
 import java.util.Set;
 
 import com.sms.entity.User;
+import com.sms.entity.UserInfo;
 
 /**
  * @author Abhijit A. Kulkarni
@@ -18,13 +19,15 @@ import com.sms.entity.User;
  */
 public interface IUserService {
 
-	User getAuthorisedUserById(Integer userId);
+	User getAuthorisedUserById(Long userId);
 
 	String getAuthorisedUserByNameAndPassword(String userName, String passWord);
 
 	Set<User> getAllAuthorisedUsers();
 	
 	String createUser(User user);
+	
+	String updateUserInfo(UserInfo userInfo);
 	
 	String updateLastLogOn(Long userId);
 }
