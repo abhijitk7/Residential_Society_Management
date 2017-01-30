@@ -7,7 +7,7 @@
     s.no      date    author     description     
  ===========================================================*/
 
-var mainApp = angular.module('mainApp', ['ui.router']);
+var mainApp = angular.module('mainApp', ['ui.router','multipleSelect']);
 
 
 mainApp.config(["$stateProvider", function ($stateProvider) {

@@ -83,12 +83,20 @@
                                 
                                 		<div class="form-group">
                                             <label>Flat number</label>
-                                            <typeahead ng-model="vm.user.usersFlats" items="vm.flatList" displaytag="flatName" displayitem="flatName"></typeahead>
+                                            <multiple-autocomplete ng-model="vm.user.usersFlats"
+											     object-property="flatName"
+											     api-url="{{vm.flatsApiPath}}"
+											     suggestions-arr="">
+											</multiple-autocomplete>
                                         </div>
 
                                          <div class="form-group">
                                             <label>Parking slot</label>
-                                            <typeahead ng-model="vm.user.usersParkings" items="vm.parkingSlotList" displaytag="parkingSlot" displayitem="parkingSlot"></typeahead>
+                                            <multiple-autocomplete ng-model="vm.user.usersParkings"
+											     object-property="parkingSlot"
+											     api-url="{{vm.parkingApiPath}}"
+											     suggestions-arr="">
+											</multiple-autocomplete>
                                         </div>
 
                                         <div class="form-group">

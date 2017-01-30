@@ -14,15 +14,18 @@
 	angular.module("SocietyManagementSystem").controller("MyInfoController",MyInfoController);
 	
 	
-	MyInfoController.$inject=['UserService','StaticDataService', '$state', '$rootScope', 'FlashService','$log','$scope'];
+	MyInfoController.$inject=['UserService','StaticDataService', '$state', '$rootScope', 'FlashService','$log','$scope','ContextRoot'];
 	
-	function MyInfoController(UserService,StaticDataService, $state, $rootScope, FlashService,$log,$scope){
+	function MyInfoController(UserService,StaticDataService, $state, $rootScope, FlashService,$log,$scope,ContextRoot){
 		
 		 var vm = this;
 
 		 vm.emailFormat = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
 		 vm.phoneNumber = /^(\+?(\d{1}|\d{2}|\d{3})[- ]?)?\d{3}[- ]?\d{3}[- ]?\d{4}$/;
 	     vm.passWordFormat=/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+	     
+	     vm.flatsApiPath = ContextRoot + '/getFlats' +'.do';
+	     vm.parkingApiPath = ContextRoot + '/getParkingslots' +'.do';
 		 
 		 vm.saveUserInfo = saveUserInfo;
 		 
@@ -31,27 +34,27 @@
 				// reset login status
 				$log.debug("My Info controller initialised......");
 				 
-				StaticDataService.getListOfFlats(function(response) {
-		
-		                if(response===401) {
-		                    FlashService.Error("You are not authorised to perform this operation. Please contact system administrator.");
-		                }else if(response===500) {
-		                    FlashService.Error("Some thing went wrong at server side. Please contact system administrator");
-		                } else{
-		                	vm.flatList=response;
-		                }
-		        });
+//				StaticDataService.getListOfFlats(function(response) {
+//		
+//		                if(response===401) {
+//		                    FlashService.Error("You are not authorised to perform this operation. Please contact system administrator.");
+//		                }else if(response===500) {
+//		                    FlashService.Error("Some thing went wrong at server side. Please contact system administrator");
+//		                } else{
+//		                	vm.flatList=response;
+//		                }
+//		        });
 			 
-				StaticDataService.getListOfParkingSlots(function(response) {
-		
-					 	if(response===401) {
-		                    FlashService.Error("You are not authorised to perform this operation. Please contact system administrator.");
-		                }else if(response===500) {
-		                    FlashService.Error("Some thing went wrong at server side. Please contact system administrator");
-		                } else{
-		                	vm.parkingSlotList=response;
-		                }
-		        });
+//				StaticDataService.getListOfParkingSlots(function(response) {
+//		
+//					 	if(response===401) {
+//		                    FlashService.Error("You are not authorised to perform this operation. Please contact system administrator.");
+//		                }else if(response===500) {
+//		                    FlashService.Error("Some thing went wrong at server side. Please contact system administrator");
+//		                } else{
+//		                	vm.parkingSlotList=response;
+//		                }
+//		        });
 			 
 			 	UserService.getUserDetails($rootScope.user.userId,function(response){
 				 
