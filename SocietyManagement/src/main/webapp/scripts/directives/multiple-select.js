@@ -126,8 +126,9 @@ angular.module("templates", []).run(["$templateCache", function($templateCache) 
                         if(scope.beforeSelectItem && typeof(scope.beforeSelectItem) == 'function')
                             scope.beforeSelectItem(selectedValue);
                         console.log("Selected value is "+selectedValue);
-                        if(scope.modelArr==undefined){
-                        	console.log("Model is undefined ");
+                        if(scope.modelArr== undefined){
+                        	scope.modelArr = [];
+                        	// console.log("Model is undefined ");
                         }
                         scope.modelArr.push(selectedValue);
 
