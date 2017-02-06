@@ -11,7 +11,7 @@ public class UserInfoDTO {
 	
 	private String alterEmailId;
 
-	private String flatNumber;
+//	private String flatNumber;
 
 	private Boolean isBoardMember;
 
@@ -23,7 +23,7 @@ public class UserInfoDTO {
 
 	private String primMiddleName;
 
-	private String parkingSlots;
+	//private String parkingSlots;
 
 	private BigDecimal primaryM1;
 
@@ -61,13 +61,13 @@ public class UserInfoDTO {
 		this.alterEmailId = alterEmailId;
 	}
 
-	public String getFlatNumber() {
-		return flatNumber;
-	}
-
-	public void setFlatNumber(String flatNumber) {
-		this.flatNumber = flatNumber;
-	}
+//	public String getFlatNumber() {
+//		return flatNumber;
+//	}
+//
+//	public void setFlatNumber(String flatNumber) {
+//		this.flatNumber = flatNumber;
+//	}
 
 	public Boolean getIsBoardMember() {
 		return isBoardMember;
@@ -107,14 +107,6 @@ public class UserInfoDTO {
 
 	public void setPrimMiddleName(String primMiddleName) {
 		this.primMiddleName = primMiddleName;
-	}
-
-	public String getParkingSlots() {
-		return parkingSlots;
-	}
-
-	public void setParkingSlots(String parkingSlots) {
-		this.parkingSlots = parkingSlots;
 	}
 
 	public BigDecimal getPrimaryM1() {

@@ -36,7 +36,7 @@
 	        <security:intercept-url method="POST" pattern="/createUser**"
 	                                access="permitAll" />   
 	        <security:intercept-url method="POST" pattern="/updateUserInfo**"
-	                                access="hasRole('Member')" />                     
+	                                access="permitAll" />                     
 	                                                     
 	    </security:http>
 

@@ -40,7 +40,7 @@
 		        method : "POST",
 		        url : ContextRoot + '/updateUserInfo.do',
 		        data:userInfo,
-		        headers: {'Content-Type': 'application/json'}
+//		        headers: {'Content-Type': 'application/json'}
 		    }).success(function(response) {
 		    	$log.debug(response);
 				callback(response);

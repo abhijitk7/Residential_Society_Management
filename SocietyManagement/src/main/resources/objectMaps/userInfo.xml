@@ -18,10 +18,10 @@
 			<a>emailId</a>
 			<b>emailId</b>
 		</field>
-		<field>
-			<a>flatNumber</a>
-			<b>flatNumber</b>
-		</field>
+<!-- 		<field> -->
+<!-- 			<a>flatNumber</a> -->
+<!-- 			<b>flatNumber</b> -->
+<!-- 		</field> -->
 		<field>
 			<a>isBoardMember</a>
 			<b>isBoardMember</b>
@@ -42,10 +42,10 @@
 			<a>primMiddleName</a>
 			<b>primMiddleName</b>
 		</field>
-		<field>
-			<a>parkingSlots</a>
-			<b>parkingSlots</b>
-		</field>
+<!-- 		<field> -->
+<!-- 			<a>parkingSlots</a> -->
+<!-- 			<b>parkingSlots</b> -->
+<!-- 		</field> -->
 		<field>
 			<a>primaryM1</a>
 			<b>primaryM1</b>

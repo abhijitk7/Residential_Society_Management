@@ -36,8 +36,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sms.dto.UserInfoDTO;
 import com.sms.dto.UserDTO;
+import com.sms.dto.UserInfoDTO;
 import com.sms.entity.User;
 import com.sms.entity.UserInfo;
 import com.sms.exception.CustomGenericException;

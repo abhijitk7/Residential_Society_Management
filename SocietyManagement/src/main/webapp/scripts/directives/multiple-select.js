@@ -125,7 +125,7 @@ angular.module("templates", []).run(["$templateCache", function($templateCache) 
                     scope.onSuggestedItemsClick = function (selectedValue) {
                         if(scope.beforeSelectItem && typeof(scope.beforeSelectItem) == 'function')
                             scope.beforeSelectItem(selectedValue);
-                        console.log("Selected value is "+selectedValue);
+                        console.log("Selected value is "+selectedValue.flatId);
                         if(scope.modelArr== undefined){
                         	scope.modelArr = [];
                         	// console.log("Model is undefined ");

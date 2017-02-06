@@ -9,7 +9,8 @@ package com.sms.entity;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,11 +20,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+
+
+
+
+
 
 
 /**
@@ -57,15 +67,13 @@ public class UserInfo extends AbstractEntity {
 
 	@Column(name="correspondance_address")
 	private String correspondanceAddress;
+	
 
 	@Column(name="email_id")
 	private String emailId;
 	
 	@Column(name="alter_email_id")
 	private String alterEmailId;
-
-	@Column(name="users_flat_id")
-	private Long usersFlatId;
 
 	@Column(name="is_board_member")
 	private Boolean isBoardMember=false;
@@ -88,8 +96,8 @@ public class UserInfo extends AbstractEntity {
 	@Column(name="p_middle_name")
 	private String primMiddleName;
 
-	@Column(name="user_parking_slot_id")
-	private Long usersParkingSlots;
+//	@Column(name="user_parking_slot_id")
+//	private Long usersParkingSlots;
 
 	@Column(name="primary_m1")
 	private BigDecimal primaryM1;
@@ -119,17 +127,18 @@ public class UserInfo extends AbstractEntity {
 	@OneToOne(mappedBy = "userInfo")
 	private User user;
 
-	//bi-directional many-to-one association to VehicleDetails
-	@OneToMany(mappedBy="UserInfo")
-	private List<VehicleDetails> vehicleDetails;
+//	//bi-directional many-to-one association to VehicleDetails
+//	@OneToMany(mappedBy="UserInfo")
+//	private List<VehicleDetails> vehicleDetails;
 	
-	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
-    @JoinColumn(name = "users_flat_id", nullable=false,updatable=true)
-	private List<UsersFlats> usersFlats;
+	@JsonManagedReference
+	@ManyToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
+    @JoinTable(name = "tbl_sms_users_flats", joinColumns=@JoinColumn(name="user_info_id",referencedColumnName="user_info_id"),inverseJoinColumns=@JoinColumn(name="flat_id",referencedColumnName="flat_id"))
+	private Set<Flats> usersFlats=new HashSet<Flats>();
 	
-	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
-    @JoinColumn(name = "user_parking_slot_id", nullable=false,updatable=true)
-	private List<UsersParking> usersParkings;
+//	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+//    @JoinColumn(name = "user_parking_slot_id", nullable=false,updatable=true)
+//	private List<UsersParking> usersParkings;
 	
 	public Long getUserInfoId() {
 		return this.userInfoId;
@@ -197,15 +206,6 @@ public class UserInfo extends AbstractEntity {
 		this.emailId = emailId;
 	}
 
-	public Long getFlatNumber() {
-		return this.usersFlatId;
-	}
-
-	
-	public void setFlatNumber(Long usersFlatId) {
-		this.usersFlatId = usersFlatId;
-	}
-
 	public Boolean getIsBoardMember() {
 		return this.isBoardMember;
 	}
@@ -239,17 +239,6 @@ public class UserInfo extends AbstractEntity {
 
 	public void setLastUpdateDate(Timestamp lastUpdateDate) {
 		this.lastUpdateDate = lastUpdateDate;
-	}
-
-	
-
-	public Long getParkingSlots() {
-		return this.usersParkingSlots;
-	}
-
-	
-	public void setParkingSlots(Long usersParkingSlots) {
-		this.usersParkingSlots = usersParkingSlots;
 	}
 
 	public BigDecimal getPrimaryM1() {
@@ -343,13 +332,6 @@ public class UserInfo extends AbstractEntity {
 		this.version = version;
 	}
 
-	public List<VehicleDetails> getVehicleDetails() {
-		return this.vehicleDetails;
-	}
-
-	public void setVehicleDetails(List<VehicleDetails> VehicleDetails) {
-		this.vehicleDetails = VehicleDetails;
-	}
 	
 	public String getAlterEmailId() {
 		return alterEmailId;
@@ -360,36 +342,21 @@ public class UserInfo extends AbstractEntity {
 		this.alterEmailId = alterEmailId;
 	}
 	
-	public List<UsersFlats> getUsersFlats() {
+	public Set<Flats> getUsersFlats() {
 		return usersFlats;
 	}
 
-	public void setUsersFlats(List<UsersFlats> usersFlats) {
+	public void setUsersFlats(Set<Flats> usersFlats) {
 		this.usersFlats = usersFlats;
 	}
 
-	public List<UsersParking> getUsersParking() {
-		return usersParkings;
-	}
-
-	public void setUsersParking(List<UsersParking> usersParkings) {
-		this.usersParkings = usersParkings;
-	}
+//	public List<UsersParking> getUsersParking() {
+//		return usersParkings;
+//	}
+//
+//	public void setUsersParking(List<UsersParking> usersParkings) {
+//		this.usersParkings = usersParkings;
+//	}
 	
-
-
-	public VehicleDetails addVehicleDetail(VehicleDetails VehicleDetail) {
-		getVehicleDetails().add(VehicleDetail);
-		VehicleDetail.setUserInfo(this);
-
-		return VehicleDetail;
-	}
-
-	public VehicleDetails removeVehicleDetail(VehicleDetails VehicleDetail) {
-		getVehicleDetails().remove(VehicleDetail);
-		VehicleDetail.setUserInfo(null);
-
-		return VehicleDetail;
-	}
 
 }
