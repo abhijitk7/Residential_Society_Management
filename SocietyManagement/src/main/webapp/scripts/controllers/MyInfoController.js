@@ -96,7 +96,8 @@
     		    "secLastName":vm.user.secLastName,
     		    "correspondanceAddress":vm.user.correspondanceAddress,
     		    "userTypeId":1,
-    		    "usersFlats":vm.user.usersFlats
+    		    "usersFlats":vm.user.usersFlats,
+    		    "usersParkings":vm.user.usersParkings
 	 		};
             
             UserService.updateUserInfo(userInfo,function(response) {

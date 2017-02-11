@@ -1,10 +1,14 @@
 package com.sms.dto;
 
 import java.math.BigDecimal;
+import java.util.Set;
+
+import com.sms.entity.Flats;
+import com.sms.entity.ParkingSlots;
 
 
 public class UserInfoDTO {
-	
+		
 	private Long userInfoId;
 	
 	private String emailId;
@@ -34,8 +38,59 @@ public class UserInfoDTO {
 	private String secMiddleName;
 
 	private BigDecimal secondaryM2;
-
+	
 	private String correspondanceAddress;
+	
+	private Set<Flats> usersFlats;
+	
+	private Set<ParkingSlots> usersParkings;
+	
+	public UserInfoDTO(){
+			
+			
+	}
+
+	/**
+	 * @param userInfoId
+	 * @param emailId
+	 * @param alterEmailId
+	 * @param isBoardMember
+	 * @param isSecondaryOwner
+	 * @param primFirstName
+	 * @param primLastName
+	 * @param primMiddleName
+	 * @param primaryM1
+	 * @param secFirstName
+	 * @param secLastName
+	 * @param secMiddleName
+	 * @param secondaryM2
+	 * @param correspondanceAddress
+	 * @param usersFlats
+	 * @param usersParkings
+	 */
+	public UserInfoDTO(Long userInfoId, String emailId, String alterEmailId, Boolean isBoardMember,
+			Boolean isSecondaryOwner, String primFirstName, String primLastName, String primMiddleName,
+			BigDecimal primaryM1, String secFirstName, String secLastName, String secMiddleName, BigDecimal secondaryM2,
+			String correspondanceAddress, Set<Flats> usersFlats, Set<ParkingSlots> usersParkings) {
+		super();
+		this.userInfoId = userInfoId;
+		this.emailId = emailId;
+		this.alterEmailId = alterEmailId;
+		this.isBoardMember = isBoardMember;
+		this.isSecondaryOwner = isSecondaryOwner;
+		this.primFirstName = primFirstName;
+		this.primLastName = primLastName;
+		this.primMiddleName = primMiddleName;
+		this.primaryM1 = primaryM1;
+		this.secFirstName = secFirstName;
+		this.secLastName = secLastName;
+		this.secMiddleName = secMiddleName;
+		this.secondaryM2 = secondaryM2;
+		this.correspondanceAddress = correspondanceAddress;
+		this.usersFlats = usersFlats;
+		this.usersParkings = usersParkings;
+	}
+
 
 	public String getCorrespondanceAddress() {
 		return correspondanceAddress;
@@ -155,6 +210,28 @@ public class UserInfoDTO {
 
 	public void setUserInfoId(Long userInfoId) {
 		this.userInfoId = userInfoId;
+	}
+
+	public Set<Flats> getUsersFlats() {
+		return usersFlats;
+	}
+
+	public void setUsersFlats(Set<Flats> usersFlats) {
+		this.usersFlats = usersFlats;
+	}
+
+	/**
+	 * @return the usersParkings
+	 */
+	public Set<ParkingSlots> getUsersParkings() {
+		return usersParkings;
+	}
+
+	/**
+	 * @param usersParkings the usersParkings to set
+	 */
+	public void setUsersParkings(Set<ParkingSlots> usersParkings) {
+		this.usersParkings = usersParkings;
 	}
 
 	

@@ -19,8 +19,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
+import org.codehaus.jackson.annotate.JsonBackReference;
 
 
 
@@ -54,18 +53,18 @@ public class Flats extends AbstractEntity {
 	@Column(name = "last_update_date")
 	private Date lastUpdateDate;
 	
-	@JsonBackReference
-	@ManyToMany(mappedBy="usersFlats")
-	private Set<UserInfo> userInfo=new HashSet<UserInfo>();
-
-
-	public Set<UserInfo> getUserInfo() {
-		return userInfo;
-	}
-
-	public void setUserInfo(Set<UserInfo> userInfo) {
-		this.userInfo = userInfo;
-	}
+//	@JsonBackReference(value="flats")
+//	@ManyToMany(mappedBy="usersFlats")
+//	private Set<UserInfo> userInfo=new HashSet<UserInfo>();
+//
+//
+//	public Set<UserInfo> getUserInfo() {
+//		return userInfo;
+//	}
+//
+//	public void setUserInfo(Set<UserInfo> userInfo) {
+//		this.userInfo = userInfo;
+//	}
 
 	public Long getFlatId() {
 		return flatId;

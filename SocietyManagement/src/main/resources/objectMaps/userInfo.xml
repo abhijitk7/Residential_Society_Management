@@ -66,5 +66,9 @@
 			<a>secondaryM2</a>
 			<b>secondaryM2</b>
 		</field>
+		<field>
+			<a>usersFlats</a>
+			<b>usersFlats</b>
+		</field>
 	</mapping>
 </mappings>
