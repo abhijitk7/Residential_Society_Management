@@ -102,11 +102,13 @@
 
                                         <div class="form-group">
                                             <label>Is a board member ?</label><br>
-                                            <input type="checkbox" ng-disabled="true" data-ng-model="vm.user.isBoardMember"/>
+                                            <toggle-switch ng-model="vm.user.isBoardMember" on-label="Yes" off-label="No" is-disabled="true" class="switch-success"></toggle-switch>
+<!--                                             <input type="checkbox" ng-disabled="true" data-ng-model="vm.user.isBoardMember"/> -->
                                         </div>
                                         <div class="form-group">
                                             <label>Flat Rented ?</label><br>
-                                            <input type="checkbox" data-ng-model="vm.user.isSecondaryOwner"/>
+                                            <toggle-switch ng-model="vm.user.isSecondaryOwner" on-label="Yes" off-label="No" ng-disabled="true"></toggle-switch>
+<!--                                             <input type="checkbox" data-ng-model="vm.user.isSecondaryOwner"/> -->
                                         </div>
                                         <div class="form-group">
                                             <label>Tenanent's First Name</label>
