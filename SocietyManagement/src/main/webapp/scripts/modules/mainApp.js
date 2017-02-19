@@ -35,6 +35,14 @@ mainApp.config(["$stateProvider", function ($stateProvider) {
         data: {
             pageTitle: 'Personal Info'
         }
+    }).state('home.memberSearch',{
+    	url: '/memberSearch',
+        controller : 'MemberSearchController',
+    	templateUrl : 'views/memberSearch.html',
+    	controllerAs : 'vm',
+        data: {
+            pageTitle: 'Members search'
+        }
     });
     
 }]);

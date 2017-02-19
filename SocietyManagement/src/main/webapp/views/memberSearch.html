@@ -1,0 +1,74 @@
+ <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                     <h2>Members search</h2>   
+                       
+                    </div>
+                </div>
+                 <!-- /. ROW  -->
+                 <hr />                
+                  <!-- Inline form-->
+	              <div class="row">
+	                  <div class="col-sm-12">
+	                      <section class="panel">
+	                          <header class="panel-heading">
+	                              Search your neighbors
+	                          </header>
+	                          <div class="panel-body">
+	                          	  <div class="form-group" ng-class="{ 'has-error': memberSearch.searchCriteria.$dirty && memberSearch.searchCriteria.$error.required }">
+	                              	  	<span ng-show="memberSearch.searchCriteria.$dirty && memberSearch.searchCriteria.$error.required" style="color:red" class="help-block">Please enter members name or flat number!</span>
+	                              </div>
+	                              <form class="form-inline" role="form" name="memberSearch" ng-submit="vm.searchMember()">
+	                                  <div class="form-group" ng-class="{ 'has-error': memberSearch.primFirstName.$dirty && memberSearch.primFirstName.$error.required }">
+	                                      <label class="sr-only" for="exampleInputEmail2">Enter details</label>
+	                                      <input type="text" class="form-control" name="searchCriteria" placeholder="Enter Name or flat number" data-ng-model="vm.searchCriteria" required/>
+	                                  </div>
+	                                  <button type="submit" class="btn btn-primary">Search
+	                                  <i class="fa fa-search-plus" aria-hidden="true"></i>
+	                                  </button>
+	                              </form>
+	                          </div>
+	                      </section>
+	                      <div class="row">
+                			<div class="col-md-12">
+			                      <div class="panel panel-default">
+			                        <div class="panel-heading">
+			                            Search Results
+			                        </div>
+				                        <!-- /.panel-heading -->
+				                        <div class="panel-body">
+				                            <div class="table-responsive table-bordered">
+				                                <table class="table">
+				                                    <thead>
+				                                        <tr>
+				                                            <th>#</th>
+				                                            <th><i class="icon_profile"></i> Name</th>
+				                                            <th><i class="icon_pin_alt"></i> Flat Number</th>
+				                                            <th><i class="icon_mobile"></i> Contact Number</th>
+				                                            <th><i class="icon_mail_alt"></i> Email</th>
+				                                        </tr>
+				                                    </thead>
+				                                    <tbody>
+				                                        <tr ng-repeat="x in vm.membersInfo">
+				                                            <td>{{ $index + 1 }}</td>
+				                                            <td>{{ x.name }}</td>
+				                                            <td>{{ x.flat }}</td>
+				                                            <td>{{ x.number }}</td>
+				                                            <td>{{ x.email }}</td>
+				                                        </tr>
+				                                        
+				                                    </tbody>
+				                                </table>
+				                            </div>
+				                        </div>
+				                    </div>
+				                     <!--  End  Bordered Table  -->
+							</div>
+		              		</div>
+		                  </div>
+		              </div>
+						
+	 <hr />
+	
+                      
+</div>

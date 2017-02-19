@@ -8,18 +8,13 @@
 package com.sms.entity;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import org.codehaus.jackson.annotate.JsonBackReference;
 
 
 
@@ -53,18 +48,6 @@ public class Flats extends AbstractEntity {
 	@Column(name = "last_update_date")
 	private Date lastUpdateDate;
 	
-//	@JsonBackReference(value="flats")
-//	@ManyToMany(mappedBy="usersFlats")
-//	private Set<UserInfo> userInfo=new HashSet<UserInfo>();
-//
-//
-//	public Set<UserInfo> getUserInfo() {
-//		return userInfo;
-//	}
-//
-//	public void setUserInfo(Set<UserInfo> userInfo) {
-//		this.userInfo = userInfo;
-//	}
 
 	public Long getFlatId() {
 		return flatId;

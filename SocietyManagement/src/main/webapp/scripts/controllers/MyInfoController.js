@@ -33,29 +33,7 @@
 		 (function initController() {
 				// reset login status
 				$log.debug("My Info controller initialised......");
-				 
-//				StaticDataService.getListOfFlats(function(response) {
-//		
-//		                if(response===401) {
-//		                    FlashService.Error("You are not authorised to perform this operation. Please contact system administrator.");
-//		                }else if(response===500) {
-//		                    FlashService.Error("Some thing went wrong at server side. Please contact system administrator");
-//		                } else{
-//		                	vm.flatList=response;
-//		                }
-//		        });
-			 
-//				StaticDataService.getListOfParkingSlots(function(response) {
-//		
-//					 	if(response===401) {
-//		                    FlashService.Error("You are not authorised to perform this operation. Please contact system administrator.");
-//		                }else if(response===500) {
-//		                    FlashService.Error("Some thing went wrong at server side. Please contact system administrator");
-//		                } else{
-//		                	vm.parkingSlotList=response;
-//		                }
-//		        });
-			 
+				 		 
 			 	UserService.getUserDetails($rootScope.user.userId,function(response){
 				 
 				 	if(response===401) {
@@ -74,7 +52,7 @@
 		 
 	      function saveUserInfo() {
 		 
-		 	$log.debug("MyInfo Controller called...");
+		 	$log.debug("saveUserInfo mentod called...");
 		 	
 		 	$log.debug(vm.user.pFirstName);
 		 	
