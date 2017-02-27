@@ -28,9 +28,9 @@
 		function getMemberData(searchCriteria,callBack){
 				
 			$http({
-		        method : "GET",
-//		        url : ContextRoot + '/getMemberData' +'.do',
-		        url : ContextRoot + '/json/searchResult.json',
+		        method : "POST",
+		        url : ContextRoot + '/users/search' +'.do',
+		      //  url : ContextRoot + '/json/searchResult.json',
 		        data:searchCriteria
 		    }).success(function(response) {
 		    	callBack(response);

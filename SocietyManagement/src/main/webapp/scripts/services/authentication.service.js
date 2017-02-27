@@ -31,7 +31,7 @@
 			
 			$http({
 		        method : "POST",
-		        url : ContextRoot + '/authenticateUser/' + username + '/'+ password + '.do',
+		        url : ContextRoot + '/users/authenticate/' + username + '/'+ password + '.do',
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 						
 		    }).success(function(response) {

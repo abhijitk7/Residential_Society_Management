@@ -93,4 +93,14 @@ public class UserService implements IUserService {
 	public String updateUserInfo(UserInfo userInfo) {
 		return userInfoDao.updateUserInfo(userInfo);
 	}
+
+	/* (non-Javadoc)
+	 * @see com.sms.services.IUserService#searchUserDetails(java.lang.String)
+	 */
+	@Override
+	@Transactional
+	public Set<UserInfo> searchUserDetails(String searchText) {
+		
+		return userInfoDao.searchMemberDetails(searchText);
+	}
 }

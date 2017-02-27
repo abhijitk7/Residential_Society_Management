@@ -21,7 +21,7 @@
         	// Writing it to the server
             $http({
 		        method : "POST",
-		        url : ContextRoot + '/createUser.do',
+		        url : ContextRoot + '/users/create.do',
 		        data:user,
 		        headers: {'Content-Type': 'application/json'}
 		    }).success(function(response) {
@@ -38,7 +38,7 @@
         	// Writing it to the server
             $http({
 		        method : "POST",
-		        url : ContextRoot + '/updateUserInfo.do',
+		        url : ContextRoot + '/users/update.do',
 		        data:userInfo,
 		        headers: {'Content-Type': 'application/json'}
 		    }).success(function(response) {
@@ -54,11 +54,10 @@
         	
         	$http({
 		        method : "GET",
-		        url : ContextRoot + '/userById/' + userId + '.do',
+		        url : ContextRoot + '/users/' + userId + '.do',
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 						
 		    }).success(function(data, status, headers, config) {
-		    	$log.debug("First name from server is ="+data.primFirstName);
 				callback(data);
 			}).error(function(data, status, headers, config){
 				$log.debug(status);
@@ -69,7 +68,7 @@
         function updateLastLogOn(userId,callback) {
         	$http({
 		        method : "POST",
-		        url : ContextRoot + '/updateLastLogon/' + userId + '.do',
+		        url : ContextRoot + '/users/update/' + userId + '.do',
 		        headers: {'Content-Type': 'application/json'}
 						
 		    }).success(function(response) {

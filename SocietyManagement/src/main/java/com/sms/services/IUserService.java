@@ -9,6 +9,7 @@ package com.sms.services;
 
 import java.util.Set;
 
+import com.sms.dto.UserSearchDTO;
 import com.sms.entity.User;
 import com.sms.entity.UserInfo;
 
@@ -24,10 +25,13 @@ public interface IUserService {
 	String getAuthorisedUserByNameAndPassword(String userName, String passWord);
 
 	Set<User> getAllAuthorisedUsers();
-	
+
 	String createUser(User user);
-	
+
 	String updateUserInfo(UserInfo userInfo);
-	
+
 	String updateLastLogOn(Long userId);
+	
+	Set<UserInfo> searchUserDetails(String searchText);
+
 }

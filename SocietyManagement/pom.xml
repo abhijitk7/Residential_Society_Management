@@ -20,7 +20,9 @@
         <aspectjrt.version>1.7.4</aspectjrt.version>
         <slf4j.version>1.7.5</slf4j.version>
         <javax.servlet-api.version>2.5</javax.servlet-api.version>
-        
+        <awaitility.version>1.4.0</awaitility.version>
+        <json-path.version>0.9.1</json-path.version>
+        <assertj-core.version>1.6.1</assertj-core.version>
         
         <junit.version>4.11</junit.version>
         <mockito.version>1.9.5</mockito.version>
@@ -144,7 +146,7 @@
 			<artifactId>dozer</artifactId>
 			<version>5.3.1</version>
 		</dependency>
-        
+
 		
 		<!-- Spring Security -->     
 		
@@ -295,6 +297,30 @@
 		</dependency>
 		
 		<!-- Test Dependencies -->
+
+        <dependency>
+            <groupId>com.jayway.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <version>${awaitility.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+            <version>${json-path.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>4.0.7.RELEASE</version>
+		</dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj-core.version}</version>
+            <scope>test</scope>
+        </dependency>
 		
 		<dependency>
             <groupId>junit</groupId>

@@ -38,6 +38,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sms.dto.UserDTO;
 import com.sms.dto.UserInfoDTO;
+import com.sms.dto.UserSearchDTO;
 import com.sms.entity.User;
 import com.sms.entity.UserInfo;
 import com.sms.exception.CustomGenericException;
@@ -66,7 +67,7 @@ public class UserController extends BaseController {
     @Qualifier("authenticationManager")
     private AuthenticationManager authManager;
 
-	@RequestMapping(value = "/userById/{userId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
 	ResponseEntity<UserInfoDTO> getUserById(@PathVariable final Long userId) {
 		log.debug("********** Retriving user by id ****************");
 		final User user = this.userService.getAuthorisedUserById(userId);
@@ -80,7 +81,7 @@ public class UserController extends BaseController {
 
 	}
 
-	@RequestMapping(value = "/Users", method = RequestMethod.GET)
+	@RequestMapping(value = "/users", method = RequestMethod.GET)
 	ResponseEntity<Set<User>> getAllUsers() {
 		log.debug("********** Retriving all Users ****************");
 		final Set<User> users = this.userService.getAllAuthorisedUsers();
@@ -89,7 +90,7 @@ public class UserController extends BaseController {
 	}
 	
 	
-	@RequestMapping(value = "/authenticateUser/{userName}/{passWord}",method=RequestMethod.POST)
+	@RequestMapping(value = "/users/authenticate/{userName}/{passWord}",method=RequestMethod.POST)
     public ResponseEntity<UserDTO> authenticate(@PathVariable final String userName, @PathVariable final String passWord) {
 
         UsernamePasswordAuthenticationToken authenticationToken
@@ -142,27 +143,32 @@ public class UserController extends BaseController {
         return roles;
     }
 
-    @RequestMapping(value = "/updateLastLogon/{userId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/users/update/{userId}", method = RequestMethod.POST)
 	public ResponseEntity<String> updateLastLogOn(@PathVariable Long userId) {
 		log.debug("********** update user last logon date ****************");
 		final String userUpdated = this.userService.updateLastLogOn(userId);
 		return new ResponseEntity<String>(userUpdated,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/createUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/users/create", method = RequestMethod.POST)
 	public @ResponseBody String createUser(@RequestBody User user) {
 		log.debug("********** Create user ****************");
 		final String userCreated = this.userService.createUser(user);
 		return userCreated;
 	}
 	
-	@RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
+	@RequestMapping(value = "/users/update", method = RequestMethod.POST)
 	public @ResponseBody String updateUserInfo(@RequestBody UserInfo userInfo) {
 		log.debug("********** Update user info ****************");
 		final String userUpdated = this.userService.updateUserInfo(userInfo);
 		log.debug("********** Update user completed ****************");
 		return userUpdated;
 		
+	}
+	
+	@RequestMapping(value = "/users/search", method = RequestMethod.POST)
+	public @ResponseBody Set<UserInfo> searchUserInfo(@RequestBody String searchText) {
+		return this.userService.searchUserDetails(searchText);
 	}
 
 }

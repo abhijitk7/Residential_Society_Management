@@ -51,10 +51,10 @@
 				                                    <tbody>
 				                                        <tr ng-repeat="x in vm.membersInfo">
 				                                            <td>{{ $index + 1 }}</td>
-				                                            <td>{{ x.name }}</td>
-				                                            <td>{{ x.flat }}</td>
-				                                            <td>{{ x.number }}</td>
-				                                            <td>{{ x.email }}</td>
+				                                            <td>{{ x.primFirstName }} {{x.primLastName}}</td>
+				                                            <td><div ng-repeat="flats in x.usersFlats">{{ flats.flatName }},</div></td>
+				                                            <td>{{ x.primaryM1 }}</td>
+				                                            <td>{{ x.emailId }}</td>
 				                                        </tr>
 				                                        
 				                                    </tbody>
