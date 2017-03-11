@@ -87,8 +87,6 @@ public class UserInfoJpaDao extends AbstractSMSDao<UserInfo> implements IUserInf
 			
 			disjunction.add(Restrictions.ilike("primLastName", token));
 			
-			disjunction.add(Restrictions.ilike("primMiddleName", token));
-			
 			criteria.add(disjunction);
 			
 			result=criteria.list();

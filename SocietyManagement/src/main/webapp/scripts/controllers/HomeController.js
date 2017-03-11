@@ -5,9 +5,9 @@
 			HomeController);
 
 	HomeController.$inject = [ '$location', 'UserService',
-			'FlashService', '$log','$rootScope' ];
+			'FlashService', '$log','$rootScope' ,'toaster'];
 	function HomeController($location, UserService, FlashService,
-			$log,$rootScope) {
+			$log,$rootScope,toaster) {
 		
 		var vm = this;
 
@@ -22,9 +22,9 @@
 				$log.debug("User id received is "+userId+" status "+result);
 				if(result==='false'){
 					$log.debug('Logout Failed failed ----->');
-					FlashService.Error('Failed to log out user. Please Contact System Administrator...');
+					toaster.pop('error', "", "Failed to log out user. Please Contact System Administrator");
 				}else{
-					FlashService.Success("User Logged out Successfully.")
+					toaster.pop('success', "", "User Logged out Successfully.");
 				}
 	           
 	        });

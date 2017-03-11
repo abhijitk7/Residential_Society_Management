@@ -7,7 +7,7 @@
     s.no      date    author     description     
  ===========================================================*/
 
-var mainApp = angular.module('mainApp', ['ui.router','multipleSelect','toggle-switch']);
+var mainApp = angular.module('mainApp', ['ui.router','multipleSelect','toggle-switch','toaster']);
 
 
 mainApp.config(["$stateProvider", function ($stateProvider) {

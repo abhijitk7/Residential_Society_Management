@@ -14,9 +14,9 @@
 	angular.module("SocietyManagementSystem").controller("MyInfoController",MyInfoController);
 	
 	
-	MyInfoController.$inject=['UserService','StaticDataService', '$state', '$rootScope', 'FlashService','$log','$scope','ContextRoot'];
+	MyInfoController.$inject=['UserService','StaticDataService', '$state', '$rootScope', 'FlashService','$log','$scope','ContextRoot','toaster'];
 	
-	function MyInfoController(UserService,StaticDataService, $state, $rootScope, FlashService,$log,$scope,ContextRoot){
+	function MyInfoController(UserService,StaticDataService, $state, $rootScope, FlashService,$log,$scope,ContextRoot,toaster){
 		
 		 var vm = this;
 
@@ -83,7 +83,7 @@
             	$log.debug("Response received is ..."+response);
             	
                 if (response==='true') {
-                    FlashService.Success('Registration successful', true);
+                    toaster.pop('success', "", "Your personal information saved successfully");
                     $state.go('home.dashboard');
                 } else if(response===401) {
                     FlashService.Error("You are not authorised to perform this operation. Please contact system administrator.");

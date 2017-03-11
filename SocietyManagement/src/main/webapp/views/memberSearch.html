@@ -23,8 +23,10 @@
 	                                      <label class="sr-only" for="exampleInputEmail2">Enter details</label>
 	                                      <input type="text" class="form-control" name="searchCriteria" placeholder="Enter Name or flat number" data-ng-model="vm.searchCriteria" required/>
 	                                  </div>
-	                                  <button type="submit" class="btn btn-primary">Search
-	                                  <i class="fa fa-search-plus" aria-hidden="true"></i>
+	                                  <button type="submit" class="btn btn-primary">
+<!-- 	                                  <i class="fa fa-search-plus" aria-hidden="true"></i> -->
+										<span ng-show="vm.loading"><i class="glyphicon glyphicon-refresh spinning"></i></span>
+										{{vm.buttonText}}
 	                                  </button>
 	                              </form>
 	                          </div>
@@ -52,7 +54,7 @@
 				                                        <tr ng-repeat="x in vm.membersInfo">
 				                                            <td>{{ $index + 1 }}</td>
 				                                            <td>{{ x.primFirstName }} {{x.primLastName}}</td>
-				                                            <td><div ng-repeat="flats in x.usersFlats">{{ flats.flatName }},</div></td>
+				                                            <td><span data-ng-repeat="flats in x.usersFlats">{{flats.flatName}}{{$last ? '' : ', '}}</span></td>
 				                                            <td>{{ x.primaryM1 }}</td>
 				                                            <td>{{ x.emailId }}</td>
 				                                        </tr>

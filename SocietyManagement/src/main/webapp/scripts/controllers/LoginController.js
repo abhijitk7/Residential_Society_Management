@@ -1,3 +1,12 @@
+/*==========================================================
+    Author      : Abhijit Kulkarni
+    Date Created: 13 Feb 2017
+    Description : Controller for Login to app
+    
+    Change Log
+    s.no      date    author     description     
+    
+ ===========================================================*/
 (function() {
 	'use strict';
 
@@ -43,25 +52,7 @@
 				}
 	            vm.dataLoading = false;
 	        });
-			
-			
-			
-//			AuthenticationService.Login(vm.username, vm.password, function(
-//					response) {
-//
-//				$log.debug(response);
-//
-//				if (response === 'true') {
-//					AuthenticationService.SetCredentials(vm.username,
-//							vm.password);
-//					$log.debug('Authentication successful ----->');
-//					$location.path('/Home');
-//				} else {
-//					$log.debug('Authentication failed ----->');
-//					FlashService.Error('Username or password is incorrect');
-//					vm.dataLoading = false;
-//				}
-//			});
+
 		};
 	}
 

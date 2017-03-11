@@ -22,9 +22,17 @@
 		 
 		vm.searchMember=searchMember;
 		
+		vm.loading = false;
+		
+		vm.buttonText="Search";
+		
 		function searchMember(){
 			
 			$log.debug("Search member method called..");
+			
+			vm.buttonText="Searching...";
+			
+			vm.loading = true;
 			
 			SearchService.getMemberData(vm.searchCriteria,function(response) {
 
@@ -35,8 +43,11 @@
                 } else{
                 	
                 	vm.membersInfo=response;
-//                	$log.debug("Response object is......"+response.primFirstName);
-//                	$log.debug("User object is......"+vm.user.primFirstName);
+                	
+                	vm.buttonText="Search";
+                	
+                	vm.loading = false;
+
                 } 
                 
             });
