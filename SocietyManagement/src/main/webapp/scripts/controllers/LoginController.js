@@ -14,9 +14,9 @@
 			LoginController);
 
 	LoginController.$inject = [ '$state', 'AuthenticationService',
-			'FlashService', '$log','$rootScope' ];
+			'FlashService', '$log','$rootScope','toaster' ];
 	function LoginController($state, AuthenticationService, FlashService,
-			$log,$rootScope) {
+			$log,$rootScope,toaster) {
 		
 		var vm = this;
 		
@@ -37,18 +37,17 @@
 			AuthenticationService.Login(vm.username,vm.password, function(authenticationResult) {
 
 				if(authenticationResult===401){
-					$log.debug('Authentication failed ----->');
-					FlashService.Error('Username and/or password are invalid ! Verify your user name, and then type your password again.');
+					toaster.pop('error', "", "Username and/or password are invalid ! Verify your user name, and then type your password again.");
 				}else{
 					var authToken = authenticationResult.token;
 		            $rootScope.authToken = authToken;
 		            if (vm.rememberMe) {
 		                $cookieStore.put('authToken', authToken);
 		            }
-		            	$rootScope.isLoggedIn = true
-		                $rootScope.user = authenticationResult;
-		                $state.go('home');
-		                $state.go('home.dashboard');
+		            $rootScope.isLoggedIn = true;
+		            $rootScope.user = authenticationResult;
+		            $state.go('home');
+		            $state.go('home.dashboard');
 				}
 	            vm.dataLoading = false;
 	        });

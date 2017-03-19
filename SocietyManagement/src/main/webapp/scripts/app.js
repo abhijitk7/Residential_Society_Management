@@ -52,13 +52,13 @@
         $httpProvider.interceptors.push(function($q, $rootScope, $location,$log) {
             return {
                 'request': function(config) {
-                	
-                	$log.debug("Interceptor called...");
-                    var isRestCall = config.url.indexOf('.do') === 0;
+
+                    var isRestCall = config.url.includes('.do');
+                    $log.debug("Interceptor called..."+config.url+" is it a REST call "+isRestCall);
                     if (isRestCall && angular.isDefined($rootScope.authToken)) {
                         var authToken = $rootScope.authToken;
                         if (smsAppConfig.useAuthTokenHeader) {
-                        	$log.debug("Token passed through header...");
+                        	$log.debug("Token passed through header..."+authToken);
                             config.headers['X-Auth-Token'] = authToken;
                         } else {
                         	$log.debug("Token passed through query parameter ...");

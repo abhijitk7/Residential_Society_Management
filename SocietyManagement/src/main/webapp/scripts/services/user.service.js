@@ -38,7 +38,7 @@
         	// Writing it to the server
             $http({
 		        method : "POST",
-		        url : ContextRoot + '/users/update.do',
+		        url : ContextRoot + '/users/userInfo/update.do',
 		        data:userInfo,
 		        headers: {'Content-Type': 'application/json'}
 		    }).success(function(response) {
@@ -68,12 +68,12 @@
         function updateLastLogOn(userId,callback) {
         	$http({
 		        method : "POST",
-		        url : ContextRoot + '/users/update/' + userId + '.do',
+		        url : ContextRoot + '/users/lastLogon/update/' + userId + '.do',
 		        headers: {'Content-Type': 'application/json'}
 						
-		    }).success(function(response) {
-		    	$log.debug(response);
-				callback(response);
+		    }).success(function(data, status, headers, config) {
+		    	$log.debug(status);
+				callback(status);
 			}).error(function(data, status, headers, config){
 				$log.debug(status);
 				callback(status);

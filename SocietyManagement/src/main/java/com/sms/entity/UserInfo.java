@@ -128,7 +128,7 @@ public class UserInfo extends AbstractEntity {
 	
 	@JsonIgnore
 	@ManyToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
-    @JoinTable(name = "tbl_sms_users_flats", joinColumns=@JoinColumn(name="user_info_id",referencedColumnName="user_info_id"),inverseJoinColumns=@JoinColumn(name="flat_id",referencedColumnName="flat_id"))
+	@JoinTable(name = "tbl_sms_users_flats", joinColumns=@JoinColumn(name="user_info_id",referencedColumnName="user_info_id"),inverseJoinColumns=@JoinColumn(name="flat_id",referencedColumnName="flat_id"))
 	private Set<Flats> usersFlats=new HashSet<Flats>();
 	
 	@JsonIgnore
@@ -353,14 +353,6 @@ public class UserInfo extends AbstractEntity {
 	public void setUsersFlats(Set<Flats> usersFlats) {
 		this.usersFlats = usersFlats;
 	}
-
-//	public List<UsersParking> getUsersParking() {
-//		return usersParkings;
-//	}
-//
-//	public void setUsersParking(List<UsersParking> usersParkings) {
-//		this.usersParkings = usersParkings;
-//	}
 	
 
 }

@@ -45,6 +45,7 @@ public class Flats extends AbstractEntity {
 	@Column(name = "last_update_date")
 	private Date lastUpdateDate;
 	
+
 	/**
 	 * Zero argument constructor for JPA
 	 */

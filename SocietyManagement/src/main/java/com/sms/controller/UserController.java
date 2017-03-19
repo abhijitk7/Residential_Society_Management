@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -142,7 +143,7 @@ public class UserController extends BaseController {
         return roles;
     }
 
-    @RequestMapping(value = "/users/update/{userId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/users/lastLogon/update/{userId}", method = RequestMethod.POST)
 	public ResponseEntity<String> updateLastLogOn(@PathVariable Long userId) {
 		log.debug("********** update user last logon date ****************");
 		final String userUpdated = this.userService.updateLastLogOn(userId);
@@ -156,7 +157,8 @@ public class UserController extends BaseController {
 		return userCreated;
 	}
 	
-	@RequestMapping(value = "/users/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/users/userInfo/update", method = RequestMethod.POST)
+	@PreAuthorize("hasRole('Member')")
 	public @ResponseBody String updateUserInfo(@RequestBody UserInfo userInfo) {
 		log.debug("********** Update user info ****************");
 		final String userUpdated = this.userService.updateUserInfo(userInfo);

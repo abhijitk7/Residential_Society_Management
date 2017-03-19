@@ -5,7 +5,7 @@
        xmlns:jee="http://www.springframework.org/schema/jee"
        xmlns:security="http://www.springframework.org/schema/security"
        xsi:schemaLocation="
-		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 		
@@ -27,17 +27,22 @@
 	                   authentication-manager-ref="authenticationManager">
 	        <security:custom-filter ref="authenticationTokenProcessingFilter"
 	                                position="FORM_LOGIN_FILTER" />
-	        <security:intercept-url pattern="/authenticateUser/**"
+	        <security:intercept-url pattern="/users/authenticate/**"
 	                                access="permitAll" />
-	                                
-	        <security:intercept-url pattern="/updateLastLogon/**"
-	                                access="permitAll" />
-	                                
-	        <security:intercept-url method="POST" pattern="/createUser**"
-	                                access="permitAll" />   
-	        <security:intercept-url method="POST" pattern="/updateUserInfo**"
-	                                access="permitAll" />                     
-	                                                     
+    	    <security:intercept-url method="POST" pattern="/users/userinfo/update.do"
+                            		access="hasRole('Member')"/>      
+	        <security:intercept-url method="POST" pattern="/users/lastLogon/update/**"
+	                                access="hasRole('Member')" />                       
+	        <security:intercept-url method="POST" pattern="/users/create.do"
+	                                access="hasRole('Member')" />   
+	        <security:intercept-url method="POST" pattern="/users/search/**"
+	                                access="hasRole('Member')" />    
+	        <security:intercept-url method="POST" pattern="/users/**"
+	                                access="hasRole('Member')" />
+	        <security:intercept-url method="GET" pattern="/getFlats.do"
+	                                access="hasRole('Member')" /> 
+	        <security:intercept-url method="GET" pattern="/getParkingslots.do"
+	                                access="hasRole('Member')" />                                                                   
 	    </security:http>
 
 

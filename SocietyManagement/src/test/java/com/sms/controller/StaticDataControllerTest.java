@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -59,6 +60,7 @@ public class StaticDataControllerTest {
 	
 	
 	@Test
+	@Ignore
 	public void testGetAllFlats() throws Exception{
 		
 		List<Flats> flats = Arrays.asList(

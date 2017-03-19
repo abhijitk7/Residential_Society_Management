@@ -37,9 +37,9 @@
 			 	UserService.getUserDetails($rootScope.user.userId,function(response){
 				 
 				 	if(response===401) {
-	                    FlashService.Error("You are not authorised to perform this operation. Please contact system administrator.");
+	                    toaster.pop('error', "", "You are not authorised to perform this operation. Please contact system administrator.");
 	                }else if(response===500) {
-	                    FlashService.Error("Some thing went wrong at server side. Please contact system administrator");
+	                	toaster.pop('error', "", "Some thing went wrong at server side. Please contact system administrator.");
 	                } else{
 	                	vm.user=response;
 	                	$log.debug("Response object is......"+response.primFirstName);
@@ -86,10 +86,10 @@
                     toaster.pop('success', "", "Your personal information saved successfully");
                     $state.go('home.dashboard');
                 } else if(response===401) {
-                    FlashService.Error("You are not authorised to perform this operation. Please contact system administrator.");
+                	toaster.pop('error', "","You are not authorised to perform this operation. Please contact system administrator.");
                     vm.dataLoading = false;
                 }else if(response===500) {
-                    FlashService.Error("Some thing went wrong at server side. Please contact system administrator");
+                	toaster.pop('error', "","Some thing went wrong at server side. Please contact system administrator");
                     vm.dataLoading = false;
                 }
                 
