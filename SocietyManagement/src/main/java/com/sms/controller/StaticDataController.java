@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.sms.entity.BookingStatus;
 import com.sms.entity.Flats;
 import com.sms.entity.ParkingSlots;
 import com.sms.services.IStaticDataService;
@@ -25,12 +26,13 @@ import com.sms.services.IStaticDataService;
  * The persistent class for the tbl_sms_user_info database table.
  */
 @Controller
+@RequestMapping("/data")
 public class StaticDataController extends BaseController {
 	
 	@Autowired
 	private IStaticDataService dataService;
 	
-	@RequestMapping(value = "/getFlats", method = RequestMethod.GET)
+	@RequestMapping(value = "/flats", method = RequestMethod.GET)
 	ResponseEntity<List<Flats>> getAllFlats() {
 
 		final List<Flats> flatList = this.dataService.getAllFlats();
@@ -38,10 +40,17 @@ public class StaticDataController extends BaseController {
 
 	}
 	
-	@RequestMapping(value = "/getParkingslots", method = RequestMethod.GET)
+	@RequestMapping(value = "/parkings", method = RequestMethod.GET)
 	ResponseEntity<List<ParkingSlots>> getAllParkingSlots() {
 		final List<ParkingSlots> parkingSlots = this.dataService.getAllParkingSlots();
 		return new ResponseEntity<List<ParkingSlots>>(parkingSlots, null, HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(value = "/booking/status", method = RequestMethod.GET)
+	ResponseEntity<List<BookingStatus>> getBookingStatuses() {
+		final List<BookingStatus> bookingStatus = this.dataService.getAllBookingStatus();
+		return new ResponseEntity<List<BookingStatus>>(bookingStatus, null, HttpStatus.OK);
 
 	}
 

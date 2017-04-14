@@ -11,6 +11,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 
 /**
  * The persistent class for the tbl_sms_amenities database table.
@@ -36,7 +37,10 @@ public class Amenity extends AbstractEntity {
 	@Column(name = "last_update_date")
 	private Date lastUpdateDate;
 
+	@Version
 	private int version;
+	
+	
 
 	public int getAmenityId() {
 		return this.amenityId;

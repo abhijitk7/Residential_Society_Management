@@ -39,10 +39,12 @@
 	                                access="hasRole('Member')" />    
 	        <security:intercept-url method="POST" pattern="/users/**"
 	                                access="hasRole('Member')" />
-	        <security:intercept-url method="GET" pattern="/getFlats.do"
+	        <security:intercept-url method="GET" pattern="/data/flats.do"
 	                                access="hasRole('Member')" /> 
-	        <security:intercept-url method="GET" pattern="/getParkingslots.do"
-	                                access="hasRole('Member')" />                                                                   
+	        <security:intercept-url method="GET" pattern="/data/parkings.do"
+	                                access="hasRole('Member')" />    
+	        <security:intercept-url method="GET" pattern="/data/booking/status.do"
+	                                access="hasRole('Member')" />                                                                
 	    </security:http>
 
 

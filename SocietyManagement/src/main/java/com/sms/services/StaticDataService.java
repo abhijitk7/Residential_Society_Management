@@ -12,9 +12,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sms.dao.IAmenitiesJpaDao;
+import com.sms.dao.IBookingStatusJpaDao;
 import com.sms.dao.IFlatsJpaDao;
 import com.sms.dao.IParkingSlotJpaDao;
 import com.sms.entity.Amenity;
+import com.sms.entity.BookingStatus;
 import com.sms.entity.Flats;
 import com.sms.entity.ParkingSlots;
 
@@ -32,6 +34,9 @@ public class StaticDataService implements IStaticDataService {
 	
 	@Autowired
 	private IParkingSlotJpaDao parkingSlotDao;
+	
+	@Autowired
+	private IBookingStatusJpaDao bookingStatusDao;
 
 	@Override
 	public List<Amenity> getAllAmenities() {
@@ -50,6 +55,14 @@ public class StaticDataService implements IStaticDataService {
 		
 		return parkingSlotDao.getAllParkingSlot();
 		
+	}
+
+	/* (non-Javadoc)
+	 * @see com.sms.services.IStaticDataService#getAllBookingStatus()
+	 */
+	@Override
+	public List<BookingStatus> getAllBookingStatus() {
+		return bookingStatusDao.getAllBookingStatus();
 	}
 
 }

@@ -3,6 +3,7 @@ package com.sms.services;
 import java.util.List;
 
 import com.sms.entity.Amenity;
+import com.sms.entity.BookingStatus;
 import com.sms.entity.Flats;
 import com.sms.entity.ParkingSlots;
 
@@ -13,4 +14,6 @@ public interface IStaticDataService {
 	List<Flats> getAllFlats();
 	
 	List<ParkingSlots> getAllParkingSlots();
+	
+	List<BookingStatus> getAllBookingStatus();
 }
