@@ -5,21 +5,17 @@
  * is strictly forbidden unless prior written permission is obtained
  * from Abhijit A. Kulkarni (abhikulkarni.1988@gmail.com).
  */
-package com.sms.controller;
+package com.sms.services;
 
-import org.springframework.stereotype.Controller;
+import com.sms.entity.AmenitiesBooking;
 
 /**
  * @author Abhijit A. Kulkarni
- * @Crated on Nov 12, 2016
+ * @Crated on Apr 22, 2017
  * @Version 1.0
  */
-
-@Controller
-public class MasterController {
-
+public interface IBookingService {
 	
-
-	
+	void saveBookingDetails(AmenitiesBooking bookingDetails);
 
 }

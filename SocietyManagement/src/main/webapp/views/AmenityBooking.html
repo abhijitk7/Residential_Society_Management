@@ -1,0 +1,80 @@
+ <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                     <h2>Amenity Booking</h2>   
+                        <h5>Welcome Abhijit Kulkarni , Love to see you back. </h5>
+                       
+                    </div>
+                </div>
+                 <!-- /. ROW  -->
+                 <hr />
+
+               <div class="row">
+                <div class="col-md-12">
+                    <!-- Form Elements -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Advance book your amenities here
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <form role="form" name="amenityBookingfoForm" >
+                                        <div class="form-group">
+                                            <label>Amenity</label>
+                                            <select class="form-control" ng-model="vm.selectedAmenity" ng-options="amenity.amenityName for amenity in vm.amenities" required></select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>From Date</label>
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                                                <input type="text" class="form-control" pick-a-date="vm.fromDatetime" placeholder="Select from date" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>To Date</label>
+                                            <div class="form-group input-group">
+                                                 <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                                                <input type="text" class="form-control" pick-a-date="vm.toDatetime" placeholder="Select to date" />
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <br />
+                      
+    						</div>
+                                
+                                <div class="col-md-6">
+                                    <form role="form">
+
+                                         <div class="form-group">
+                                            <label>Comments</label><br>
+                                            <textarea class="form-control" ng-model="vm.comments" ng-disabled="false" rows="5" maxlength="100" placeholder="Enter comments (Max 100 Characters only)"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status</label>
+                                            <select class="form-control" ng-model="vm.selectedStatus" ng-options="ststus.bookingStatus for ststus in vm.statuses" required></select>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- End Form Elements -->
+                </div>
+            </div>
+                <!-- /. ROW  -->
+               <div class="row">
+                   <button type="submit" class="btn btn-success" ng-click="vm.saveBooking()">
+                     <span class="glyphicon glyphicon-floppy-disk"></span> Submit
+                   </button>
+              
+                   <button type="button" class="btn btn-info">
+                     <span class="fa fa-pencil"></span> Withdraw
+                   </button>
+              
+                   <button type="button" class="btn btn-danger">
+                     <span class="fa fa-edit"></span> Clear
+                   </button>
+               </div>
+    </div>
+             <!-- /. PAGE INNER  -->

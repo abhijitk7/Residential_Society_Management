@@ -13,5 +13,6 @@
 
         <bean id="dataService" class="com.sms.services.StaticDataService"/>
         <bean id="userService" class="com.sms.services.UserService"/>
+        <bean id="bookingService" class="com.sms.services.BookingService"/>
         
 </beans>

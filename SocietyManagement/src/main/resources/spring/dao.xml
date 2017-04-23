@@ -14,5 +14,6 @@
         <bean id="parkingSlotDao" class="com.sms.dao.FlatsJpaDao"/>
         <bean id="userInfoDao" class="com.sms.dao.UserInfoJpaDao"/>
         <bean id="bookingStatusDao" class="com.sms.dao.BookingStatusJpaDao"/>
+        <bean id="amenityBookingDao" class="com.sms.dao.AmenityBookingJpaDao"/>
          
 </beans>

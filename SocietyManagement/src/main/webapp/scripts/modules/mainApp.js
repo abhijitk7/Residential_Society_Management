@@ -7,7 +7,7 @@
     s.no      date    author     description     
  ===========================================================*/
 
-var mainApp = angular.module('mainApp', ['ui.router','multipleSelect','toggle-switch','toaster']);
+var mainApp = angular.module('mainApp', ['ui.router','multipleSelect','toggle-switch','toaster','angular-datepicker']);
 
 
 mainApp.config(["$stateProvider", function ($stateProvider) {
@@ -42,6 +42,14 @@ mainApp.config(["$stateProvider", function ($stateProvider) {
     	controllerAs : 'vm',
         data: {
             pageTitle: 'Members search'
+        }
+    }).state('home.amenityBooking',{
+    	url: '/amenityBooking',
+        controller : 'BookingController',
+    	templateUrl : 'views/AmenityBooking.html',
+    	controllerAs : 'vm',
+        data: {
+            pageTitle: 'Booking Controller'
         }
     });
     

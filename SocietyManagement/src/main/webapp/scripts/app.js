@@ -73,6 +73,10 @@
 
 	run.$inject = [ '$rootScope', '$location', '$cookieStore', '$http','$log' ];
 	function run($rootScope, $location, $cookieStore, $http,$log) {
+		
+		angular.element(document).on("click", function(e) {
+			$rootScope.$broadcast("documentClicked", angular.element(e.target));
+		});
 	
 	
 		/* Reset error when a new view is loaded */

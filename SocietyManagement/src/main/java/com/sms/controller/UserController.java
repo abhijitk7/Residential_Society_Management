@@ -39,10 +39,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sms.dto.UserDTO;
 import com.sms.dto.UserInfoDTO;
+import com.sms.entity.AmenitiesBooking;
 import com.sms.entity.User;
 import com.sms.entity.UserInfo;
 import com.sms.exception.CustomGenericException;
 import com.sms.security.AuthenticationUserDetailsService;
+import com.sms.services.IBookingService;
 import com.sms.services.IUserService;
 import com.sms.util.SystemConstants;
 
@@ -60,9 +62,12 @@ public class UserController extends BaseController {
 	@Autowired
 	private IUserService userService;
 	
+	@Autowired
+	private IBookingService bookingService;
+	
 	@Autowired(required = true)
     private AuthenticationUserDetailsService userDetailsService;
-
+	
     @Autowired(required = true)
     @Qualifier("authenticationManager")
     private AuthenticationManager authManager;
@@ -170,6 +175,18 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "/users/search", method = RequestMethod.POST)
 	public @ResponseBody Set<UserInfo> searchUserInfo(@RequestBody String searchText) {
 		return this.userService.searchUserDetails(searchText);
+	}
+	
+	@RequestMapping(value = "/users/booking", method = RequestMethod.POST)
+	public ResponseEntity<Void> saveBookings(@RequestBody AmenitiesBooking bookingDetails) {
+		try{
+			this.bookingService.saveBookingDetails(bookingDetails);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}catch(Exception ex){
+			log.error("Exception occured while saving booking details"+ex);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
 	}
 
 }

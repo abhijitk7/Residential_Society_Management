@@ -42,8 +42,6 @@
 	                	toaster.pop('error', "", "Some thing went wrong at server side. Please contact system administrator.");
 	                } else{
 	                	vm.user=response;
-	                	$log.debug("Response object is......"+response.primFirstName);
-	                	$log.debug("User object is......"+vm.user.primFirstName);
 	                } 
 			 
 		 	 	});

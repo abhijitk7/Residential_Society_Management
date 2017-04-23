@@ -19,7 +19,7 @@
 		
 		var service = {};
 		
-		$log.debug("Earch Data Service service initialised....");
+		$log.debug("search Data Service service initialised....");
 		
 		service.getMemberData=getMemberData;
 		
