@@ -27,6 +27,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -115,7 +116,8 @@ public class UserInfo extends AbstractEntity {
 	@Column(name="user_type_id")
 	private Long userTypeId;
 
-	@Column(name="version")
+	@Version
+	@Column(name = "version")
 	private Long version;
 	
 	@JsonIgnore

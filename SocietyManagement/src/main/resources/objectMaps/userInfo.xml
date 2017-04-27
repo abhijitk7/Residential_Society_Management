@@ -70,5 +70,9 @@
 			<a>usersFlats</a>
 			<b>usersFlats</b>
 		</field>
+		<field>
+			<a>version</a>
+			<b>version</b>
+		</field>
 	</mapping>
 </mappings>

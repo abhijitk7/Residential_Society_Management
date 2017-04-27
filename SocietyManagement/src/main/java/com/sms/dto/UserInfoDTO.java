@@ -45,6 +45,8 @@ public class UserInfoDTO {
 	
 	private Set<ParkingSlots> usersParkings;
 	
+	private Long version;
+	
 	public UserInfoDTO(){
 			
 			
@@ -71,7 +73,7 @@ public class UserInfoDTO {
 	public UserInfoDTO(Long userInfoId, String emailId, String alterEmailId, Boolean isBoardMember,
 			Boolean isSecondaryOwner, String primFirstName, String primLastName, String primMiddleName,
 			BigDecimal primaryM1, String secFirstName, String secLastName, String secMiddleName, BigDecimal secondaryM2,
-			String correspondanceAddress, Set<Flats> usersFlats, Set<ParkingSlots> usersParkings) {
+			String correspondanceAddress, Set<Flats> usersFlats, Set<ParkingSlots> usersParkings,Long version) {
 		super();
 		this.userInfoId = userInfoId;
 		this.emailId = emailId;
@@ -89,6 +91,7 @@ public class UserInfoDTO {
 		this.correspondanceAddress = correspondanceAddress;
 		this.usersFlats = usersFlats;
 		this.usersParkings = usersParkings;
+		this.version=version;
 	}
 
 
@@ -232,6 +235,20 @@ public class UserInfoDTO {
 	 */
 	public void setUsersParkings(Set<ParkingSlots> usersParkings) {
 		this.usersParkings = usersParkings;
+	}
+
+	/**
+	 * @return the version
+	 */
+	public Long getVersion() {
+		return version;
+	}
+
+	/**
+	 * @param version the version to set
+	 */
+	public void setVersion(Long version) {
+		this.version = version;
 	}
 
 	

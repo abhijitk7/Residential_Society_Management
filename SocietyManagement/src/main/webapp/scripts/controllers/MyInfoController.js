@@ -52,8 +52,6 @@
 		 
 		 	$log.debug("saveUserInfo mentod called...");
 		 	
-		 	$log.debug(vm.user.pFirstName);
-		 	
             vm.dataLoading = true;
             
             var userInfo= {
@@ -73,7 +71,8 @@
     		    "correspondanceAddress":vm.user.correspondanceAddress,
     		    "userTypeId":1,
     		    "usersFlats":vm.user.usersFlats,
-    		    "usersParkings":vm.user.usersParkings
+    		    "usersParkings":vm.user.usersParkings,
+    		    "version":vm.user.version
 	 		};
             
             UserService.updateUserInfo(userInfo,function(response) {

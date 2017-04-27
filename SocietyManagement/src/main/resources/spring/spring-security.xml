@@ -34,7 +34,7 @@
 	        <security:intercept-url method="POST" pattern="/users/lastLogon/update/**"
 	                                access="hasRole('Member')" />                       
 	        <security:intercept-url method="POST" pattern="/users/create.do"
-	                                access="hasRole('Member')" />   
+	                                access="permitAll" />   
 	        <security:intercept-url method="POST" pattern="/users/search/**"
 	                                access="hasRole('Member')" />    
 	        <security:intercept-url method="POST" pattern="/users/**"
