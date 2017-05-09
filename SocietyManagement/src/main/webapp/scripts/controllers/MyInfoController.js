@@ -77,9 +77,8 @@
             
             UserService.updateUserInfo(userInfo,function(response) {
             	
-            	$log.debug("Response received is ..."+response);
-            	
-                if (response==='true') {
+            	debugger;
+                if (response===200) {
                     toaster.pop('success', "", "Your personal information saved successfully");
                     $state.go('home.dashboard');
                 } else if(response===401) {

@@ -34,6 +34,8 @@
         }
         
         function updateUserInfo(userInfo,callback) {
+        	
+        	debugger;
 
         	// Writing it to the server
             $http({
@@ -41,11 +43,9 @@
 		        url : ContextRoot + '/users/userInfo/update.do',
 		        data:userInfo,
 		        headers: {'Content-Type': 'application/json'}
-		    }).success(function(response) {
-		    	$log.debug(response);
-				callback(response);
+		    }).success(function(data, status, headers, config) {
+				callback(status);
 			}).error(function(data, status, headers, config){
-				$log.debug(status);
 				callback(status);
 			});
         }

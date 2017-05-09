@@ -156,20 +156,23 @@ public class UserController extends BaseController {
 	}
 	
 	@RequestMapping(value = "/users/create", method = RequestMethod.POST)
-	public @ResponseBody String createUser(@RequestBody User user) {
+	public ResponseEntity<Void> createUser(@RequestBody User user) {
 		log.debug("********** Create user ****************");
-		final String userCreated = this.userService.createUser(user);
-		return userCreated;
+		this.userService.createUser(user);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/users/userInfo/update", method = RequestMethod.POST)
 	@PreAuthorize("hasRole('Member')")
-	public @ResponseBody String updateUserInfo(@RequestBody UserInfo userInfo) {
-		log.debug("********** Update user info ****************");
-		final String userUpdated = this.userService.updateUserInfo(userInfo);
-		log.debug("********** Update user completed ****************");
-		return userUpdated;
+	public ResponseEntity<Void> updateUserInfo(@RequestBody UserInfo userInfo) {
 		
+		try{
+			this.userService.updateUserInfo(userInfo);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}catch(Exception ex){
+			log.error("Exception occured while saving booking details"+ex);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 	@RequestMapping(value = "/users/search", method = RequestMethod.POST)
