@@ -16,7 +16,6 @@ import org.slf4j.LoggerFactory;
 
 import com.sms.controller.StaticDataController;
 import com.sms.entity.AmenitiesBooking;
-import com.sms.entity.UserInfo;
 
 /**
  * @author Abhijit A. Kulkarni

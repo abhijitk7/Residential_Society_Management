@@ -51,7 +51,15 @@ mainApp.config(["$stateProvider", function ($stateProvider) {
     	templateUrl : 'views/AmenityBooking.html',
     	controllerAs : 'vm',
         data: {
-            pageTitle: 'Booking Controller'
+            pageTitle: 'Amenity Booking'
+        }
+    }).state('home.changeRoles',{
+    	url: '/changeRoles',
+        controller : 'ChangeRoleController',
+    	templateUrl : 'views/changeRoles.html',
+    	controllerAs : 'vm',
+        data: {
+            pageTitle: 'Change Roles'
         }
     });
     

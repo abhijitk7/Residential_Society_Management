@@ -35,7 +35,7 @@ public class UserRoles extends AbstractEntity {
 	@Column(name="user_role_id")
 	private Long userRoleId;
 	
-	@Column(name="user_ID",insertable=false,updatable=false)
+	@Column(name="user_id",insertable=false,updatable=false)
 	private Long userId; 
 	
 	@Column(name="role_id")

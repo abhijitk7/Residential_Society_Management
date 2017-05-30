@@ -22,35 +22,38 @@ font-size: 16px;"> Last access : {{user.lastLogon | date: 'dd MMM yyyy HH:mm'}} 
                     <img src="assets/img/find_user.png" class="user-image img-responsive"/>
 					</li>
 				
-                    <li>
+                    <li ng-show="hasRole('Member')">
                         <a  ui-sref="home.dashboard"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
                     </li>
-                    <li>
+                    <li ng-show="hasRole('Member')">
                         <a  ui-sref="home.myInfo"><i class="fa fa-address-card-o fa-3x"></i> My Information</a>
                     </li>
-                    <li>
+                    <li ng-show="hasRole('Member')">
                         <a   ui-sref="home.memberSearch"><i class="fa fa-search fa-3x"></i>  Instant Member Search</a>
                     </li>
-                    <li  >
+                    <li ng-show="hasRole('Member')">
                         <a  ui-sref="home.amenityBooking"><i class="fa fa-calendar fa-3x"></i> Amenity Booking </a>
                     </li>		
-                    <li>
+                    <li ng-show="hasRole('Not developed')">
                         <a  ui-sref="#"><i class="fa fa-users fa-3x"></i> Meetings Section</a>
                     </li>
-                    <li>
+                    <li ng-show="hasRole('Not developed')">
                         <a  ui-sref="#"><i class="fa fa-comments-o fa-3x"></i> Recent Discussions</a>
                     </li>
-						   <li  >
+					<li ng-show="hasRole('Not developed')">
                         <a  ui-sref="#"><i class="fa fa-bar-chart-o fa-3x"></i> Expense Reports</a>
                     </li>	
-                      <li  >
+                    <li ng-show="hasRole('Not developed')">
                         <a  ui-sref="#"><i class="glyphicon glyphicon-wrench fa-3x"></i> Expense Request</a>
                     </li>
-					<li  >
+					<li ng-show="hasRole('Not developed')">
                         <a   ui-sref="#"><i class="fa fa-bolt fa-3x"></i> Events in Society</a>
                     </li>	
-                    <li>
+                    <li ng-show="hasRole('Not developed')">
                         <a   ui-sref="#"><i class="fa fa-commenting-o fa-3x"></i> Opinion Poll</a>
+                    </li>
+                    <li ng-show="hasRole('Admin')">
+                        <a   ui-sref="home.changeRoles"><i class="fa fa-handshake-o fa-3x"></i> Change Roles</a>
                     </li>	
                 </ul>
                
