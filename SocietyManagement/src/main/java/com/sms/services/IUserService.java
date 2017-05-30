@@ -27,7 +27,7 @@ public interface IUserService {
 
 	String createUser(User user);
 
-	String updateUserInfo(UserInfo userInfo);
+	void updateUserInfo(UserInfo userInfo);
 
 	String updateLastLogOn(Long userId);
 	

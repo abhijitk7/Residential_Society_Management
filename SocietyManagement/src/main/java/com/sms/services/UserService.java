@@ -90,8 +90,13 @@ public class UserService implements IUserService {
 
 	@Override
 	@Transactional
-	public String updateUserInfo(UserInfo userInfo) {
-		return userInfoDao.updateUserInfo(userInfo);
+	public void updateUserInfo(UserInfo userInfo) {
+		try{
+			this.userInfoDao.updateUserInfo(userInfo);
+		}catch(Exception ex){
+			throw ex;
+		}
+		
 	}
 
 	/* (non-Javadoc)

@@ -24,7 +24,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -124,18 +123,11 @@ public class UserInfo extends AbstractEntity {
 	@OneToOne(mappedBy = "userInfo")
 	private User user;
 	
-
-//	//bi-directional many-to-one association to VehicleDetails
-//	@OneToMany(mappedBy="UserInfo")
-//	private List<VehicleDetails> vehicleDetails;
-	
-	@JsonIgnore
-	@ManyToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
+	@ManyToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
 	@JoinTable(name = "tbl_sms_users_flats", joinColumns=@JoinColumn(name="user_info_id",referencedColumnName="user_info_id"),inverseJoinColumns=@JoinColumn(name="flat_id",referencedColumnName="flat_id"))
 	private Set<Flats> usersFlats=new HashSet<Flats>();
 	
-	@JsonIgnore
-	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+	@ManyToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
     @JoinTable(name="tbl_sms_users_parking",joinColumns=@JoinColumn(name="user_info_id",referencedColumnName="user_info_id"),inverseJoinColumns=@JoinColumn(name="parking_slot_id",referencedColumnName="parking_slot_id"))
 	private Set<ParkingSlots> usersParkings=new HashSet<ParkingSlots>();
 	

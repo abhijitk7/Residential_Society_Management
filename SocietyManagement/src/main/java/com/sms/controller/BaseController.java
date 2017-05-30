@@ -34,15 +34,15 @@ public class BaseController {
 				
 		log.error("********Exception occured because...."+ex.getErrMsg());
 		
-		log.error("********Exception occured with error code...."+ex.getErrCode());
-		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 
 	}
-
+	
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<Void> handleAllException(Exception ex) {
-
+		
 		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
 	}
 
 }

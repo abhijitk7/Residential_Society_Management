@@ -20,7 +20,7 @@ public interface IUserInfoJpaDao {
 
 	UserInfo persistUserInfo(UserInfo userInfo);
 	
-	String updateUserInfo(UserInfo userInfo);
+	void updateUserInfo(UserInfo userInfo);
 	
 	Set<UserInfo> searchMemberDetails(String searchText);
 }

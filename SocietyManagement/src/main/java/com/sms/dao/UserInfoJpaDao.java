@@ -49,15 +49,14 @@ public class UserInfoJpaDao extends AbstractSMSDao<UserInfo> implements IUserInf
 	 * @see com.sms.dao.IUserInfoDao#updateUserInfo(com.sms.entity.UserInfo)
 	 */
 	@Override
-	public String updateUserInfo(UserInfo userInfo) {
+	public void updateUserInfo(UserInfo userInfo) {
 		
 		log.debug("----------"+SecurityContextHolder.getContext().getAuthentication().getName()+"----------");
 		try{
 			update(userInfo);
-			return "true";
 		}catch(Exception e){
 			log.error("Exception while updating user info for user-->"+SecurityContextHolder.getContext().getAuthentication().getName()+" and exception is "+e.getMessage());
-			return "false";
+			throw e;
 		}
 	}
 

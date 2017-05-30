@@ -76,15 +76,18 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
 	ResponseEntity<UserInfoDTO> getUserById(@PathVariable final Long userId) {
 		log.debug("********** Retriving user by id ****************");
-		final User user = this.userService.getAuthorisedUserById(userId);
-		List<String> list = new ArrayList<String>();
-		list.add(SystemConstants.USER_INFO_DOZER_MAPPER);
-		Mapper mapper = new DozerBeanMapper(list);
-		UserInfoDTO userInfo=new UserInfoDTO();
-		mapper.map(user.getUserInfo(), userInfo);
-		Hibernate.initialize(user.getUserInfo());
-		return new ResponseEntity<UserInfoDTO>(userInfo, null, HttpStatus.OK);
-
+		try{
+			final User user = this.userService.getAuthorisedUserById(userId);
+			List<String> list = new ArrayList<String>();
+			list.add(SystemConstants.USER_INFO_DOZER_MAPPER);
+			Mapper mapper = new DozerBeanMapper(list);
+			UserInfoDTO userInfo=new UserInfoDTO();
+			mapper.map(user.getUserInfo(), userInfo);
+			Hibernate.initialize(user.getUserInfo());
+			return new ResponseEntity<UserInfoDTO>(userInfo, null, HttpStatus.OK);
+		}catch(Exception ex){
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
