@@ -19,11 +19,13 @@ mainApp.config(["$stateProvider", function ($stateProvider) {
 		templateUrl : 'views/home.html',
 		controllerAs : 'vm',
         data: {
-            pageTitle: 'Register'
+            pageTitle: 'Home'
         }
     }).state('home.dashboard', {
+    	controller : 'DashBoardController',
         url: '/dashboard',
     	templateUrl : 'views/dashboard.html',
+    	controllerAs : 'vm',
         data: {
             pageTitle: 'Dashboard'
         }

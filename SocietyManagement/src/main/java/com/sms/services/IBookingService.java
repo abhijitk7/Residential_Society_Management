@@ -7,6 +7,8 @@
  */
 package com.sms.services;
 
+import java.util.List;
+
 import com.sms.entity.AmenitiesBooking;
 
 /**
@@ -17,5 +19,7 @@ import com.sms.entity.AmenitiesBooking;
 public interface IBookingService {
 	
 	void saveBookingDetails(AmenitiesBooking bookingDetails);
+	
+	List<AmenitiesBooking> getBookingDetails(Long userId);
 
 }

@@ -8,6 +8,45 @@
                     </div>
                 </div>
                  <!-- /. ROW  -->
-                 <hr />       
+                 <hr />  
+                 
+                 <div class="row">
+                			<div class="col-md-12">
+			                      <div class="panel panel-default">
+			                        <div class="panel-heading">
+			                            Your requests
+			                        </div>
+				                        <!-- /.panel-heading -->
+				                        <div class="panel-body">
+				                            <div class="table-responsive table-bordered">
+				                                <table class="table">
+				                                    <thead>
+				                                        <tr>
+				                                            <th>#</th>
+				                                            <th><i class="icon_profile"></i> Amenity</th>
+				                                            <th><i class="icon_pin_alt"></i> From Date</th>
+				                                            <th><i class="icon_mobile"></i> To Date</th>
+				                                            <th><i class="icon_mail_alt"></i> Status</th>
+				                                            <th><i class="icon_mail_alt"></i> Approver Comments</th>
+				                                        </tr>
+				                                    </thead>
+				                                    <tbody>
+				                                        <tr ng-repeat="x in vm.requests">
+				                                            <td>{{ $index + 1 }}</td>
+				                                            <td>{{ x.amenity.amenityName }}</td>
+				                                            <td>{{x.fromDateTime | date : 'MMM d, y h:mm:ss a'}}</span></td>
+				                                            <td>{{ x.toDateTime | date : 'MMM d, y h:mm:ss a'}}</td>
+				                                            <td>{{ x.status.bookingStatus }}</td>
+				                                            <td>{{ x.comments }}</td>
+				                                        </tr>
+				                                        
+				                                    </tbody>
+				                                </table>
+				                            </div>
+				                        </div>
+				                    </div>
+				                     <!--  End  Bordered Table  -->
+							</div>
+		       </div>     
     		</div>
              <!-- /. PAGE INNER  -->

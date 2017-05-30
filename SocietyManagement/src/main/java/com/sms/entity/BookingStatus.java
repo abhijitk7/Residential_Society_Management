@@ -23,7 +23,7 @@ import javax.persistence.Version;
  * @Version 1.0
  */
 @Entity
-@Table(name="tbl_booking_status")
+@Table(name="tbl_sms_booking_status")
 public class BookingStatus extends AbstractEntity {
 
 	private static final long serialVersionUID = 5390695608296234714L;

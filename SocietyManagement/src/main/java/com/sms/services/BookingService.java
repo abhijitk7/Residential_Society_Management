@@ -7,6 +7,8 @@
  */
 package com.sms.services;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,7 @@ public class BookingService implements IBookingService {
 	@Autowired
 	private IAmenityBookingJpaDao amenityBookingDao;
 
+
 	/* (non-Javadoc)
 	 * @see com.sms.services.IBookingService#saveBookingDetails(com.sms.entity.AmenitiesBooking)
 	 */
@@ -40,6 +43,21 @@ public class BookingService implements IBookingService {
 		}catch(Exception ex){
 			log.debug("Exception occured while saving booking details "+ex);
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see com.sms.services.IBookingService#getBookingDetails(java.lang.Long)
+	 */
+	@Override
+	public List<AmenitiesBooking> getBookingDetails(Long userId) {
+		
+		List<AmenitiesBooking> listOfBookings=null;
+		try{
+			listOfBookings = amenityBookingDao.getBookingDetails(userId);
+		}catch(Exception ex){
+			log.debug("Exception occured while saving booking details "+ex);
+		}
+		return listOfBookings;
 	}
 
 }

@@ -6,13 +6,16 @@
         .factory('UserService', UserService);
 
     UserService.$inject = ['$http','ContextRoot','$log'];
+    
     function UserService($http,ContextRoot,$log) {
+    	
         var service = {};
 
         service.Create = Create;
         service.updateLastLogOn = updateLastLogOn;
         service.getUserDetails=getUserDetails;
         service.updateUserInfo=updateUserInfo;
+        service.getUserRequests=getUserRequests;
         
         return service;
 
@@ -60,7 +63,6 @@
 		    }).success(function(data, status, headers, config) {
 				callback(data);
 			}).error(function(data, status, headers, config){
-				$log.debug(status);
 				callback(status);
 			});
         }
@@ -76,6 +78,19 @@
 				callback(status);
 			}).error(function(data, status, headers, config){
 				$log.debug(status);
+				callback(status);
+			});
+        }
+        
+        function getUserRequests(userId,callback) {
+        	$http({
+		        method : "GET",
+		        url : ContextRoot + '/users/requests/' + userId + '.do',
+		        headers: {'Content-Type': 'application/json'}
+						
+		    }).success(function(data, status, headers, config) {
+				callback(data);
+			}).error(function(data, status, headers, config){
 				callback(status);
 			});
         }

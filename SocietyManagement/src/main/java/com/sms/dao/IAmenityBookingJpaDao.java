@@ -7,6 +7,8 @@
  */
 package com.sms.dao;
 
+import java.util.List;
+
 import com.sms.entity.AmenitiesBooking;
 
 /**
@@ -17,5 +19,11 @@ import com.sms.entity.AmenitiesBooking;
 public interface IAmenityBookingJpaDao {
 	
 	void saveBookingDetails(AmenitiesBooking bookingDetails);
+
+	/**
+	 * @param userInfo
+	 * @return
+	 */
+	List<AmenitiesBooking> getBookingDetails(Long userId);
 
 }

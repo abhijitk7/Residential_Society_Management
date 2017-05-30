@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +16,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sms.util.SystemConstants;
+
 
 
 /**
@@ -40,28 +45,32 @@ public class AmenitiesBooking extends AbstractEntity {
 	private String comments;
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern=SystemConstants.JAVASCRIPT_DATE_FORMAT)
 	@Column(name="from_datetime")
-	private Date fromDatetime;
+	private Date fromDateTime;
 
 	@Column(name="last_update_date")
 	private Timestamp lastUpdateDate;
 	
-	@OneToOne
-	@JoinColumn(name="requested_by_user_info_id")
-	private UserInfo requestedByUserInfoId;
+	@Column(name="requested_by_user_info_id")
+	private Long requestedByUserInfoId;
+	
+	@Column(name="last_updated_by")
+	private Long lastUpdatedBy;
 
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="status")
 	private BookingStatus status;
 
 	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern=SystemConstants.JAVASCRIPT_DATE_FORMAT)
 	@Column(name="to_datetime")
-	private Date toDatetime;
+	private Date toDateTime;
 
 	@Version
 	private int version;
 
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="amenity_id")
 	private Amenity amenity;
 	
@@ -141,17 +150,17 @@ public class AmenitiesBooking extends AbstractEntity {
 	}
 
 	/**
-	 * @return the fromDatetime
+	 * @return the fromDateTime
 	 */
-	public Date getFromDatetime() {
-		return fromDatetime;
+	public Date getFromDateTime() {
+		return fromDateTime;
 	}
 
 	/**
-	 * @param fromDatetime the fromDatetime to set
+	 * @param fromDateTime the fromDateTime to set
 	 */
-	public void setFromDatetime(Date fromDatetime) {
-		this.fromDatetime = fromDatetime;
+	public void setFromDateTime(Date fromDateTime) {
+		this.fromDateTime = fromDateTime;
 	}
 
 	/**
@@ -169,17 +178,17 @@ public class AmenitiesBooking extends AbstractEntity {
 	}
 
 	/**
-	 * @return the toDatetime
+	 * @return the toDateTime
 	 */
-	public Date getToDatetime() {
-		return toDatetime;
+	public Date getToDateTime() {
+		return toDateTime;
 	}
 
 	/**
-	 * @param toDatetime the toDatetime to set
+	 * @param toDateTime the toDateTime to set
 	 */
-	public void setToDatetime(Date toDatetime) {
-		this.toDatetime = toDatetime;
+	public void setToDateTime(Date toDateTime) {
+		this.toDateTime = toDateTime;
 	}
 
 	/**
@@ -199,15 +208,29 @@ public class AmenitiesBooking extends AbstractEntity {
 	/**
 	 * @return the requestedByUserInfoId
 	 */
-	public UserInfo getRequestedByUserInfoId() {
+	public Long getRequestedByUserInfoId() {
 		return requestedByUserInfoId;
 	}
 
 	/**
 	 * @param requestedByUserInfoId the requestedByUserInfoId to set
 	 */
-	public void setRequestedByUserInfoId(UserInfo requestedByUserInfoId) {
+	public void setRequestedByUserInfoId(Long requestedByUserInfoId) {
 		this.requestedByUserInfoId = requestedByUserInfoId;
+	}
+
+	/**
+	 * @return the lastUpdatedBy
+	 */
+	public Long getLastUpdatedBy() {
+		return lastUpdatedBy;
+	}
+
+	/**
+	 * @param lastUpdatedBy the lastUpdatedBy to set
+	 */
+	public void setLastUpdatedBy(Long lastUpdatedBy) {
+		this.lastUpdatedBy = lastUpdatedBy;
 	}
 
 

@@ -49,17 +49,17 @@
 			 
 		 	 	});
 				
-				UserService.getUserDetails($rootScope.user.userId,function(response){
-					 
-				 	if(response===401) {
-	                    toaster.pop('error', "", "You are not authorised to perform this operation. Please contact system administrator.");
-	                }else if(response===500) {
-	                	toaster.pop('error', "", "Some thing went wrong at server side. Please contact system administrator.");
-	                } else{
-	                	vm.user=response;
-	                } 
-			 
-		 	 	});
+//				UserService.getUserDetails($rootScope.user.userId,function(response){
+//					 
+//				 	if(response===401) {
+//	                    toaster.pop('error', "", "You are not authorised to perform this operation. Please contact system administrator.");
+//	                }else if(response===500) {
+//	                	toaster.pop('error', "", "Some thing went wrong at server side. Please contact system administrator.");
+//	                } else{
+//	                	vm.user=response;
+//	                } 
+//			 
+//		 	 	});
 				
 		})();
 		
@@ -71,16 +71,15 @@
 			
 			var bookingDetails={
 					"comments":vm.comments,
-					"fromDatetime":vm.fromDatetime,
-					"toDatetime":vm.toDatetime,
+					"fromDateTime":vm.fromDateTime,
+					"toDateTime":vm.toDateTime,
 					"status":vm.selectedStatus,
 					"amenity":vm.selectedAmenity,
 					"active":true,
-					"requestedByUserInfoId":vm.user
+					"requestedByUserInfoId":$rootScope.user.userId,
+					"lastUpdatedBy":$rootScope.user.userId
 				};
-			
-			$log.debug("Booking details captured are .. "+JSON.stringify(bookingDetails));
-		
+			debugger;
 			SubmissionService.saveBooking(bookingDetails,function(response){
 				
 			 	if(response===401) {

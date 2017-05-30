@@ -7,11 +7,16 @@
  */
 package com.sms.dao;
 
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.sms.controller.StaticDataController;
 import com.sms.entity.AmenitiesBooking;
+import com.sms.entity.UserInfo;
 
 /**
  * @author Abhijit A. Kulkarni
@@ -34,6 +39,7 @@ public class AmenityBookingJpaDao extends AbstractSMSDao<AmenitiesBooking> imple
 	 */
 	@Override
 	public void saveBookingDetails(AmenitiesBooking bookingDetails) {
+		
 		try{
 			save(bookingDetails);
 			
@@ -41,6 +47,26 @@ public class AmenityBookingJpaDao extends AbstractSMSDao<AmenitiesBooking> imple
 			log.debug("Exception occured while saving booking info "+ex);
 		}
 		
+	}
+
+	/* (non-Javadoc)
+	 * @see com.sms.dao.IAmenityBookingJpaDao#getBookingDetails(java.lang.Long)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<AmenitiesBooking> getBookingDetails(Long userId) {
+		
+		List<AmenitiesBooking> listOfBookings=null;
+		
+		try{
+			final Criteria criteria = createCriteria();
+			criteria.add(Restrictions.eq("requestedByUserInfoId", userId));
+			listOfBookings=criteria.list();
+		}catch(Exception ex){
+			
+		}
+		
+		return listOfBookings;
 	}
 
 

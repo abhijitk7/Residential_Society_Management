@@ -37,6 +37,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sms.dto.UserBookingsDTO;
 import com.sms.dto.UserDTO;
 import com.sms.dto.UserInfoDTO;
 import com.sms.entity.AmenitiesBooking;
@@ -189,6 +190,26 @@ public class UserController extends BaseController {
 			log.error("Exception occured while saving booking details"+ex);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+		
+	}
+	
+	@RequestMapping(value = "/users/requests/{userId}", method = RequestMethod.GET)
+	public ResponseEntity<List<UserBookingsDTO>> getUsersBookings(@PathVariable Long userId) {
+		
+		List<UserBookingsDTO> bookings=null;
+		try{
+			List<AmenitiesBooking> listOfBookings= this.bookingService.getBookingDetails(userId);
+			List<String> list = new ArrayList<String>();
+			list.add(SystemConstants.USERS_BOOKINGS);
+			Mapper mapper = new DozerBeanMapper(list);
+			bookings=new ArrayList<UserBookingsDTO>();
+			mapper.map(listOfBookings, bookings);
+		}catch(Exception ex){
+			log.error("Exception occured while saving booking details"+ex);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		return new ResponseEntity<>(bookings,HttpStatus.OK);
 		
 	}
 

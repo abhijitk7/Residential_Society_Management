@@ -123,6 +123,7 @@ public class UserInfo extends AbstractEntity {
 	@JsonIgnore
 	@OneToOne(mappedBy = "userInfo")
 	private User user;
+	
 
 //	//bi-directional many-to-one association to VehicleDetails
 //	@OneToMany(mappedBy="UserInfo")

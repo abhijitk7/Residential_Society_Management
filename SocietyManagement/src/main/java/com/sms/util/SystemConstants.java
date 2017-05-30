@@ -7,5 +7,7 @@ public class SystemConstants {
 	public static final String USER_INFO_DOZER_MAPPER="objectMaps/userInfo.xml";
 	
 	public static final String MEMBER_SEARCH_DOZER_MAPPER="objectMaps/memberSearch.xml";
+	
+	public static final String USERS_BOOKINGS="objectMaps/userBookings.xml";
 
 }

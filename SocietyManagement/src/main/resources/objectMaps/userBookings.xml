@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net
+	http://dozer.sourceforge.net/schema/beanmapping.xsd">
+	
+		<mapping map-id="userBookings">
+			<class-a>com.sms.entity.AmenitiesBooking</class-a>
+			<class-b>com.sms.dto.UserBookingsDTO</class-b>
+			<field>
+				<a>fromDateTime</a>
+				<b>fromDateTime</b>
+			</field>
+			<field>
+				<a>status</a>
+				<b>status</b>
+			</field>
+			<field>
+				<a>toDateTime</a>
+				<b>toDateTime</b>
+			</field>
+			<field>
+				<a>amenity</a>
+				<b>amenity</b>
+			</field>
+			<field>
+				<a>comments</a>
+				<b>comments</b>
+			</field>
+		</mapping>
+</mappings>
