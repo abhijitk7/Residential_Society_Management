@@ -29,6 +29,8 @@ public class UserDTO {
     
     private Long userId;
     
+    private Long userInfoId;
+    
     @JsonFormat(shape=JsonFormat.Shape.STRING,pattern=SystemConstants.JAVASCRIPT_DATE_FORMAT)
     private Date lastLogon;
     
@@ -41,65 +43,132 @@ public class UserDTO {
         this.userName = userName;
     }
 
-    public String getName() {
-        return userName;
-    }
 
-    public void setName(String name) {
-        this.userName = name;
-    }
+	/**
+	 * @return the userName
+	 */
+	public String getUserName() {
+		return userName;
+	}
 
-    public Map<String, Boolean> getRoles() {
-        return roles;
-    }
 
-    public void setRoles(Map<String, Boolean> roles) {
-        this.roles = roles;
-    }
+	/**
+	 * @param userName the userName to set
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    public String getToken() {
-        return token;
-    }
 
-    public void setToken(String token) {
-        this.token = token;
-    }
+	/**
+	 * @return the roles
+	 */
+	public Map<String, Boolean> getRoles() {
+		return roles;
+	}
 
-    @Override
-    public String toString() {
-        return userName + " [roles=" + roles + ", token=" + token + ']';
-    }
 
+	/**
+	 * @param roles the roles to set
+	 */
+	public void setRoles(Map<String, Boolean> roles) {
+		this.roles = roles;
+	}
+
+
+	/**
+	 * @return the token
+	 */
+	public String getToken() {
+		return token;
+	}
+
+
+	/**
+	 * @param token the token to set
+	 */
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+
+	/**
+	 * @return the userId
+	 */
 	public Long getUserId() {
 		return userId;
 	}
 
+
+	/**
+	 * @param userId the userId to set
+	 */
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
 
+	/**
+	 * @return the userInfoId
+	 */
+	public Long getUserInfoId() {
+		return userInfoId;
+	}
+
+
+	/**
+	 * @param userInfoId the userInfoId to set
+	 */
+	public void setUserInfoId(Long userInfoId) {
+		this.userInfoId = userInfoId;
+	}
+
+
+	/**
+	 * @return the lastLogon
+	 */
 	public Date getLastLogon() {
 		return lastLogon;
 	}
 
+
+	/**
+	 * @param lastLogon the lastLogon to set
+	 */
 	public void setLastLogon(Date lastLogon) {
 		this.lastLogon = lastLogon;
 	}
 
+
+	/**
+	 * @return the firstName
+	 */
 	public String getFirstName() {
 		return firstName;
 	}
 
+
+	/**
+	 * @param firstName the firstName to set
+	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
+
+	/**
+	 * @return the lastName
+	 */
 	public String getLastName() {
 		return lastName;
 	}
 
+
+	/**
+	 * @param lastName the lastName to set
+	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 }

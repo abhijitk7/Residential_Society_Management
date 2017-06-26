@@ -31,12 +31,12 @@ import com.sms.services.IStaticDataService;
 @Controller
 @RequestMapping("/data")
 public class StaticDataController extends BaseController {
-	
+
 	@Autowired
 	private IStaticDataService dataService;
-	
+
 	private static final Logger log = LoggerFactory.getLogger(StaticDataController.class);
-	
+
 	@RequestMapping(value = "/flats", method = RequestMethod.GET)
 	ResponseEntity<List<Flats>> getAllFlats() {
 
@@ -44,21 +44,21 @@ public class StaticDataController extends BaseController {
 		return new ResponseEntity<List<Flats>>(flatList,null, HttpStatus.OK);
 
 	}
-	
+
 	@RequestMapping(value = "/parkings", method = RequestMethod.GET)
 	ResponseEntity<List<ParkingSlots>> getAllParkingSlots() {
 		final List<ParkingSlots> parkingSlots = this.dataService.getAllParkingSlots();
 		return new ResponseEntity<List<ParkingSlots>>(parkingSlots, null, HttpStatus.OK);
 
 	}
-	
+
 	@RequestMapping(value = "/booking/status", method = RequestMethod.GET)
 	ResponseEntity<List<BookingStatus>> getBookingStatuses() {
 		final List<BookingStatus> bookingStatus = this.dataService.getAllBookingStatus();
 		return new ResponseEntity<List<BookingStatus>>(bookingStatus, null, HttpStatus.OK);
 
 	}
-	
+
 	@RequestMapping(value = "/amenities", method = RequestMethod.GET)
 	ResponseEntity<List<Amenity>> getAmenities() {
 		log.debug("********** Retriving all Amenities ****************");

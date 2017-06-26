@@ -52,11 +52,13 @@ public class AmenitiesBooking extends AbstractEntity {
 	@Column(name="last_update_date")
 	private Timestamp lastUpdateDate;
 	
-	@Column(name="requested_by_user_info_id")
-	private Long requestedByUserInfoId;
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="requested_by_user_info_id")
+	private UserInfo requestedByUserInfoId;
 	
-	@Column(name="last_updated_by")
-	private Long lastUpdatedBy;
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="last_updated_by")
+	private UserInfo lastUpdatedBy;
 
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="status")
@@ -208,30 +210,29 @@ public class AmenitiesBooking extends AbstractEntity {
 	/**
 	 * @return the requestedByUserInfoId
 	 */
-	public Long getRequestedByUserInfoId() {
+	public UserInfo getRequestedByUserInfoId() {
 		return requestedByUserInfoId;
 	}
 
 	/**
 	 * @param requestedByUserInfoId the requestedByUserInfoId to set
 	 */
-	public void setRequestedByUserInfoId(Long requestedByUserInfoId) {
+	public void setRequestedByUserInfoId(UserInfo requestedByUserInfoId) {
 		this.requestedByUserInfoId = requestedByUserInfoId;
 	}
 
 	/**
 	 * @return the lastUpdatedBy
 	 */
-	public Long getLastUpdatedBy() {
+	public UserInfo getLastUpdatedBy() {
 		return lastUpdatedBy;
 	}
 
 	/**
 	 * @param lastUpdatedBy the lastUpdatedBy to set
 	 */
-	public void setLastUpdatedBy(Long lastUpdatedBy) {
+	public void setLastUpdatedBy(UserInfo lastUpdatedBy) {
 		this.lastUpdatedBy = lastUpdatedBy;
 	}
-
 
 }

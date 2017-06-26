@@ -62,30 +62,31 @@ public class UserController extends BaseController {
 
 	@Autowired
 	private IUserService userService;
-	
+
 	@Autowired
 	private IBookingService bookingService;
-	
+
 	@Autowired(required = true)
-    private AuthenticationUserDetailsService userDetailsService;
-	
-    @Autowired(required = true)
-    @Qualifier("authenticationManager")
-    private AuthenticationManager authManager;
+	private AuthenticationUserDetailsService userDetailsService;
+
+	@Autowired(required = true)
+	@Qualifier("authenticationManager")
+	private AuthenticationManager authManager;
 
 	@RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
 	ResponseEntity<UserInfoDTO> getUserById(@PathVariable final Long userId) {
 		log.debug("********** Retriving user by id ****************");
 		try{
 			final User user = this.userService.getAuthorisedUserById(userId);
-			List<String> list = new ArrayList<String>();
+			final List<String> list = new ArrayList<String>();
 			list.add(SystemConstants.USER_INFO_DOZER_MAPPER);
-			Mapper mapper = new DozerBeanMapper(list);
-			UserInfoDTO userInfo=new UserInfoDTO();
+			final Mapper mapper = new DozerBeanMapper(list);
+			final UserInfoDTO userInfo=new UserInfoDTO();
 			mapper.map(user.getUserInfo(), userInfo);
 			Hibernate.initialize(user.getUserInfo());
 			return new ResponseEntity<UserInfoDTO>(userInfo, null, HttpStatus.OK);
-		}catch(Exception ex){
+		}catch(final Exception ex){
+			log.error(ex.getMessage(), ex);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -97,123 +98,125 @@ public class UserController extends BaseController {
 		return new ResponseEntity<Set<User>>(users, null, HttpStatus.OK);
 
 	}
-	
-	
+
+
 	@RequestMapping(value = "/users/authenticate/{userName}/{passWord}",method=RequestMethod.POST)
-    public ResponseEntity<UserDTO> authenticate(@PathVariable final String userName, @PathVariable final String passWord) {
+	public ResponseEntity<UserDTO> authenticate(@PathVariable final String userName, @PathVariable final String passWord) {
 
-        UsernamePasswordAuthenticationToken authenticationToken
-            = new UsernamePasswordAuthenticationToken(userName, passWord);
+		final UsernamePasswordAuthenticationToken authenticationToken
+		= new UsernamePasswordAuthenticationToken(userName, passWord);
 
-        Authentication authentication;
+		Authentication authentication;
 
-        try {
-            authentication = authManager.authenticate(authenticationToken);
-        } catch (AuthenticationException e) {
+		try {
+			authentication = this.authManager.authenticate(authenticationToken);
+		} catch (final AuthenticationException e) {
 
-            throw new CustomGenericException(401, "The user name or password is incorrect");
-        }
+			throw new CustomGenericException(401, "The user name or password is incorrect");
+		}
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        /*
-         * Reload user as password of authentication principal will be null after authorization and
-         * password is needed for token generation
-         */
-        UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
-        
+		/*
+		 * Reload user as password of authentication principal will be null after authorization and
+		 * password is needed for token generation
+		 */
+		final UserDetails userDetails = this.userDetailsService.loadUserByUsername(userName);
 
-        Map<String, Boolean> roles = createRolesMap(userDetails);
-        String token = userDetailsService.createToken(userDetails);
 
-        UserDTO userDTO = new UserDTO(userDetails.getUsername());
-        userDTO.setRoles(roles);
-        userDTO.setToken(token);
-        
-        User user=userDetailsService.getUserDetails(userName);
-        
-        userDTO.setUserId(user.getUserId());
-        
-        userDTO.setLastLogon(user.getLastUpdateDate());
-        
-        userDTO.setFirstName(user.getUserInfo().getPrimFirstName());
-        
-        userDTO.setLastName(user.getUserInfo().getPrimLastName());
+		final Map<String, Boolean> roles = this.createRolesMap(userDetails);
+		final String token = this.userDetailsService.createToken(userDetails);
 
-        return new ResponseEntity<UserDTO>(userDTO,HttpStatus.OK);
-    }
+		final UserDTO userDTO = new UserDTO(userDetails.getUsername());
+		userDTO.setRoles(roles);
+		userDTO.setToken(token);
 
-    private Map<String, Boolean> createRolesMap(UserDetails userDetails) {
-        Map<String, Boolean> roles = new HashMap<String, Boolean>();
-        for (GrantedAuthority authority : userDetails.getAuthorities()) {
-            roles.put(authority.getAuthority(), Boolean.TRUE);
-        }
+		final User user=this.userDetailsService.getUserDetails(userName);
 
-        return roles;
-    }
+		userDTO.setUserId(user.getUserId());
 
-    @RequestMapping(value = "/users/lastLogon/update/{userId}", method = RequestMethod.POST)
-	public ResponseEntity<String> updateLastLogOn(@PathVariable Long userId) {
+		userDTO.setLastLogon(user.getLastUpdateDate());
+
+		userDTO.setFirstName(user.getUserInfo().getPrimFirstName());
+
+		userDTO.setLastName(user.getUserInfo().getPrimLastName());
+
+		userDTO.setUserInfoId(user.getUserInfo().getUserInfoId());
+
+		return new ResponseEntity<UserDTO>(userDTO,HttpStatus.OK);
+	}
+
+	private Map<String, Boolean> createRolesMap(final UserDetails userDetails) {
+		final Map<String, Boolean> roles = new HashMap<String, Boolean>();
+		for (final GrantedAuthority authority : userDetails.getAuthorities()) {
+			roles.put(authority.getAuthority(), Boolean.TRUE);
+		}
+
+		return roles;
+	}
+
+	@RequestMapping(value = "/users/lastLogon/update/{userId}", method = RequestMethod.POST)
+	public ResponseEntity<String> updateLastLogOn(@PathVariable final Long userId) {
 		log.debug("********** update user last logon date ****************");
 		final String userUpdated = this.userService.updateLastLogOn(userId);
 		return new ResponseEntity<String>(userUpdated,HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "/users/create", method = RequestMethod.POST)
-	public ResponseEntity<Void> createUser(@RequestBody User user) {
+	public ResponseEntity<Void> createUser(@RequestBody final User user) {
 		log.debug("********** Create user ****************");
 		this.userService.createUser(user);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "/users/userInfo/update", method = RequestMethod.POST)
 	@PreAuthorize("hasRole('Member')")
-	public ResponseEntity<Void> updateUserInfo(@RequestBody UserInfo userInfo) {
-		
+	public ResponseEntity<Void> updateUserInfo(@RequestBody final UserInfo userInfo) {
+
 		try{
 			this.userService.updateUserInfo(userInfo);
 			return new ResponseEntity<>(HttpStatus.OK);
-		}catch(Exception ex){
-			log.error("Exception occured while saving booking details"+ex);
+		}catch(final Exception ex){
+			log.error(ex.getMessage(), ex);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@RequestMapping(value = "/users/search", method = RequestMethod.POST)
-	public @ResponseBody Set<UserInfo> searchUserInfo(@RequestBody String searchText) {
+	public @ResponseBody Set<UserInfo> searchUserInfo(@RequestBody final String searchText) {
 		return this.userService.searchUserDetails(searchText);
 	}
-	
+
 	@RequestMapping(value = "/users/booking", method = RequestMethod.POST)
-	public ResponseEntity<Void> saveBookings(@RequestBody AmenitiesBooking bookingDetails) {
+	public ResponseEntity<Void> saveBookings(@RequestBody final AmenitiesBooking bookingDetails) {
 		try{
 			this.bookingService.saveBookingDetails(bookingDetails);
 			return new ResponseEntity<>(HttpStatus.OK);
-		}catch(Exception ex){
-			log.error("Exception occured while saving booking details"+ex);
+		}catch(final Exception ex){
+			log.error(ex.getMessage(), ex);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
+
 	}
-	
+
 	@RequestMapping(value = "/users/requests/{userId}", method = RequestMethod.GET)
-	public ResponseEntity<List<UserBookingsDTO>> getUsersBookings(@PathVariable Long userId) {
-		
+	public ResponseEntity<List<UserBookingsDTO>> getUsersBookings(@PathVariable final Long userId) {
+
 		List<UserBookingsDTO> bookings=null;
 		try{
-			List<AmenitiesBooking> listOfBookings= this.bookingService.getBookingDetails(userId);
-			List<String> list = new ArrayList<String>();
+			final List<AmenitiesBooking> listOfBookings= this.bookingService.getBookingDetails(userId);
+			final List<String> list = new ArrayList<String>();
 			list.add(SystemConstants.USERS_BOOKINGS);
-			Mapper mapper = new DozerBeanMapper(list);
+			final Mapper mapper = new DozerBeanMapper(list);
 			bookings=new ArrayList<UserBookingsDTO>();
 			mapper.map(listOfBookings, bookings);
-		}catch(Exception ex){
-			log.error("Exception occured while saving booking details"+ex);
+		}catch(final Exception ex){
+			log.error(ex.getMessage(), ex);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
+
 		return new ResponseEntity<>(bookings,HttpStatus.OK);
-		
+
 	}
 
 }

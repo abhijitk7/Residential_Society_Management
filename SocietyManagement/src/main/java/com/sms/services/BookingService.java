@@ -16,7 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sms.controller.StaticDataController;
 import com.sms.dao.IAmenityBookingJpaDao;
+import com.sms.dao.IUserInfoJpaDao;
 import com.sms.entity.AmenitiesBooking;
+import com.sms.entity.UserInfo;
 
 /**
  * @author Abhijit A. Kulkarni
@@ -24,11 +26,14 @@ import com.sms.entity.AmenitiesBooking;
  * @Version 1.0
  */
 public class BookingService implements IBookingService {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(StaticDataController.class);
-	
+
 	@Autowired
 	private IAmenityBookingJpaDao amenityBookingDao;
+
+	@Autowired
+	private IUserInfoJpaDao userInfoDao;
 
 
 	/* (non-Javadoc)
@@ -36,11 +41,11 @@ public class BookingService implements IBookingService {
 	 */
 	@Override
 	@Transactional
-	public void saveBookingDetails(AmenitiesBooking bookingDetails) {
-		
+	public void saveBookingDetails(final AmenitiesBooking bookingDetails) {
+
 		try{
-			amenityBookingDao.saveBookingDetails(bookingDetails);
-		}catch(Exception ex){
+			this.amenityBookingDao.saveBookingDetails(bookingDetails);
+		}catch(final Exception ex){
 			log.debug("Exception occured while saving booking details "+ex);
 		}
 	}
@@ -49,13 +54,14 @@ public class BookingService implements IBookingService {
 	 * @see com.sms.services.IBookingService#getBookingDetails(java.lang.Long)
 	 */
 	@Override
-	public List<AmenitiesBooking> getBookingDetails(Long userId) {
-		
+	public List<AmenitiesBooking> getBookingDetails(final Long userInfoId) {
+
 		List<AmenitiesBooking> listOfBookings=null;
 		try{
-			listOfBookings = amenityBookingDao.getBookingDetails(userId);
-		}catch(Exception ex){
-			log.debug("Exception occured while saving booking details "+ex);
+			final UserInfo userInfo = this.userInfoDao.findUserInfoById(userInfoId);
+			listOfBookings = this.amenityBookingDao.getBookingDetails(userInfo);
+		}catch(final Exception ex){
+			log.error(ex.getMessage(), ex);
 		}
 		return listOfBookings;
 	}

@@ -30,7 +30,7 @@ import com.sms.entity.UserInfo;
 public class UserInfoJpaDao extends AbstractSMSDao<UserInfo> implements IUserInfoJpaDao {
 
 	private static final Logger log = LoggerFactory.getLogger(UserInfoJpaDao.class);
-	
+
 	public UserInfoJpaDao() {
 		super(UserInfo.class);
 	}
@@ -39,24 +39,23 @@ public class UserInfoJpaDao extends AbstractSMSDao<UserInfo> implements IUserInf
 	 * @see com.sms.dao.IUserInfoDao#registerUserInfo(com.sms.entity.UserInfo)
 	 */
 	@Override
-	public UserInfo persistUserInfo(UserInfo userInfo) {
-		
-		save(userInfo);
-		return null;
+	public void persistUserInfo(final UserInfo userInfo) {
+		this.save(userInfo);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.sms.dao.IUserInfoDao#updateUserInfo(com.sms.entity.UserInfo)
 	 */
 	@Override
-	public void updateUserInfo(UserInfo userInfo) {
-		
+	public void updateUserInfo(final UserInfo userInfo) {
+
 		log.debug("----------"+SecurityContextHolder.getContext().getAuthentication().getName()+"----------");
 		try{
-			update(userInfo);
-		}catch(Exception e){
-			log.error("Exception while updating user info for user-->"+SecurityContextHolder.getContext().getAuthentication().getName()+" and exception is "+e.getMessage());
-			throw e;
+			this.update(userInfo);
+		}catch(final Exception e){
+			log.error("Exception while updating user info for user-->"
+					+ SecurityContextHolder.getContext().getAuthentication().getName() + " and exception is "
+					+ e.getMessage(), e);
 		}
 	}
 
@@ -65,44 +64,62 @@ public class UserInfoJpaDao extends AbstractSMSDao<UserInfo> implements IUserInf
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public Set<UserInfo> searchMemberDetails(String searchText) {
-		
+	public Set<UserInfo> searchMemberDetails(final String searchText) {
+
 		List<UserInfo> result=null;
-		
-		
+
+
 		Set<UserInfo> resultSet=null;
-		
-		Criteria criteria=createCriteria();
-		
+
+		final Criteria criteria=this.createCriteria();
+
 		try{
-			
+
 			result=new ArrayList<UserInfo>();
-			
-			Disjunction disjunction=Restrictions.disjunction();
-			
-			String token='%'+searchText.trim().toLowerCase()+'%';
-			
+
+			final Disjunction disjunction=Restrictions.disjunction();
+
+			final String token='%'+searchText.trim().toLowerCase()+'%';
+
 			disjunction.add(Restrictions.ilike("primFirstName", token));
-			
+
 			disjunction.add(Restrictions.ilike("primLastName", token));
-			
+
 			criteria.add(disjunction);
-			
+
 			result=criteria.list();
-			
+
 			resultSet=new HashSet<UserInfo>();
-			
+
 			resultSet.addAll(result);
-			
-			
-		}catch(DataAccessException de){
-			log.error("Exception occured while searching user info "+de.getCause());
-		}catch(Exception e){
-			log.error("Exception occured while searching user info "+e.getCause());
+
+
+		}catch(final DataAccessException de){
+			log.error(de.getMessage(), de);
+		}catch(final Exception e){
+			log.error(e.getMessage(), e);
 		}
-		
-		
+
+
 		return resultSet;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.sms.dao.IUserInfoJpaDao#findUserInfoById(java.lang.Long)
+	 */
+	@Override
+	public UserInfo findUserInfoById(final Long userInfoId) {
+		final Criteria criteria = this.createCriteria();
+		UserInfo userInfo = null;
+		try {
+			criteria.add(Restrictions.eq("userInfoId", userInfoId));
+			userInfo = (UserInfo) criteria.uniqueResult();
+		} catch (final Exception ex) {
+			log.error(ex.getMessage(), ex);
+		}
+		return userInfo;
 	}
 
 }

@@ -25,22 +25,22 @@ import com.sms.exception.CustomGenericException;
 
 @Controller
 public class BaseController {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(BaseController.class);
-	
+
 	@ResponseStatus(value=HttpStatus.UNAUTHORIZED, reason="Username or Password is incorrect")
 	@ExceptionHandler(CustomGenericException.class)
-	public ResponseEntity<Void> handleCustomException(CustomGenericException ex) {
-				
-		log.error("********Exception occured because...."+ex.getErrMsg());
-		
+	public ResponseEntity<Void> handleCustomException(final CustomGenericException ex) {
+
+		log.error(ex.getErrMsg(),ex);
+
 		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 
 	}
-	
+
 	@ExceptionHandler(Exception.class)
-	public ResponseEntity<Void> handleAllException(Exception ex) {
-		
+	public ResponseEntity<Void> handleAllException(final Exception ex) {
+
 		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
 	}

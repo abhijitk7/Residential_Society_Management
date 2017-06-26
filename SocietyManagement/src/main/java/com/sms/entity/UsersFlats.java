@@ -11,7 +11,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -23,10 +26,6 @@ import javax.persistence.Table;
 @Table(name = "tbl_sms_users_flats")
 public class UsersFlats extends AbstractEntity {
 
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6055363030258957226L;
 	
 	@Id
@@ -45,57 +44,92 @@ public class UsersFlats extends AbstractEntity {
 	@Column(name = "last_updated_date")
 	private Date lastUpdateDate;
 	
-	@Column(name="last_updated_by")
-	private Long lastUpdatedBy;
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="last_updated_by")
+	private UserInfo lastUpdatedBy;
 
+	/**
+	 * @return the userFlatId
+	 */
 	public Long getUserFlatId() {
 		return userFlatId;
 	}
 
+	/**
+	 * @param userFlatId the userFlatId to set
+	 */
 	public void setUserFlatId(Long userFlatId) {
 		this.userFlatId = userFlatId;
 	}
 
+	/**
+	 * @return the userInfoId
+	 */
 	public Long getUserInfoId() {
 		return userInfoId;
 	}
 
+	/**
+	 * @param userInfoId the userInfoId to set
+	 */
 	public void setUserInfoId(Long userInfoId) {
 		this.userInfoId = userInfoId;
 	}
 
+	/**
+	 * @return the flatId
+	 */
 	public Long getFlatId() {
 		return flatId;
 	}
 
+	/**
+	 * @param flatId the flatId to set
+	 */
 	public void setFlatId(Long flatId) {
 		this.flatId = flatId;
 	}
 
+	/**
+	 * @return the active
+	 */
 	public Boolean getActive() {
 		return active;
 	}
 
+	/**
+	 * @param active the active to set
+	 */
 	public void setActive(Boolean active) {
 		this.active = active;
 	}
 
+	/**
+	 * @return the lastUpdateDate
+	 */
 	public Date getLastUpdateDate() {
 		return lastUpdateDate;
 	}
 
+	/**
+	 * @param lastUpdateDate the lastUpdateDate to set
+	 */
 	public void setLastUpdateDate(Date lastUpdateDate) {
 		this.lastUpdateDate = lastUpdateDate;
 	}
 
-	public Long getLastUpdatedBy() {
+	/**
+	 * @return the lastUpdatedBy
+	 */
+	public UserInfo getLastUpdatedBy() {
 		return lastUpdatedBy;
 	}
 
-	public void setLastUpdatedBy(Long lastUpdatedBy) {
+	/**
+	 * @param lastUpdatedBy the lastUpdatedBy to set
+	 */
+	public void setLastUpdatedBy(UserInfo lastUpdatedBy) {
 		this.lastUpdatedBy = lastUpdatedBy;
 	}
-	
-	
 
 }

@@ -10,6 +10,7 @@ package com.sms.dao;
 import java.util.List;
 
 import com.sms.entity.AmenitiesBooking;
+import com.sms.entity.UserInfo;
 
 /**
  * @author Abhijit A. Kulkarni
@@ -17,13 +18,13 @@ import com.sms.entity.AmenitiesBooking;
  * @Version 1.0
  */
 public interface IAmenityBookingJpaDao {
-	
+
 	void saveBookingDetails(AmenitiesBooking bookingDetails);
 
 	/**
 	 * @param userInfo
 	 * @return
 	 */
-	List<AmenitiesBooking> getBookingDetails(Long userId);
+	List<AmenitiesBooking> getBookingDetails(UserInfo userInfo);
 
 }

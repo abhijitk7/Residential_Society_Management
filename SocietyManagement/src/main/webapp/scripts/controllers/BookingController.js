@@ -49,17 +49,17 @@
 			 
 		 	 	});
 				
-//				UserService.getUserDetails($rootScope.user.userId,function(response){
-//					 
-//				 	if(response===401) {
-//	                    toaster.pop('error', "", "You are not authorised to perform this operation. Please contact system administrator.");
-//	                }else if(response===500) {
-//	                	toaster.pop('error', "", "Some thing went wrong at server side. Please contact system administrator.");
-//	                } else{
-//	                	vm.user=response;
-//	                } 
-//			 
-//		 	 	});
+				UserService.getUserDetails($rootScope.user.userId,function(response){
+					 
+				 	if(response===401) {
+	                    toaster.pop('error', "", "You are not authorised to perform this operation. Please contact system administrator.");
+	                }else if(response===500) {
+	                	toaster.pop('error', "", "Some thing went wrong at server side. Please contact system administrator.");
+	                } else{
+	                	vm.user=response;
+	                } 
+			 
+		 	 	});
 				
 		})();
 		
@@ -76,8 +76,9 @@
 					"status":vm.selectedStatus,
 					"amenity":vm.selectedAmenity,
 					"active":true,
-					"requestedByUserInfoId":$rootScope.user.userId,
-					"lastUpdatedBy":$rootScope.user.userId
+					"requestedByUserInfoId":vm.user,
+					"lastUpdatedBy":vm.user
+					//$rootScope.user.userId
 				};
 			debugger;
 			SubmissionService.saveBooking(bookingDetails,function(response){

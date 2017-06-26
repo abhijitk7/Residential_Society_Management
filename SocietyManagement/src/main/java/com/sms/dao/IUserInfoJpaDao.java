@@ -18,9 +18,11 @@ import com.sms.entity.UserInfo;
  */
 public interface IUserInfoJpaDao {
 
-	UserInfo persistUserInfo(UserInfo userInfo);
-	
+	void persistUserInfo(UserInfo userInfo);
+
 	void updateUserInfo(UserInfo userInfo);
-	
+
 	Set<UserInfo> searchMemberDetails(String searchText);
+
+	UserInfo findUserInfoById(Long userInfoId);
 }

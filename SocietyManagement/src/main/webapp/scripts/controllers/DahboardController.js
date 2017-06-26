@@ -23,7 +23,7 @@
 			
 	 		debugger;
 			
-		 	UserService.getUserRequests($rootScope.user.userId,function(response){
+		 	UserService.getUserRequests($rootScope.user.userInfoId,function(response){
 		 				 		
 			 	if(response===401) {
                     toaster.pop('error', "", "You are not authorised to perform this operation. Please contact system administrator.");

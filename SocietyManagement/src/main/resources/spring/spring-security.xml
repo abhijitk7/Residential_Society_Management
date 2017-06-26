@@ -30,7 +30,7 @@
 	        <security:intercept-url pattern="/users/authenticate/**"
 	                                access="permitAll" />
     	    <security:intercept-url method="POST" pattern="/users/userinfo/update.do"
-                            		access="hasRole('Member')"/>      
+                            		access="hasRole('Admin')"/>      
 	        <security:intercept-url method="POST" pattern="/users/lastLogon/update/**"
 	                                access="hasRole('Member')" />                       
 	        <security:intercept-url method="POST" pattern="/users/create.do"

@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import com.sms.controller.StaticDataController;
 import com.sms.entity.AmenitiesBooking;
+import com.sms.entity.UserInfo;
 
 /**
  * @author Abhijit A. Kulkarni
@@ -23,7 +24,7 @@ import com.sms.entity.AmenitiesBooking;
  * @Version 1.0
  */
 public class AmenityBookingJpaDao extends AbstractSMSDao<AmenitiesBooking> implements IAmenityBookingJpaDao {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(StaticDataController.class);
 
 	/**
@@ -37,15 +38,15 @@ public class AmenityBookingJpaDao extends AbstractSMSDao<AmenitiesBooking> imple
 	 * @see com.sms.dao.IAmenityBookingJpaDao#saveBookingDetails(com.sms.entity.AmenitiesBooking)
 	 */
 	@Override
-	public void saveBookingDetails(AmenitiesBooking bookingDetails) {
-		
+	public void saveBookingDetails(final AmenitiesBooking bookingDetails) {
+
 		try{
-			save(bookingDetails);
-			
-		}catch(Exception ex){
-			log.debug("Exception occured while saving booking info "+ex);
+			this.save(bookingDetails);
+
+		}catch(final Exception ex){
+			log.error(ex.getMessage(), ex);
 		}
-		
+
 	}
 
 	/* (non-Javadoc)
@@ -53,18 +54,18 @@ public class AmenityBookingJpaDao extends AbstractSMSDao<AmenitiesBooking> imple
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<AmenitiesBooking> getBookingDetails(Long userId) {
-		
+	public List<AmenitiesBooking> getBookingDetails(final UserInfo userInfo) {
+
 		List<AmenitiesBooking> listOfBookings=null;
-		
+
 		try{
-			final Criteria criteria = createCriteria();
-			criteria.add(Restrictions.eq("requestedByUserInfoId", userId));
+			final Criteria criteria = this.createCriteria();
+			criteria.add(Restrictions.eq("requestedByUserInfoId", userInfo));
 			listOfBookings=criteria.list();
-		}catch(Exception ex){
-			
+		}catch(final Exception ex){
+			log.error(ex.getMessage(),ex);
 		}
-		
+
 		return listOfBookings;
 	}
 

@@ -103,7 +103,6 @@
 			});
 	
 	    $rootScope.hasRole = function(role) {
-
 	        if ($rootScope.user === undefined) {
 	            return false;
 	        }
