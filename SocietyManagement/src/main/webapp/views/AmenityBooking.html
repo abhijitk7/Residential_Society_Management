@@ -50,10 +50,7 @@
                                             <label>Comments</label><br>
                                             <textarea class="form-control" ng-model="vm.comments" ng-disabled="false" rows="5" maxlength="100" placeholder="Enter comments (Max 100 Characters only)"></textarea>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Status</label>
-                                            <select class="form-control" ng-model="vm.selectedStatus" ng-options="ststus.bookingStatus for ststus in vm.statuses" required></select>
-                                        </div>
+
                                     </form>
                                 </div>
                             </div>
@@ -66,10 +63,6 @@
                <div class="row">
                    <button type="submit" class="btn btn-success" ng-click="vm.saveBooking()">
                      <span class="glyphicon glyphicon-floppy-disk"></span> Submit
-                   </button>
-              
-                   <button type="button" class="btn btn-info">
-                     <span class="fa fa-pencil"></span> Withdraw
                    </button>
               
                    <button type="button" class="btn btn-danger">

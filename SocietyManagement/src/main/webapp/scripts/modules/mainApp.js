@@ -61,6 +61,14 @@ mainApp.config(["$stateProvider", function ($stateProvider) {
         data: {
             pageTitle: 'Change Roles'
         }
+    }).state('home.manageRequests',{
+    	url: '/manageRequests',
+        controller : 'ManageRequestsController',
+    	templateUrl : 'views/manageRequests.html',
+    	controllerAs : 'vm',
+        data: {
+            pageTitle: 'Change Roles'
+        }
     });
     
 }]);

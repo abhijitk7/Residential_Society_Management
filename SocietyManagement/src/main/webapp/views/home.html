@@ -53,8 +53,11 @@ font-size: 16px;"> Last access : {{user.lastLogon | date: 'dd MMM yyyy HH:mm'}} 
                         <a   ui-sref="#"><i class="fa fa-commenting-o fa-3x"></i> Opinion Poll</a>
                     </li>
                     <li ng-show="hasRole('Admin')">
-                        <a   ui-sref="home.changeRoles"><i class="fa fa-handshake-o fa-3x"></i> Change Roles</a>
+                        <a   ui-sref="home.changeRoles"><i class="fa fa-exchange fa-3x"></i> Change Roles</a>
                     </li>	
+                    <li ng-show="hasRole('Admin')">
+                        <a   ui-sref="home.manageRequests"><i class="fa fa-handshake-o fa-3x"></i> Manage Requests</a>
+                    </li>
                 </ul>
                
             </div>

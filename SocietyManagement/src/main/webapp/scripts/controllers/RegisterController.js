@@ -14,8 +14,8 @@
         .module('SocietyManagementSystem')
         .controller('RegisterController', RegisterController);
 
-    RegisterController.$inject = ['UserService', '$state', '$rootScope', 'FlashService'];
-    function RegisterController(UserService, $state, $rootScope, FlashService) {
+    RegisterController.$inject = ['UserService', '$state', '$rootScope', 'toaster'];
+    function RegisterController(UserService, $state, $rootScope, toaster) {
         var vm = this;
         
         vm.emailFormat = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
@@ -43,14 +43,15 @@
             
         	UserService.Create(user,function(response) {
         		
-                if (response==='true') {
-                    FlashService.Success('Registration successful', true);
+                if (response===200) {
+                	toaster.pop('success','Registration successful');
+                	vm.dataLoading = false;
                     $state.go('login');
                 } else if(response===401) {
-                    FlashService.Error("You are not authorised to perform this operation. Please contact system administrator.");
+                	toaster.pop("Error","You are not authorised to perform this operation. Please contact system administrator.");
                     vm.dataLoading = false;
                 }else if(response===500) {
-                    FlashService.Error("Some thing went wrong at server side. Please contact system administrator");
+                	toaster.pop("Error","Some thing went wrong at server side. Please contact system administrator");
                     vm.dataLoading = false;
                 }
             });

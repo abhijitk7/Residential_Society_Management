@@ -46,7 +46,7 @@ public class BookingService implements IBookingService {
 		try{
 			this.amenityBookingDao.saveBookingDetails(bookingDetails);
 		}catch(final Exception ex){
-			log.debug("Exception occured while saving booking details "+ex);
+			log.error(ex.getMessage(), ex);
 		}
 	}
 

@@ -24,19 +24,7 @@
 		(function initController() {
 			
 				$log.debug("Booking controller initialised......");
-				 		 
-				StaticDataService.getStatusList(function(response){
-				 
-				 	if(response===401) {
-	                    toaster.pop('error', "", "You are not authorised to perform this operation. Please contact system administrator.");
-	                }else if(response===500) {
-	                	toaster.pop('error', "", "Some thing went wrong at server side. Please contact system administrator.");
-	                } else{
-	                	vm.statuses=response;
-	                } 
-			 
-		 	 	});
-				
+				 		 				
 				StaticDataService.getAmenityList(function(response){
 					 
 				 	if(response===401) {
@@ -80,7 +68,7 @@
 					"lastUpdatedBy":vm.user
 					//$rootScope.user.userId
 				};
-			debugger;
+			
 			SubmissionService.saveBooking(bookingDetails,function(response){
 				
 			 	if(response===401) {

@@ -27,11 +27,9 @@
 		        url : ContextRoot + '/users/create.do',
 		        data:user,
 		        headers: {'Content-Type': 'application/json'}
-		    }).success(function(response) {
-		    	$log.debug(response);
-				callback(response);
+		    }).success(function(data, status, headers, config) {
+				callback(status);
 			}).error(function(data, status, headers, config){
-				$log.debug(status);
 				callback(status);
 			});
         }
